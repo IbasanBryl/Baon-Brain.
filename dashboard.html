@@ -261,11 +261,20 @@
         dayTotals[idx] += Number(e.amount) || 0;
       });
 
-      const sorted = [...dayTotals].sort((a, b) => a - b);
-      const rawMax = sorted[Math.floor(sorted.length * 0.85)] || 0;
       const hasData = dayTotals.some((v) => v > 0);
-      const scaleMax = hasData ? rawMax : 0;
-      const calcMax = hasData ? Math.max(rawMax, 1) : 1;
+      const rawMax = hasData ? Math.max(...dayTotals) : 0;
+      const getNiceScaleMax = (value) => {
+        if (value <= 0) return 0;
+        const magnitude = 10 ** Math.floor(Math.log10(value));
+        const normalized = value / magnitude;
+        let step = 1;
+        if (normalized > 1) step = 2;
+        if (normalized > 2) step = 5;
+        if (normalized > 5) step = 10;
+        return step * magnitude;
+      };
+      const scaleMax = getNiceScaleMax(rawMax);
+      const calcMax = hasData ? Math.max(scaleMax, rawMax, 1) : 1;
       if (scaleTop) scaleTop.textContent = money(scaleMax);
       if (scaleMid) scaleMid.textContent = money(Math.round(scaleMax / 2));
       if (scaleLow) scaleLow.textContent = money(0);
