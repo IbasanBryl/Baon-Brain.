@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BaonBrain - Dashboard</title>
+  <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+  <div class="top-nav">
+    <button disabled class="locked">Home</button>
+    <button disabled class="locked">Login</button>
+    <button class="active">Dashboard</button>
+  </div>
+
+  <section class="page active" id="dash">
+    <div class="dashboard">
+      <aside class="sidebar">
+        <h1 class="brand">BaonBrain</h1>
+        <nav class="menu">
+          <a class="menu-link active" href="#overview">Dashboard</a>
+          <a class="menu-link" href="#income">Income</a>
+          <a class="menu-link" href="#expenses">Expenses</a>
+          <a class="menu-link" href="#budget">Budget</a>
+          <a class="menu-link" href="#saving-goal">Saving Goal</a>
+          <a class="menu-link" href="#forecast">Forecast</a>
+        </nav>
+      </aside>
+      <main class="main">
+        <header class="header">
+          <h2>Financial Overview</h2>
+          <div class="user">
+            <button class="action-btn" id="reset-now-btn" type="button">Reset Now</button>
+            <span id="user-name">Guest</span>
+            <button class="logout" type="button" id="logout-btn">Logout</button>
+          </div>
+        </header>
+
+        <section class="section active-section" id="overview">
+          <div class="cards">
+            <article class="card"><h3>Total Allowance</h3><p>₱0</p></article>
+            <article class="card"><h3>Total Spent</h3><p>₱0</p></article>
+            <article class="card"><h3>Remaining</h3><p>₱0</p></article>
+            <article class="card forecast-card"><h3>AI Forecast</h3><p>₱0</p></article>
+          </div>
+          <div class="charts">
+            <article class="chart-box">
+              <h3>Weekly Spending</h3>
+              <div class="bar-wrap">
+                <div class="y-scale" id="weekly-scale">
+                  <span id="scale-top">₱0</span>
+                  <span id="scale-mid">₱0</span>
+                  <span id="scale-low">₱0</span>
+                </div>
+                <div class="bar-chart" id="weekly-bars">
+                  <div class="bar-item"><span class="bar" data-day="Mon"></span><small>Mon</small></div>
+                  <div class="bar-item"><span class="bar" data-day="Tue"></span><small>Tue</small></div>
+                  <div class="bar-item"><span class="bar" data-day="Wed"></span><small>Wed</small></div>
+                  <div class="bar-item"><span class="bar" data-day="Thu"></span><small>Thu</small></div>
+                  <div class="bar-item"><span class="bar" data-day="Fri"></span><small>Fri</small></div>
+                  <div class="bar-item"><span class="bar" data-day="Sat"></span><small>Sat</small></div>
+                  <div class="bar-item"><span class="bar" data-day="Sun"></span><small>Sun</small></div>
+                </div>
+              </div>
+            </article>
+            <article class="chart-box"><h3>By Category</h3><div class="pie"></div><ul class="legend"><li>Food - 38%</li><li>Transport - 24%</li><li>Leisure - 16%</li><li>School - 22%</li></ul></article>
+          </div>
+          <div class="alert">Budget Alert: Food spending is 80% of your limit.</div>
+          <div class="alert">Savings Alert: You have used 65% of your weekly allowance.</div>
+        </section>
+        <section class="section" id="saving-goal">
+          <div class="section-title savings-goal-head">
+            <div>
+              <h3>Saving Goal</h3>
+              <p class="saving-goal-subtext">Track your target and how much you have already saved.</p>
+            </div>
+            <div class="section-actions">
+              <button id="add-daily-saving-btn" class="action-btn" type="button">Add Daily Savings</button>
+              <button id="set-saving-goal-btn" class="action-btn" type="button">Set Saving Goal</button>
+            </div>
+          </div>
+          <article class="panel savings-goal-panel">
+            <div class="saving-goal-summary">
+              <div class="saving-goal-copy">
+                <p id="saving-goal-name" class="saving-goal-name">No saving goal yet</p>
+                <p id="saving-goal-amounts" class="saving-goal-amounts">₱0 saved of ₱0 target</p>
+              </div>
+              <span id="saving-goal-percent" class="saving-goal-percent">0%</span>
+            </div>
+            <div class="saving-goal-track"><i id="saving-goal-fill" style="width:0%"></i></div>
+            <p id="saving-goal-status" class="saving-goal-status">Set a target amount to start tracking progress.</p>
+            <div class="saving-history">
+              <div class="saving-history-head">
+                <h4>Saving History</h4>
+              </div>
+              <table class="saving-history-table">
+                <thead><tr><th>Date</th><th>Amount</th></tr></thead>
+                <tbody id="saving-history-body"><tr><td colspan="2">No savings history yet</td></tr></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="section" id="income"><div class="section-title"><h3>Income</h3><button id="add-income-btn" class="action-btn" type="button">Add Income</button></div><div class="content-grid"><article class="panel"><h4>Income Records</h4><table class="income-table"><thead><tr><th>Source</th><th>Date</th><th>Amount</th></tr></thead><tbody></tbody></table></article><article class="panel income-summary-card"><h4>Income Summary</h4><div class="summary-list"><p>This month: <strong>₱0</strong></p><p>Average per week: <strong>₱0</strong></p><p>Top source: <strong>-</strong></p></div></article></div></section>
+        <section class="section" id="expenses"><div class="section-title"><h3>Expenses</h3><button id="add-expense-btn" class="action-btn" type="button">Add Expense</button></div><div class="content-grid"><article class="panel"><h4>Recent Expenses</h4><table class="expense-table"><thead><tr><th>Category</th><th>Item</th><th>Amount</th></tr></thead><tbody></tbody></table></article><article class="panel totals-panel"><h4>Category Totals</h4><div class="totals-list"><p>Food: <strong>₱0</strong></p><p>Transport: <strong>₱0</strong></p><p>Leisure: <strong>₱0</strong></p><p>School: <strong>₱0</strong></p></div></article></div></section>
+        <section class="section" id="budget"><div class="section-title"><h3>Budget</h3><div class="section-actions"><button id="set-budget-btn" class="action-btn" type="button">Set Budget</button></div></div><article class="panel"><h4>Monthly Budget Progress</h4><div class="budget-row"><span class="budget-cat">Food</span><div class="progress"><i style="width:0%"></i></div><span class="budget-values">₱0 / ₱0</span><span class="budget-pct">0%</span></div><div class="budget-row"><span class="budget-cat">Transport</span><div class="progress"><i style="width:0%"></i></div><span class="budget-values">₱0 / ₱0</span><span class="budget-pct">0%</span></div><div class="budget-row"><span class="budget-cat">Leisure</span><div class="progress"><i style="width:0%"></i></div><span class="budget-values">₱0 / ₱0</span><span class="budget-pct">0%</span></div><div class="budget-row"><span class="budget-cat">School</span><div class="progress"><i style="width:0%"></i></div><span class="budget-values">₱0 / ₱0</span><span class="budget-pct">0%</span></div></article></section>
+        <section class="section" id="forecast"><div class="section-title"><h3>Forecast</h3><button id="run-forecast-btn" class="action-btn" type="button">Run Forecast</button></div><div class="content-grid"><article class="panel"><h4>End-of-Month Prediction</h4><p>Estimated remaining money: <strong>₱0</strong></p><p>High-risk category: <strong>-</strong></p><p>Chance of overspending: <strong>0%</strong></p></article><article class="panel"><h4>Forecast Breakdown</h4><div class="pie forecast-pie"></div><ul class="legend forecast-legend"><li>Food - 38%</li><li>Transport - 24%</li><li>Leisure - 16%</li><li>School - 22%</li></ul></article></div></section>
+      </main>
+    </div>
+  </section>
+
+  <div id="entry-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card"><h3 id="entry-modal-title">Add Entry</h3><form id="entry-form" novalidate><div class="entry-fields"></div><div class="entry-actions"><button type="button" id="entry-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="entry-save" class="entry-btn submit">Save</button></div></form></div></div>
+  <div id="reset-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card reset-card"><h3>Reset Records</h3><p class="reset-text">Reset all income and expense records now?</p><div class="entry-actions"><button type="button" id="reset-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="reset-confirm" class="entry-btn submit">OK</button></div></div></div>
+  <div id="bottom-popup" class="bottom-popup" aria-hidden="true"><div class="bottom-popup-card"><p id="bottom-popup-text">Message</p><button type="button" id="bottom-popup-ok" class="entry-btn submit">OK</button></div></div>
+
+  <script>
+    if (localStorage.getItem('bb_logged_in') !== '1') location.href = 'login.html';
+
+    const currentUserEmail = localStorage.getItem('bb_current_user') || 'guest';
+    document.getElementById('user-name').textContent = currentUserEmail.split('@')[0] || 'Guest';
+
+    const menuLinks = document.querySelectorAll('.menu-link');
+    const sections = document.querySelectorAll('#dash .section');
+    const addIncomeBtn = document.getElementById('add-income-btn');
+    const addExpenseBtn = document.getElementById('add-expense-btn');
+    const setBudgetBtn = document.getElementById('set-budget-btn');
+    const addDailySavingBtn = document.getElementById('add-daily-saving-btn');
+    const setSavingGoalBtn = document.getElementById('set-saving-goal-btn');
+    const runForecastBtn = document.getElementById('run-forecast-btn');
+    const resetNowBtn = document.getElementById('reset-now-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    const allowanceEl = document.querySelector('#overview .card:nth-child(1) p');
+    const spentEl = document.querySelector('#overview .card:nth-child(2) p');
+    const remainingEl = document.querySelector('#overview .card:nth-child(3) p');
+    const forecastEl = document.querySelector('#overview .card:nth-child(4) p');
+    const incomeTbody = document.querySelector('#income tbody');
+    const expenseTbody = document.querySelector('#expenses tbody');
+    const incomeSummaryValues = document.querySelectorAll('#income .panel:nth-child(2) strong');
+    const categoryTotals = document.querySelectorAll('#expenses .panel:nth-child(2) strong');
+    const budgetRows = document.querySelectorAll('#budget .budget-row');
+    const weeklyBars = document.querySelectorAll('#overview .bar-chart .bar');
+    const scaleTop = document.getElementById('scale-top');
+    const scaleMid = document.getElementById('scale-mid');
+    const scaleLow = document.getElementById('scale-low');
+    const savingGoalNameEl = document.getElementById('saving-goal-name');
+    const savingGoalAmountsEl = document.getElementById('saving-goal-amounts');
+    const savingGoalPercentEl = document.getElementById('saving-goal-percent');
+    const savingGoalFillEl = document.getElementById('saving-goal-fill');
+    const savingGoalStatusEl = document.getElementById('saving-goal-status');
+    const savingHistoryBody = document.getElementById('saving-history-body');
+    const forecastPanel = document.querySelector('#forecast .panel:first-child');
+    const forecastPie = document.querySelector('.forecast-pie');
+    const forecastLegend = document.querySelector('.forecast-legend');
+
+    const entryModal = document.getElementById('entry-modal');
+    const entryModalTitle = document.getElementById('entry-modal-title');
+    const entryForm = document.getElementById('entry-form');
+    const entryFields = entryForm.querySelector('.entry-fields');
+    const entryCancel = document.getElementById('entry-cancel');
+    const entrySave = document.getElementById('entry-save');
+    const resetModal = document.getElementById('reset-modal');
+    const resetCancel = document.getElementById('reset-cancel');
+    const resetConfirm = document.getElementById('reset-confirm');
+    const bottomPopup = document.getElementById('bottom-popup');
+    const bottomPopupText = document.getElementById('bottom-popup-text');
+    const bottomPopupOk = document.getElementById('bottom-popup-ok');
+    let modalMode = '';
+
+    const categories = ['Food', 'Transport', 'Leisure', 'School'];
+    const appKey = () => `bb_finance_${currentUserEmail || 'guest'}`;
+    const money = (n) => `₱${Number(n || 0).toLocaleString()}`;
+    const normalizeCategory = (raw) => {
+      const v = String(raw || '').trim().toLowerCase();
+      if (v === 'food') return 'Food';
+      if (v === 'transport') return 'Transport';
+      if (v === 'leisure') return 'Leisure';
+      if (v === 'school') return 'School';
+      return null;
+    };
+    const parseDateSafe = (value) => {
+      const d = new Date(String(value || '').trim());
+      return Number.isNaN(d.getTime()) ? null : d;
+    };
+    const getWeekMonday = (base = new Date()) => {
+      const d = new Date(base);
+      const day = d.getDay();
+      const diff = day === 0 ? -6 : 1 - day;
+      d.setHours(0, 0, 0, 0);
+      d.setDate(d.getDate() + diff);
+      return d;
+    };
+    const weekKey = () => {
+      const date = new Date();
+      const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+      const day = d.getUTCDay() || 7;
+      d.setUTCDate(d.getUTCDate() + 4 - day);
+      const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+      const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+      return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
+    };
+    const defaultState = () => ({ incomes: [], expenses: [], budget: { Food:0, Transport:0, Leisure:0, School:0 }, savingGoal: { name: '', target: 0, saved: 0, history: [] }, weekKey: '' });
+
+    function showBottomPopup(message){ bottomPopupText.textContent = message; bottomPopup.classList.add('open'); }
+    function closeBottomPopup(){ bottomPopup.classList.remove('open'); }
+    bottomPopupOk.addEventListener('click', closeBottomPopup);
+    bottomPopup.addEventListener('click', (e) => { if (e.target === bottomPopup) closeBottomPopup(); });
+    window.alert = (m) => showBottomPopup(String(m ?? ''));
+
+    function getState(){
+      const raw = JSON.parse(localStorage.getItem(appKey()) || JSON.stringify(defaultState()));
+      raw.incomes = Array.isArray(raw.incomes) ? raw.incomes : [];
+      raw.expenses = Array.isArray(raw.expenses) ? raw.expenses : [];
+      raw.budget = raw.budget && typeof raw.budget === 'object' ? raw.budget : { Food:0, Transport:0, Leisure:0, School:0 };
+      raw.savingGoal = raw.savingGoal && typeof raw.savingGoal === 'object' ? raw.savingGoal : { name: '', target: 0, saved: 0, history: [] };
+      const wk = weekKey();
+      if (raw.weekKey && raw.weekKey !== wk) { raw.incomes = []; raw.expenses = []; }
+      raw.weekKey = wk;
+      const normalizedBudget = { Food:0, Transport:0, Leisure:0, School:0 };
+      Object.keys(raw.budget).forEach((k) => {
+        const n = normalizeCategory(k);
+        if (n) normalizedBudget[n] = Number(raw.budget[k]) || 0;
+      });
+      raw.budget = normalizedBudget;
+      raw.savingGoal = {
+        name: String(raw.savingGoal.name || '').trim(),
+        target: Math.max(0, Number(raw.savingGoal.target) || 0),
+        saved: Math.max(0, Number(raw.savingGoal.saved) || 0),
+        history: Array.isArray(raw.savingGoal.history) ? raw.savingGoal.history.filter((entry) => entry && parseDateSafe(entry.date) && Number(entry.amount) > 0) : []
+      };
+      localStorage.setItem(appKey(), JSON.stringify(raw));
+      return raw;
+    }
+
+    function saveState(state){ localStorage.setItem(appKey(), JSON.stringify(state)); }
+
+    function showSection(id){
+      sections.forEach((s) => s.classList.toggle('active-section', s.id === id));
+      menuLinks.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === `#${id}`));
+    }
+    menuLinks.forEach((l) => l.addEventListener('click', (e) => { e.preventDefault(); showSection(l.getAttribute('href').slice(1)); }));
+
+    function renderBreakdown(totals){
+      const colors = ['#e58c5f','#4c8a88','#79a77f','#edbb60'];
+      const vals = categories.map((c) => totals[c] || 0);
+      const total = vals.reduce((a,b) => a+b, 0);
+      const p = total ? vals.map((v) => Math.round((v/total)*100)) : [38,24,16,22];
+      let start = 0;
+      const slices = p.map((pct, i) => { const end = start + pct; const s = `${colors[i]} ${start}% ${end}%`; start = end; return s; });
+      forecastPie.style.background = `conic-gradient(${slices.join(', ')})`;
+      forecastLegend.innerHTML = categories.map((c, i) => `<li>${c} - ${p[i]}%</li>`).join('');
+    }
+
+    function renderWeeklyBars(expenses) {
+      const weekStart = getWeekMonday(new Date());
+      const weekEnd = new Date(weekStart);
+      weekEnd.setDate(weekEnd.getDate() + 7);
+
+      const dayTotals = [0, 0, 0, 0, 0, 0, 0]; // Mon..Sun
+      expenses.forEach((e) => {
+        const d = parseDateSafe(e.date);
+        if (!d) return;
+        d.setHours(0, 0, 0, 0);
+        if (d < weekStart || d >= weekEnd) return;
+        const idx = (d.getDay() + 6) % 7; // Mon=0 ... Sun=6
+        dayTotals[idx] += Number(e.amount) || 0;
+      });
+
+      const sorted = [...dayTotals].sort((a, b) => a - b);
+      const rawMax = sorted[Math.floor(sorted.length * 0.85)] || 0;
+      const hasData = dayTotals.some((v) => v > 0);
+      const scaleMax = hasData ? rawMax : 0;
+      const calcMax = hasData ? Math.max(rawMax, 1) : 1;
+      if (scaleTop) scaleTop.textContent = money(scaleMax);
+      if (scaleMid) scaleMid.textContent = money(Math.round(scaleMax / 2));
+      if (scaleLow) scaleLow.textContent = money(0);
+
+      weeklyBars.forEach((bar, index) => {
+        const value = dayTotals[index] || 0;
+        const normalized = Math.min(value / calcMax, 1);
+        const eased = Math.sqrt(normalized);
+        const pct = value > 0 ? Math.max(16, Math.round(18 + eased * 74)) : 8;
+        bar.style.height = `${pct}%`;
+        bar.title = `${bar.dataset.day}: ₱${value}`;
+      });
+    }
+
+    function buildForecast(state){
+      const allowance = state.incomes.reduce((s, i) => s + i.amount, 0);
+      const spent = state.expenses.reduce((s, i) => s + i.amount, 0);
+      const remaining = allowance - spent;
+      const burn = state.expenses.length ? spent / state.expenses.length : 0;
+      const extra = burn * 7;
+      const totals = { Food:0, Transport:0, Leisure:0, School:0 };
+      state.expenses.forEach((e) => { const n = normalizeCategory(e.category); if (n) totals[n] += e.amount; });
+      const riskCategory = Object.entries(totals).sort((a,b) => b[1]-a[1])[0]?.[0] || '-';
+      const risk = allowance > 0 ? Math.min(99, Math.max(0, Math.round((spent / allowance) * 100 + (extra > remaining ? 15 : 0)))) : 0;
+      return { projected: remaining - extra, riskCategory, risk, totals };
+    }
+
+    function renderFinance(){
+      const state = getState();
+      const allowance = state.incomes.reduce((s, i) => s + i.amount, 0);
+      const spent = state.expenses.reduce((s, i) => s + i.amount, 0);
+      const remaining = allowance - spent;
+      const forecast = buildForecast(state);
+
+      allowanceEl.textContent = money(allowance);
+      spentEl.textContent = money(spent);
+      remainingEl.textContent = money(remaining);
+      forecastEl.textContent = money(Math.round(forecast.projected));
+
+      incomeTbody.innerHTML = state.incomes.length ? state.incomes.map((i) => `<tr><td><span class="income-pill">${i.source}</span></td><td>${i.date}</td><td class="amt-cell">${money(i.amount)}</td></tr>`).join('') : '<tr><td colspan="3">No income yet</td></tr>';
+      expenseTbody.innerHTML = state.expenses.length ? state.expenses.map((i) => `<tr><td><span class="cat-pill">${i.category}</span></td><td>${i.item}</td><td class="amt-cell">${money(i.amount)}</td></tr>`).join('') : '<tr><td colspan="3">No expenses yet</td></tr>';
+      renderWeeklyBars(state.expenses);
+
+      const now = new Date();
+      const monthlyIncomes = state.incomes.filter((i) => { const d = parseDateSafe(i.date); return d && d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear(); });
+      const monthTotal = monthlyIncomes.reduce((s, i) => s + i.amount, 0);
+      const bySource = {};
+      monthlyIncomes.forEach((i) => { bySource[i.source] = (bySource[i.source] || 0) + i.amount; });
+      const topSource = Object.entries(bySource).sort((a,b) => b[1]-a[1])[0]?.[0] || '-';
+      incomeSummaryValues[0].textContent = money(monthTotal);
+      incomeSummaryValues[1].textContent = money(monthTotal / 4);
+      incomeSummaryValues[2].textContent = topSource;
+
+      const totals = forecast.totals;
+      categoryTotals[0].textContent = money(totals.Food);
+      categoryTotals[1].textContent = money(totals.Transport);
+      categoryTotals[2].textContent = money(totals.Leisure);
+      categoryTotals[3].textContent = money(totals.School);
+
+      budgetRows.forEach((row, idx) => {
+        const cat = categories[idx];
+        const s = totals[cat] || 0;
+        const limit = Number(state.budget[cat] || 0);
+        const pct = limit > 0 ? Math.min(100, Math.round((s / limit) * 100)) : 0;
+        row.querySelector('.budget-cat').textContent = cat;
+        row.querySelector('.progress i').style.width = `${pct}%`;
+        row.querySelector('.budget-values').textContent = `${money(s)} / ${money(limit)}`;
+        row.querySelector('.budget-pct').textContent = `${pct}%`;
+      });
+
+      const savedAmount = Number(state.savingGoal.saved || 0);
+      const savingGoalTarget = Number(state.savingGoal.target || 0);
+      const savingGoalPct = savingGoalTarget > 0 ? Math.min(100, Math.round((savedAmount / savingGoalTarget) * 100)) : 0;
+      savingGoalNameEl.textContent = state.savingGoal.name || 'No saving goal yet';
+      savingGoalAmountsEl.textContent = savingGoalTarget > 0 ? `${money(savedAmount)} saved of ${money(savingGoalTarget)} target` : 'Set a target amount to start tracking progress.';
+      savingGoalPercentEl.textContent = `${savingGoalPct}%`;
+      savingGoalFillEl.style.width = `${savingGoalPct}%`;
+      if (savingGoalTarget > 0) {
+        const difference = savingGoalTarget - savedAmount;
+        savingGoalStatusEl.textContent = difference > 0
+          ? `${money(difference)} left to reach your goal. Current remaining balance: ${money(Math.max(0, remaining))}.`
+          : 'Goal reached. Nice work keeping your savings on track.';
+      } else {
+        savingGoalStatusEl.textContent = 'Set a target amount to start tracking progress.';
+      }
+      const savingHistory = [...(state.savingGoal.history || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
+      savingHistoryBody.innerHTML = savingHistory.length
+        ? savingHistory.map((entry) => `<tr><td>${entry.date}</td><td class="amt-cell">${money(entry.amount)}</td></tr>`).join('')
+        : '<tr><td colspan="2">No savings history yet</td></tr>';
+
+      forecastPanel.innerHTML = `
+        <h4>End-of-Month Prediction</h4>
+        <div class="forecast-kpis">
+          <div class="kpi">
+            <span class="kpi-label">Estimated Remaining</span>
+            <strong>${money(forecast.projected)}</strong>
+          </div>
+          <div class="kpi">
+            <span class="kpi-label">High-Risk Category</span>
+            <strong>${forecast.riskCategory}</strong>
+          </div>
+        </div>
+        <div class="risk-box">
+          <div class="risk-head">
+            <span>Chance of Overspending</span>
+            <strong>${forecast.risk}%</strong>
+          </div>
+          <div class="risk-track"><i style="width:${forecast.risk}%"></i></div>
+        </div>
+      `;
+      renderBreakdown(totals);
+    }
+
+    function openEntryModal(mode){
+      modalMode = mode;
+      const today = new Date().toISOString().slice(0, 10);
+      if (mode === 'income') {
+        entryModalTitle.textContent = 'Add Income';
+        entryFields.innerHTML = `<label>Source</label><input name="source" type="text" required><label>Amount</label><input name="amount" type="number" min="1" step="0.01" required><label>Date</label><input name="date" type="date" value="${today}" required>`;
+      } else if (mode === 'expense') {
+        entryModalTitle.textContent = 'Add Expense';
+        entryFields.innerHTML = `<label>Category</label><input name="category" type="text" placeholder="Food, Transport, Leisure, School" required><label>Item</label><input name="item" type="text" required><label>Amount</label><input name="amount" type="number" min="1" step="0.01" required><label>Date</label><input name="date" type="date" value="${today}" required>`;
+      } else if (mode === 'saving') {
+        const state = getState();
+        entryModalTitle.textContent = 'Set Saving Goal';
+        entryFields.innerHTML = `<label>Goal Name</label><input name="goalName" type="text" placeholder="Emergency fund, school trip, new phone" value="${String(state.savingGoal.name || '').replace(/"/g, '&quot;')}" required><label>Target Amount</label><input name="target" type="number" min="1" step="0.01" value="${state.savingGoal.target || ''}" required><label>Amount Saved So Far</label><input name="saved" type="number" min="0" step="0.01" value="${state.savingGoal.saved || ''}" required>`;
+      } else if (mode === 'daily-saving') {
+        entryModalTitle.textContent = 'Add Daily Savings';
+        entryFields.innerHTML = `<label>Amount Saved Today</label><input name="dailySaved" type="number" min="0.01" step="0.01" placeholder="Enter today's savings" required><label>Date</label><input name="savedDate" type="date" value="${today}" required>`;
+      } else {
+        entryModalTitle.textContent = 'Set Budget';
+        entryFields.innerHTML = `<label>Category</label><input name="category" type="text" placeholder="Food, Transport, Leisure, School" required><label>Budget Amount</label><input name="limit" type="number" min="0" step="0.01" required>`;
+      }
+      entryModal.classList.add('open');
+    }
+    function closeEntryModal(){ entryModal.classList.remove('open'); entryForm.reset(); }
+
+    addIncomeBtn.addEventListener('click', () => openEntryModal('income'));
+    addExpenseBtn.addEventListener('click', () => openEntryModal('expense'));
+    setBudgetBtn.addEventListener('click', () => openEntryModal('budget'));
+    addDailySavingBtn.addEventListener('click', () => openEntryModal('daily-saving'));
+    setSavingGoalBtn.addEventListener('click', () => openEntryModal('saving'));
+    entryCancel.addEventListener('click', closeEntryModal);
+    entryModal.addEventListener('click', (e) => { if (e.target === entryModal) closeEntryModal(); });
+
+    function submitEntry(){
+      const form = new FormData(entryForm);
+      const state = getState();
+      if (modalMode === 'income') {
+        const source = String(form.get('source') || '').trim();
+        const amount = Number(form.get('amount'));
+        const date = String(form.get('date') || '-');
+        if (!source || !Number.isFinite(amount) || amount <= 0) return showBottomPopup('Enter valid income details.');
+        state.incomes.unshift({ source, amount, date });
+      }
+      if (modalMode === 'expense') {
+        const category = normalizeCategory(form.get('category'));
+        const item = String(form.get('item') || '').trim();
+        const amount = Number(form.get('amount'));
+        const date = String(form.get('date') || '').trim();
+        if (!category) return showBottomPopup('Category must be Food, Transport, Leisure, or School.');
+        if (!parseDateSafe(date)) return showBottomPopup('Please enter a valid expense date.');
+        if (!item || !Number.isFinite(amount) || amount <= 0) return showBottomPopup('Enter valid expense details.');
+        state.expenses.unshift({ category, item, amount, date });
+      }
+      if (modalMode === 'budget') {
+        const category = normalizeCategory(form.get('category'));
+        const limit = Number(form.get('limit'));
+        if (!category) return showBottomPopup('Category must be Food, Transport, Leisure, or School.');
+        if (!Number.isFinite(limit) || limit < 0) return showBottomPopup('Enter valid budget details.');
+        state.budget[category] = limit;
+      }
+      if (modalMode === 'saving') {
+        const name = String(form.get('goalName') || '').trim();
+        const target = Number(form.get('target'));
+        const saved = Number(form.get('saved'));
+        if (!name) return showBottomPopup('Please enter a name for your saving goal.');
+        if (!Number.isFinite(target) || target <= 0) return showBottomPopup('Please enter a valid saving goal target.');
+        if (!Number.isFinite(saved) || saved < 0) return showBottomPopup('Please enter a valid saved amount.');
+        state.savingGoal = { name, target, saved, history: Array.isArray(state.savingGoal.history) ? state.savingGoal.history : [] };
+      }
+      if (modalMode === 'daily-saving') {
+        const dailySaved = Number(form.get('dailySaved'));
+        const savedDate = String(form.get('savedDate') || '').trim();
+        if (!state.savingGoal.name || Number(state.savingGoal.target || 0) <= 0) return showBottomPopup('Set your saving goal first before adding daily savings.');
+        if (!Number.isFinite(dailySaved) || dailySaved <= 0) return showBottomPopup('Please enter a valid daily savings amount.');
+        if (!parseDateSafe(savedDate)) return showBottomPopup('Please enter a valid savings date.');
+        state.savingGoal = {
+          ...state.savingGoal,
+          saved: Math.max(0, Number(state.savingGoal.saved || 0)) + dailySaved,
+          history: [{ date: savedDate, amount: dailySaved }, ...(Array.isArray(state.savingGoal.history) ? state.savingGoal.history : [])]
+        };
+        showBottomPopup(`Saved ${money(dailySaved)} for ${savedDate}.`);
+      }
+      saveState(state);
+      renderFinance();
+      closeEntryModal();
+    }
+
+    entryForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitEntry();
+    });
+    entrySave.addEventListener('click', submitEntry);
+
+    runForecastBtn.addEventListener('click', () => {
+      renderFinance();
+      showSection('forecast');
+      showBottomPopup('Forecast updated.');
+    });
+
+    function openReset(){ resetModal.classList.add('open'); }
+    function closeReset(){ resetModal.classList.remove('open'); }
+    function confirmReset(){
+      const state = getState();
+      state.incomes = [];
+      state.expenses = [];
+      state.weekKey = weekKey();
+      saveState(state);
+      renderFinance();
+      closeReset();
+      showBottomPopup('Records reset successfully.');
+    }
+    resetNowBtn.addEventListener('click', openReset);
+    resetCancel.addEventListener('click', closeReset);
+    resetConfirm.addEventListener('click', confirmReset);
+    resetModal.addEventListener('click', (e) => { if (e.target === resetModal) closeReset(); });
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.setItem('bb_logged_in', '0');
+      localStorage.removeItem('bb_current_user');
+      location.href = 'index.html';
+    });
+
+    showSection('overview');
+    renderFinance();
+  </script>
+  <script src="app-meta.js"></script>
+</body>
+</html>

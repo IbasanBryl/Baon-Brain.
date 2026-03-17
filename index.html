@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BaonBrain - Home</title>
+  <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+  <div class="top-nav">
+    <button class="active" onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='login.html'">Login</button>
+    <button id="dash-nav-btn">Dashboard</button>
+  </div>
+
+  <section class="page active" id="home">
+    <header class="home-head">
+      <div class="logo-row"><span class="logo-dot"></span><span class="logo-text">BaonBrain</span></div>
+      <div class="head-dashes"><i></i><i></i><i></i><i></i></div>
+      <button class="login-chip" onclick="location.href='login.html'">[ Login ]</button>
+    </header>
+
+    <section class="hero">
+      <p class="tagline">Smart Budgeting for Students</p>
+      <h1>Manage Your <span>Baon</span> Smarter</h1>
+      <div class="hero-lines"><i></i><i></i></div>
+      <div class="hero-buttons">
+        <button class="btn-dark" onclick="location.href='login.html'">[ Get Started ]</button>
+        <button class="btn-light" id="learn-more-btn">[ Learn More ]</button>
+      </div>
+      <div class="hero-image">
+        <div class="hero-mockup">
+          <div class="mockup-top">
+            <span class="mock-dot"></span>
+            <span class="mock-dot"></span>
+            <span class="mock-dot"></span>
+            <div class="mockup-title">BaonBrain Dashboard Preview</div>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-cards">
+              <div class="mini-card"><small>Allowance</small><strong>₱4,000</strong></div>
+              <div class="mini-card"><small>Spent</small><strong>₱800</strong></div>
+              <div class="mini-card"><small>Remaining</small><strong>₱3,200</strong></div>
+            </div>
+            <div class="mini-chart">
+              <span style="height:38%"></span>
+              <span style="height:62%"></span>
+              <span style="height:48%"></span>
+              <span style="height:74%"></span>
+              <span style="height:56%"></span>
+              <span style="height:68%"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="learn-more-panel" class="learn-more-panel">
+      <p>
+        <strong>Baon Brain</strong> refers to useful knowledge, skills, or life lessons that you “carry in your mind,”
+        similar to how <em>baon</em> is something you bring with you. It means having practical ideas or strategies
+        ready to use for learning, problem-solving, and everyday situations. 🧠
+      </p>
+    </section>
+
+    <section class="about-section">
+      <h2>About BaonBrain</h2>
+      <p>
+        BaonBrain helps students track allowance, manage daily expenses, and plan budgets with clear insights.
+        It is designed to make money habits easier to understand so you can spend smarter every week.
+      </p>
+    </section>
+
+    <section class="features">
+      <h2>Key Features</h2>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="icon"></div><h3>Expense Tracking</h3><p>Log and monitor daily spend.</p></article>
+        <article class="feature-card"><div class="icon"></div><h3>Income Recording</h3><p>Track allowance and side income.</p></article>
+        <article class="feature-card"><div class="icon"></div><h3>Budget Planning</h3><p>Set limits by category.</p></article>
+        <article class="feature-card"><div class="icon"></div><h3>Forecasting</h3><p>Preview monthly outcomes.</p></article>
+      </div>
+    </section>
+  </section>
+
+  <script>
+    const isLoggedIn = localStorage.getItem('bb_logged_in') === '1';
+    document.getElementById('dash-nav-btn').addEventListener('click', () => {
+      location.href = isLoggedIn ? 'dashboard.html' : 'login.html';
+    });
+    const learnMoreBtn = document.getElementById('learn-more-btn');
+    const learnMorePanel = document.getElementById('learn-more-panel');
+    learnMoreBtn.addEventListener('click', () => {
+      learnMorePanel.classList.toggle('show');
+      learnMorePanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
+  <script src="app-meta.js"></script>
+</body>
+</html>
