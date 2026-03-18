@@ -824,6 +824,11 @@ a{ text-decoration:none; color:inherit; }
   display:none;
 }
 
+.menu-settings-btn,
+.menu-settings-panel{
+  display:none;
+}
+
 .menu-link{
   position:relative;
   display:flex;
@@ -1500,6 +1505,80 @@ th{
   .sidebar.menu-open .menu{
     transform:translateX(0);
   }
+  .sidebar.menu-open .menu-toggle{
+    position:fixed;
+    top:12px;
+    left:12px;
+    right:auto;
+    margin-left:0;
+    margin-right:auto;
+    grid-column:1 / 2;
+    grid-row:1 / 2;
+    z-index:45;
+    width:50px;
+    height:50px;
+    display:grid;
+    place-items:center;
+    background:#445748;
+    border:2px solid #d5e2cb;
+    box-shadow:0 4px 0 rgba(0,0,0,.25);
+  }
+  .sidebar.menu-open .menu-toggle::before{
+    content:'\00D7';
+    color:#f2f7ec;
+    font-size:30px;
+    line-height:1;
+    font-weight:700;
+  }
+  .sidebar.menu-open .menu-toggle span{
+    display:none;
+  }
+  .menu-settings-btn{
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:46px;
+    height:46px;
+    display:grid;
+    place-items:center;
+    border-radius:10px;
+    border:2px solid rgba(255,255,255,.24);
+    background:rgba(255,255,255,.10);
+    color:#f2f7ec;
+    font-size:24px;
+    font-weight:700;
+    box-shadow:0 4px 12px rgba(0,0,0,.28);
+    z-index:2;
+    cursor:pointer;
+  }
+  .menu-settings-panel{
+    position:absolute;
+    top:64px;
+    left:12px;
+    display:none;
+    min-width:172px;
+    padding:8px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(22,52,56,.95);
+    box-shadow:0 10px 26px rgba(0,0,0,.35);
+    z-index:3;
+  }
+  .menu-settings-panel.open{
+    display:grid;
+    gap:8px;
+  }
+  .menu-settings-action{
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:8px;
+    background:rgba(255,255,255,.08);
+    color:#f1f8f3;
+    text-align:left;
+    font-size:14px;
+    font-weight:700;
+    padding:9px 10px;
+    cursor:pointer;
+  }
   .menu-link{
     min-height:50px;
     white-space:normal;
@@ -1521,15 +1600,6 @@ th{
   .sidebar-accent{
     display:none;
   }
-  .sidebar.menu-open .menu-toggle span:nth-child(1){
-    transform:translateY(7px) rotate(45deg);
-  }
-  .sidebar.menu-open .menu-toggle span:nth-child(2){
-    opacity:0;
-  }
-  .sidebar.menu-open .menu-toggle span:nth-child(3){
-    transform:translateY(-7px) rotate(-45deg);
-  }
   .main{
     padding:16px;
   }
@@ -1537,6 +1607,9 @@ th{
     flex-direction:column;
     align-items:flex-start;
     gap:10px;
+  }
+  #reset-now-btn{
+    display:none !important;
   }
   .user{
     width:100%;

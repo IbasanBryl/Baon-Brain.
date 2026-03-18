@@ -21,6 +21,14 @@
           <p class="sidebar-copy">Track spending, plan smarter, and keep your weekly baon under control.</p>
         </div>
         <nav class="menu" id="dashboard-menu">
+          <button class="menu-settings-btn" id="menu-settings-btn" type="button" aria-expanded="false" aria-controls="menu-settings-panel" aria-label="Open settings">
+            &#9881;
+          </button>
+          <div class="menu-settings-panel" id="menu-settings-panel">
+            <button class="menu-settings-action" id="menu-settings-reset" type="button">Reset</button>
+            <button class="menu-settings-action" id="menu-settings-logout" type="button">Log out</button>
+            <button class="menu-settings-action" id="menu-settings-manage" type="button">Manage account</button>
+          </div>
           <a class="menu-link active" href="#overview">Dashboard</a>
           <a class="menu-link" href="#income">Income</a>
           <a class="menu-link" href="#expenses">Expenses</a>
@@ -127,6 +135,11 @@
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.querySelector('.sidebar');
     const menu = document.getElementById('dashboard-menu');
+    const menuSettingsBtn = document.getElementById('menu-settings-btn');
+    const menuSettingsPanel = document.getElementById('menu-settings-panel');
+    const menuSettingsReset = document.getElementById('menu-settings-reset');
+    const menuSettingsLogout = document.getElementById('menu-settings-logout');
+    const menuSettingsManage = document.getElementById('menu-settings-manage');
     const menuBackdrop = document.getElementById('menu-backdrop');
     const menuLinks = document.querySelectorAll('.menu-link');
     const sections = document.querySelectorAll('#dash .section');
@@ -249,6 +262,7 @@
       sidebar.classList.remove('menu-open');
       menuToggle.setAttribute('aria-expanded', 'false');
       if (menuBackdrop) menuBackdrop.classList.remove('open');
+      closeSettingsPanel();
     }
 
     function syncMobileMenu() {
@@ -256,7 +270,14 @@
       if (window.innerWidth > 600) {
         sidebar.classList.remove('menu-open');
         menuToggle.setAttribute('aria-expanded', 'false');
+        closeSettingsPanel();
       }
+    }
+
+    function closeSettingsPanel(){
+      if (!menuSettingsPanel || !menuSettingsBtn) return;
+      menuSettingsPanel.classList.remove('open');
+      menuSettingsBtn.setAttribute('aria-expanded', 'false');
     }
 
     function showSection(id){
@@ -266,14 +287,50 @@
     menuLinks.forEach((l) => l.addEventListener('click', (e) => {
       e.preventDefault();
       showSection(l.getAttribute('href').slice(1));
+      closeSettingsPanel();
       if (window.innerWidth <= 600) closeMobileMenu();
     }));
+
+    if (menuSettingsBtn) {
+      menuSettingsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = menuSettingsPanel.classList.toggle('open');
+        menuSettingsBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+    if (menuSettingsPanel) {
+      menuSettingsPanel.addEventListener('click', (e) => e.stopPropagation());
+    }
+    document.addEventListener('click', () => closeSettingsPanel());
+    if (menuSettingsReset) {
+      menuSettingsReset.addEventListener('click', () => {
+        closeSettingsPanel();
+        if (window.innerWidth <= 600) closeMobileMenu();
+        resetNowBtn.click();
+      });
+    }
+    if (menuSettingsLogout) {
+      menuSettingsLogout.addEventListener('click', () => {
+        closeSettingsPanel();
+        if (window.innerWidth <= 600) closeMobileMenu();
+        logoutBtn.click();
+      });
+    }
+    if (menuSettingsManage) {
+      menuSettingsManage.addEventListener('click', () => {
+        closeSettingsPanel();
+        const userLabel = currentUserEmail || 'guest';
+        showBottomPopup(`Manage account: ${userLabel}\nThis feature will be available soon.`);
+      });
+    }
 
     if (menuToggle) {
       menuToggle.addEventListener('click', () => {
         const isOpen = sidebar.classList.toggle('menu-open');
         menuToggle.setAttribute('aria-expanded', String(isOpen));
         if (menuBackdrop) menuBackdrop.classList.toggle('open', isOpen);
+        if (!isOpen) closeSettingsPanel();
       });
     }
     if (menuBackdrop) {
