@@ -1486,6 +1486,17 @@ th{
     transform:translateX(-110%);
     transition:transform .25s ease;
   }
+  .menu::before{
+    content:'BaonBrain';
+    display:block;
+    margin-bottom:12px;
+    padding:0 4px;
+    color:#f7fbf8;
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:-.04em;
+    text-shadow:0 10px 24px rgba(0,0,0,.18);
+  }
   .sidebar.menu-open .menu{
     transform:translateX(0);
   }
