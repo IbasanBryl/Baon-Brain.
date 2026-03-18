@@ -11,11 +11,16 @@
     <div class="dashboard">
       <aside class="sidebar">
         <div class="sidebar-top">
+          <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="dashboard-menu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
           <p class="sidebar-kicker">Student Budget Hub</p>
           <h1 class="brand">BaonBrain</h1>
           <p class="sidebar-copy">Track spending, plan smarter, and keep your weekly baon under control.</p>
         </div>
-        <nav class="menu">
+        <nav class="menu" id="dashboard-menu">
           <a class="menu-link active" href="#overview">Dashboard</a>
           <a class="menu-link" href="#income">Income</a>
           <a class="menu-link" href="#expenses">Expenses</a>
@@ -118,6 +123,9 @@
     const currentUserEmail = localStorage.getItem('bb_current_user') || 'guest';
     document.getElementById('user-name').textContent = currentUserEmail.split('@')[0] || 'Guest';
 
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const menu = document.getElementById('dashboard-menu');
     const menuLinks = document.querySelectorAll('.menu-link');
     const sections = document.querySelectorAll('#dash .section');
     const addIncomeBtn = document.getElementById('add-income-btn');
@@ -234,11 +242,37 @@
 
     function saveState(state){ localStorage.setItem(appKey(), JSON.stringify(state)); }
 
+    function closeMobileMenu() {
+      if (!sidebar || !menuToggle) return;
+      sidebar.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function syncMobileMenu() {
+      if (!sidebar || !menuToggle) return;
+      if (window.innerWidth > 600) {
+        sidebar.classList.remove('menu-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+
     function showSection(id){
       sections.forEach((s) => s.classList.toggle('active-section', s.id === id));
       menuLinks.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === `#${id}`));
     }
-    menuLinks.forEach((l) => l.addEventListener('click', (e) => { e.preventDefault(); showSection(l.getAttribute('href').slice(1)); }));
+    menuLinks.forEach((l) => l.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSection(l.getAttribute('href').slice(1));
+      if (window.innerWidth <= 600) closeMobileMenu();
+    }));
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = sidebar.classList.toggle('menu-open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+    window.addEventListener('resize', syncMobileMenu);
 
     function renderBreakdown(totals){
       const colors = ['#e58c5f','#4c8a88','#79a77f','#edbb60'];
@@ -515,6 +549,7 @@
     });
 
     showSection('overview');
+    syncMobileMenu();
     renderFinance();
   </script>
   <script src="app-meta.js"></script>
