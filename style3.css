@@ -820,6 +820,10 @@ a{ text-decoration:none; color:inherit; }
   z-index:1;
 }
 
+.menu-backdrop{
+  display:none;
+}
+
 .menu-link{
   position:relative;
   display:flex;
@@ -1437,6 +1441,7 @@ th{
   .sidebar{
     width:100%;
     padding:14px;
+    overflow:visible;
   }
   .sidebar-top{
     display:grid;
@@ -1460,18 +1465,47 @@ th{
     max-width:none;
   }
   .menu{
-    display:none;
+    display:flex;
     flex-direction:column;
     gap:10px;
-    overflow:hidden;
-    margin-top:4px;
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    width:min(300px,82vw);
+    margin-top:0;
+    padding:88px 16px 20px;
+    overflow:auto;
+    background:
+      radial-gradient(circle at top left, rgba(255,255,255,.12), transparent 26%),
+      radial-gradient(circle at bottom right, rgba(243,183,87,.16), transparent 32%),
+      linear-gradient(180deg,#17464a,#1c5a60);
+    border-right:1px solid rgba(255,255,255,.12);
+    box-shadow:20px 0 40px rgba(8,22,24,.34);
+    z-index:30;
+    transform:translateX(-110%);
+    transition:transform .25s ease;
   }
   .sidebar.menu-open .menu{
-    display:flex;
+    transform:translateX(0);
   }
   .menu-link{
     min-height:50px;
     white-space:normal;
+  }
+  .menu-backdrop{
+    position:fixed;
+    inset:0;
+    display:block;
+    background:rgba(10,16,24,.36);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+    z-index:25;
+  }
+  .menu-backdrop.open{
+    opacity:1;
+    pointer-events:auto;
   }
   .sidebar-accent{
     display:none;
