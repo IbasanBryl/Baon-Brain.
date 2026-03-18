@@ -551,7 +551,13 @@ a{ text-decoration:none; color:inherit; }
 }
 
 .header h1{ font-size:42px; }
-.user{ display:flex; align-items:center; gap:10px; color:#4f4335; }
+.user{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#4f4335;
+  font-size:18px;
+}
 
 .logout{
   padding:8px 13px;
@@ -589,11 +595,12 @@ a{ text-decoration:none; color:inherit; }
   box-shadow:0 14px 24px rgba(70,52,34,.16);
 }
 
-.card p{ font-size:34px; font-weight:700; margin-top:6px; }
+.card p{ font-size:40px; font-weight:700; margin-top:6px; }
 
 #overview .card h3{
   color:#3e3a44;
   letter-spacing:.01em;
+  font-size:20px;
 }
 
 .forecast{
@@ -621,6 +628,7 @@ a{ text-decoration:none; color:inherit; }
 
 #overview .chart-box h3{
   margin-bottom:14px;
+  font-size:24px;
 }
 
 .bar-chart{
@@ -700,7 +708,12 @@ a{ text-decoration:none; color:inherit; }
   background:conic-gradient(#e58c5f 0 38%, #79a77f 38% 62%, #edbb60 62% 78%, #4c8a88 78% 100%);
 }
 
-.legend{ list-style:none; text-align:center; line-height:1.5; }
+.legend{
+  list-style:none;
+  text-align:center;
+  line-height:1.6;
+  font-size:18px;
+}
 .forecast-pie{
   width:260px;
   height:260px;
@@ -719,6 +732,7 @@ a{ text-decoration:none; color:inherit; }
   padding:15px 16px;
   box-shadow:0 6px 14px rgba(111,91,52,.10);
   font-weight:500;
+  font-size:18px;
   position:relative;
   overflow:hidden;
 }
@@ -767,7 +781,7 @@ a{ text-decoration:none; color:inherit; }
 .sidebar-copy{
   max-width:180px;
   color:rgba(236,248,244,.72);
-  font-size:13px;
+  font-size:15px;
   line-height:1.55;
 }
 
@@ -790,6 +804,7 @@ a{ text-decoration:none; color:inherit; }
   background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.05));
   border:1px solid rgba(255,255,255,.05);
   font-weight:600;
+  font-size:18px;
   letter-spacing:-.01em;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
   transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
@@ -819,18 +834,7 @@ a{ text-decoration:none; color:inherit; }
 }
 
 .sidebar-accent{
-  position:absolute;
-  left:18px;
-  right:18px;
-  bottom:18px;
-  height:88px;
-  border-radius:22px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
-    linear-gradient(180deg, rgba(243,183,87,.12), rgba(255,255,255,0));
-  border:1px solid rgba(255,255,255,.06);
-  pointer-events:none;
-  opacity:.9;
+  display:none;
 }
 
 .header h2{
@@ -887,6 +891,7 @@ a{ text-decoration:none; color:inherit; }
   padding:9px 14px;
   cursor:pointer;
   font-weight:600;
+  font-size:17px;
   outline:none;
 }
 
@@ -952,13 +957,14 @@ a{ text-decoration:none; color:inherit; }
 }
 
 .saving-goal-name{
-  font-size:24px;
+  font-size:28px;
   font-weight:700;
   color:#214b44;
 }
 
 .saving-goal-amounts{
   color:#57685d;
+  font-size:18px;
 }
 
 .saving-goal-percent{
@@ -991,6 +997,7 @@ a{ text-decoration:none; color:inherit; }
   margin-top:12px;
   color:#4b5d52;
   line-height:1.5;
+  font-size:17px;
 }
 
 .saving-history{
@@ -1015,6 +1022,7 @@ a{ text-decoration:none; color:inherit; }
 
 .panel p{
   margin-bottom:8px;
+  font-size:17px;
 }
 
 .forecast-kpis{
@@ -1033,13 +1041,13 @@ a{ text-decoration:none; color:inherit; }
 
 .kpi-label{
   display:block;
-  font-size:12px;
+  font-size:14px;
   color:#7a6a54;
   margin-bottom:4px;
 }
 
 .kpi strong{
-  font-size:22px;
+  font-size:26px;
 }
 
 .risk-box{
@@ -1078,11 +1086,12 @@ th,td{
   text-align:left;
   padding:10px 8px;
   border-bottom:1px solid #e6d8c2;
+  font-size:16px;
 }
 
 th{
   color:#6e5e4a;
-  font-size:14px;
+  font-size:15px;
 }
 
 .expense-table thead th{
@@ -1203,17 +1212,19 @@ th{
 .budget-cat{
   font-weight:700;
   color:#2d3139;
+  font-size:17px;
 }
 
 .budget-values{
   text-align:right;
   font-weight:600;
   color:#30343d;
+  font-size:16px;
 }
 
 .budget-pct{
   text-align:center;
-  font-size:12px;
+  font-size:13px;
   font-weight:700;
   color:#1b5f63;
   background:#dcf0ed;
@@ -1360,7 +1371,7 @@ th{
 
 #bottom-popup-text{
   color:#e7eeff;
-  font-size:18px;
+  font-size:20px;
   white-space:pre-line;
   font-weight:500;
 }
@@ -1433,7 +1444,7 @@ th{
   }
   .cards{ grid-template-columns:1fr; }
   .card p{
-    font-size:28px;
+    font-size:34px;
   }
   .section-title{
     flex-direction:column;
@@ -1477,7 +1488,7 @@ th{
   td{
     border:none;
     padding:6px 0;
-    font-size:14px;
+    font-size:15px;
   }
   .entry-modal{
     padding:12px;
@@ -1500,7 +1511,7 @@ th{
     align-items:stretch;
   }
   #bottom-popup-text{
-    font-size:16px;
+    font-size:18px;
   }
   .code-row{
     grid-template-columns:1fr;
