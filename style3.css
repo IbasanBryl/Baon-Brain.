@@ -559,6 +559,11 @@ a{ text-decoration:none; color:inherit; }
   font-size:18px;
 }
 
+#user-name{
+  font-size:22px;
+  font-weight:600;
+}
+
 .logout{
   padding:8px 13px;
   background:var(--white);
@@ -846,7 +851,41 @@ a{ text-decoration:none; color:inherit; }
   transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 
+.menu-side-action{
+  position:relative;
+  display:flex;
+  align-items:center;
+  min-height:42px;
+  padding:9px 12px;
+  border-radius:16px;
+  color:#ecf8f4;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.05));
+  border:1px solid rgba(255,255,255,.05);
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:-.01em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+  transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+  cursor:pointer;
+  text-align:left;
+}
+
+.menu-side-actions{
+  display:grid;
+  gap:8px;
+}
+
 .menu-link::before{
+  content:'';
+  width:8px;
+  height:8px;
+  margin-right:12px;
+  border-radius:50%;
+  background:rgba(255,255,255,.38);
+  box-shadow:0 0 0 4px rgba(255,255,255,.04);
+}
+
+.menu-side-action::before{
   content:'';
   width:8px;
   height:8px;
@@ -858,6 +897,13 @@ a{ text-decoration:none; color:inherit; }
 
 .menu-link:hover,
 .menu-link.active{
+  background:linear-gradient(135deg,rgba(243,183,87,.24),rgba(255,255,255,.12));
+  border-color:rgba(243,183,87,.16);
+  transform:translateX(4px);
+  box-shadow:0 12px 22px rgba(13,40,43,.18), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.menu-side-action:hover{
   background:linear-gradient(135deg,rgba(243,183,87,.24),rgba(255,255,255,.12));
   border-color:rgba(243,183,87,.16);
   transform:translateX(4px);
@@ -1316,34 +1362,8 @@ th{
   margin-bottom:14px;
 }
 
-.account-card{
-  width:min(520px, 96vw);
-}
-
-.account-card h3{
-  font-size:34px;
-  margin-bottom:10px;
-}
-
-#account-form .entry-fields{
-  gap:7px;
-}
-
-#account-form .entry-fields label{
-  margin-top:2px;
-}
-
-#account-form input[readonly]{
-  opacity:.95;
-  background:#111b29;
-  color:#cfdefa;
-}
-
-.account-help{
-  font-size:15px;
-  line-height:1.45;
-  color:#c8d8f7;
-  margin:10px 0 0;
+.account-mobile-head{
+  display:none;
 }
 
 .entry-fields{
@@ -1400,6 +1420,18 @@ th{
 .entry-btn.submit{
   background:#8daee2;
   color:#102a4f;
+}
+
+.account-change-pass-btn{
+  margin-top:14px;
+  border:1px solid rgba(141, 171, 255, .45);
+  background:rgba(23, 41, 69, .45);
+  color:#d9e8ff;
+  width:100%;
+  border-radius:12px;
+  padding:11px 12px;
+  font-weight:700;
+  cursor:pointer;
 }
 
 .bottom-popup{
@@ -1613,6 +1645,15 @@ th{
     min-height:50px;
     white-space:normal;
   }
+  .menu-side-actions{
+    margin-top:auto;
+    padding-top:12px;
+  }
+  .menu-side-action{
+    min-height:40px;
+    font-size:15px;
+    padding:8px 12px;
+  }
   .menu-backdrop{
     position:fixed;
     inset:0;
@@ -1645,6 +1686,9 @@ th{
     width:100%;
     justify-content:space-between;
     flex-wrap:wrap;
+  }
+  #user-name{
+    font-size:28px;
   }
   .cards{ grid-template-columns:1fr; }
   .card p{
@@ -1704,12 +1748,6 @@ th{
   .entry-modal-card h3{
     font-size:24px;
   }
-  .account-card h3{
-    font-size:26px;
-  }
-  .account-help{
-    font-size:14px;
-  }
   .entry-actions{
     justify-content:stretch;
   }
@@ -1742,6 +1780,91 @@ th{
   }
   .hero{ padding-top:34px; }
   .hero-image{ min-height:180px; }
+}
+
+@media(max-width:600px){
+  .account-card{
+    width:min(540px, 100%);
+    min-height:100dvh;
+    border-radius:0;
+    padding:18px 14px calc(14px + env(safe-area-inset-bottom));
+    border:none;
+    box-shadow:none;
+    background:linear-gradient(180deg, #050b16 0%, #0c1423 100%);
+    display:flex;
+    flex-direction:column;
+  }
+  #account-form{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+  }
+  .account-mobile-head{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    margin-bottom:16px;
+  }
+  .account-mobile-head p{
+    font-size:22px;
+    font-weight:700;
+    color:#f3f7ff;
+  }
+  .account-back-btn{
+    position:absolute;
+    left:0;
+    border:none;
+    background:transparent;
+    color:#f3f7ff;
+    font-size:34px;
+    line-height:1;
+    cursor:pointer;
+    padding:0 6px 6px 0;
+  }
+  .account-card h3{
+    font-size:42px;
+    margin-bottom:12px;
+  }
+  #account-form .entry-fields{
+    gap:7px;
+  }
+  #account-form .entry-fields label{
+    margin-top:2px;
+    font-size:14px;
+    color:#b9cdf6;
+  }
+  #account-form .entry-fields input{
+    border-radius:16px;
+    font-size:14px;
+    padding:11px 12px;
+  }
+  #account-form input[readonly]{
+    opacity:.95;
+    background:#111a2a;
+    color:#cfdefa;
+  }
+  .account-help{
+    font-size:14px;
+    line-height:1.45;
+    color:#c8d8f7;
+    margin:16px 0 0;
+  }
+  #account-form .entry-actions{
+    margin-top:auto;
+    padding-top:18px;
+    gap:12px;
+  }
+  .account-change-pass-btn{
+    margin-top:16px;
+    border-radius:16px;
+    padding:12px 14px;
+    font-size:14px;
+  }
+  #account-form .entry-btn{
+    font-size:20px;
+    padding:10px 18px;
+  }
 }
 
 @media(max-width:420px){

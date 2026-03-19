@@ -26,7 +26,6 @@
           </button>
           <div class="menu-settings-panel" id="menu-settings-panel">
             <button class="menu-settings-action" id="menu-settings-manage" type="button">Manage account</button>
-            <button class="menu-settings-action" id="menu-settings-reset" type="button">Reset</button>
             <button class="menu-settings-action" id="menu-settings-logout" type="button">Log out</button>
           </div>
           <a class="menu-link active" href="#overview">Dashboard</a>
@@ -35,6 +34,10 @@
           <a class="menu-link" href="#budget">Budget</a>
           <a class="menu-link" href="#saving-goal">Saving Goal</a>
           <a class="menu-link" href="#forecast">Forecast</a>
+          <div class="menu-side-actions">
+            <button class="menu-side-action" id="menu-side-reset" type="button">Reset</button>
+            <button class="menu-side-action" id="menu-side-logout" type="button">Log out</button>
+          </div>
         </nav>
         <div class="sidebar-accent" aria-hidden="true"></div>
       </aside>
@@ -43,9 +46,7 @@
         <header class="header">
           <h2>Financial Overview</h2>
           <div class="user">
-            <button class="action-btn" id="reset-now-btn" type="button">Reset Now</button>
             <span id="user-name">Guest</span>
-            <button class="logout" type="button" id="logout-btn">Logout</button>
           </div>
         </header>
 
@@ -124,8 +125,10 @@
 
   <div id="entry-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card"><h3 id="entry-modal-title">Add Entry</h3><form id="entry-form" novalidate><div class="entry-fields"></div><div class="entry-actions"><button type="button" id="entry-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="entry-save" class="entry-btn submit">Save</button></div></form></div></div>
   <div id="reset-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card reset-card"><h3>Reset Records</h3><p class="reset-text">Reset all income and expense records now?</p><div class="entry-actions"><button type="button" id="reset-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="reset-confirm" class="entry-btn submit">OK</button></div></div></div>
+  <div id="logout-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card reset-card"><h3>Log Out</h3><p class="reset-text">Log out now?</p><div class="entry-actions"><button type="button" id="logout-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="logout-confirm" class="entry-btn submit">OK</button></div></div></div>
   <div id="bottom-popup" class="bottom-popup" aria-hidden="true"><div class="bottom-popup-card"><p id="bottom-popup-text">Message</p><button type="button" id="bottom-popup-ok" class="entry-btn submit">OK</button></div></div>
-  <div id="account-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card account-card"><h3>Manage Account</h3><form id="account-form" novalidate><div class="entry-fields"><label for="account-email">Email</label><input id="account-email" type="email" readonly><label for="account-display-name">Display Name</label><input id="account-display-name" type="text" maxlength="32" placeholder="How your name appears"></div><p class="account-help">Display name appears in your dashboard header.</p><div class="entry-actions"><button type="button" id="account-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="account-save" class="entry-btn submit">Save</button></div></form></div></div>
+  <div id="account-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card account-card"><div class="account-mobile-head"><button type="button" id="account-back-btn" class="account-back-btn" aria-label="Close edit info">&#8249;</button><p>Edit info</p></div><h3>Manage Account</h3><form id="account-form" novalidate><div class="entry-fields"><label for="account-email">Email</label><input id="account-email" type="email" readonly><label for="account-display-name">Display Name</label><input id="account-display-name" type="text" maxlength="32" placeholder="How your name appears"></div><p class="account-help">Display name appears in your dashboard header.</p><button type="button" id="account-change-pass-btn" class="account-change-pass-btn">Change Password</button><div class="entry-actions"><button type="button" id="account-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="account-save" class="entry-btn submit">Save</button></div></form></div></div>
+  <div id="account-password-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card"><h3>Change Password</h3><form id="account-password-form" novalidate><div class="entry-fields"><label for="current-password">Current Password</label><input id="current-password" name="current_password" type="password" minlength="6" required><label for="new-password">New Password</label><input id="new-password" name="new_password" type="password" minlength="6" required><label for="confirm-new-password">Confirm New Password</label><input id="confirm-new-password" name="confirm_new_password" type="password" minlength="6" required></div><div class="entry-actions"><button type="button" id="account-password-cancel" class="entry-btn cancel">Cancel</button><button type="submit" id="account-password-save" class="entry-btn submit">Update</button></div></form></div></div>
 
   <script>
     if (localStorage.getItem('bb_logged_in') !== '1') location.href = 'login.html';
@@ -138,6 +141,8 @@
       return { displayName: String(raw.displayName || '').trim() };
     };
     const saveProfile = (profile) => localStorage.setItem(profileKey(), JSON.stringify(profile));
+    const getUsers = () => JSON.parse(localStorage.getItem('bb_users') || '[]');
+    const saveUsers = (users) => localStorage.setItem('bb_users', JSON.stringify(users));
     function updateUserName() {
       const profile = getProfile();
       const fallbackName = currentUserEmail.split('@')[0] || 'Guest';
@@ -150,9 +155,10 @@
     const menu = document.getElementById('dashboard-menu');
     const menuSettingsBtn = document.getElementById('menu-settings-btn');
     const menuSettingsPanel = document.getElementById('menu-settings-panel');
-    const menuSettingsReset = document.getElementById('menu-settings-reset');
     const menuSettingsLogout = document.getElementById('menu-settings-logout');
     const menuSettingsManage = document.getElementById('menu-settings-manage');
+    const menuSideReset = document.getElementById('menu-side-reset');
+    const menuSideLogout = document.getElementById('menu-side-logout');
     const menuBackdrop = document.getElementById('menu-backdrop');
     const menuLinks = document.querySelectorAll('.menu-link');
     const sections = document.querySelectorAll('#dash .section');
@@ -162,8 +168,6 @@
     const addDailySavingBtn = document.getElementById('add-daily-saving-btn');
     const setSavingGoalBtn = document.getElementById('set-saving-goal-btn');
     const runForecastBtn = document.getElementById('run-forecast-btn');
-    const resetNowBtn = document.getElementById('reset-now-btn');
-    const logoutBtn = document.getElementById('logout-btn');
 
     const allowanceEl = document.querySelector('#overview .card:nth-child(1) p');
     const spentEl = document.querySelector('#overview .card:nth-child(2) p');
@@ -197,6 +201,9 @@
     const resetModal = document.getElementById('reset-modal');
     const resetCancel = document.getElementById('reset-cancel');
     const resetConfirm = document.getElementById('reset-confirm');
+    const logoutModal = document.getElementById('logout-modal');
+    const logoutCancel = document.getElementById('logout-cancel');
+    const logoutConfirm = document.getElementById('logout-confirm');
     const bottomPopup = document.getElementById('bottom-popup');
     const bottomPopupText = document.getElementById('bottom-popup-text');
     const bottomPopupOk = document.getElementById('bottom-popup-ok');
@@ -204,8 +211,13 @@
     const accountForm = document.getElementById('account-form');
     const accountEmail = document.getElementById('account-email');
     const accountDisplayName = document.getElementById('account-display-name');
+    const accountBackBtn = document.getElementById('account-back-btn');
+    const accountChangePassBtn = document.getElementById('account-change-pass-btn');
     const accountCancel = document.getElementById('account-cancel');
     const accountSave = document.getElementById('account-save');
+    const accountPasswordModal = document.getElementById('account-password-modal');
+    const accountPasswordForm = document.getElementById('account-password-form');
+    const accountPasswordCancel = document.getElementById('account-password-cancel');
     let modalMode = '';
 
     const categories = ['Food', 'Transport', 'Leisure', 'School'];
@@ -322,18 +334,30 @@
       menuSettingsPanel.addEventListener('click', (e) => e.stopPropagation());
     }
     document.addEventListener('click', () => closeSettingsPanel());
-    if (menuSettingsReset) {
-      menuSettingsReset.addEventListener('click', () => {
-        closeSettingsPanel();
-        if (window.innerWidth <= 600) closeMobileMenu();
-        resetNowBtn.click();
-      });
+    function logoutAccount() {
+      localStorage.setItem('bb_logged_in', '0');
+      localStorage.removeItem('bb_current_user');
+      location.href = 'index.html';
     }
     if (menuSettingsLogout) {
       menuSettingsLogout.addEventListener('click', () => {
         closeSettingsPanel();
         if (window.innerWidth <= 600) closeMobileMenu();
-        logoutBtn.click();
+        openLogout();
+      });
+    }
+    if (menuSideReset) {
+      menuSideReset.addEventListener('click', () => {
+        closeSettingsPanel();
+        if (window.innerWidth <= 600) closeMobileMenu();
+        openReset();
+      });
+    }
+    if (menuSideLogout) {
+      menuSideLogout.addEventListener('click', () => {
+        closeSettingsPanel();
+        if (window.innerWidth <= 600) closeMobileMenu();
+        openLogout();
       });
     }
     if (menuSettingsManage) {
@@ -610,6 +634,12 @@
 
     function openReset(){ resetModal.classList.add('open'); }
     function closeReset(){ resetModal.classList.remove('open'); }
+    function openLogout(){ logoutModal.classList.add('open'); }
+    function closeLogout(){ logoutModal.classList.remove('open'); }
+    function confirmLogout(){
+      closeLogout();
+      logoutAccount();
+    }
     function openManageAccount(){
       const profile = getProfile();
       accountEmail.value = currentUserEmail;
@@ -618,6 +648,34 @@
     }
     function closeManageAccount(){
       accountModal.classList.remove('open');
+    }
+    function openChangePassword(){
+      accountPasswordForm.reset();
+      accountPasswordModal.classList.add('open');
+    }
+    function closeChangePassword(){
+      accountPasswordModal.classList.remove('open');
+      accountPasswordForm.reset();
+    }
+    function submitChangePassword(){
+      const form = new FormData(accountPasswordForm);
+      const currentPassword = String(form.get('current_password') || '');
+      const newPassword = String(form.get('new_password') || '');
+      const confirmPassword = String(form.get('confirm_new_password') || '');
+      if (!currentPassword || !newPassword || !confirmPassword) return showBottomPopup('Please fill all password fields.');
+      if (newPassword.length < 6) return showBottomPopup('New password must be at least 6 characters.');
+      if (newPassword !== confirmPassword) return showBottomPopup('New passwords do not match.');
+      if (newPassword === currentPassword) return showBottomPopup('New password must be different from current password.');
+
+      const users = getUsers();
+      const userIndex = users.findIndex((u) => u.email === currentUserEmail);
+      if (userIndex === -1) return showBottomPopup('Account not found. Please sign in again.');
+      if (users[userIndex].password !== currentPassword) return showBottomPopup('Current password is incorrect.');
+
+      users[userIndex].password = newPassword;
+      saveUsers(users);
+      closeChangePassword();
+      showBottomPopup('Password updated successfully.');
     }
     function saveManageAccount(){
       const displayName = String(accountDisplayName.value || '').trim().slice(0, 32);
@@ -636,23 +694,27 @@
       closeReset();
       showBottomPopup('Records reset successfully.');
     }
-    resetNowBtn.addEventListener('click', openReset);
     resetCancel.addEventListener('click', closeReset);
     resetConfirm.addEventListener('click', confirmReset);
     resetModal.addEventListener('click', (e) => { if (e.target === resetModal) closeReset(); });
+    logoutCancel.addEventListener('click', closeLogout);
+    logoutConfirm.addEventListener('click', confirmLogout);
+    logoutModal.addEventListener('click', (e) => { if (e.target === logoutModal) closeLogout(); });
     accountCancel.addEventListener('click', closeManageAccount);
+    accountBackBtn.addEventListener('click', closeManageAccount);
+    accountChangePassBtn.addEventListener('click', openChangePassword);
     accountSave.addEventListener('click', saveManageAccount);
     accountForm.addEventListener('submit', (e) => {
       e.preventDefault();
       saveManageAccount();
     });
     accountModal.addEventListener('click', (e) => { if (e.target === accountModal) closeManageAccount(); });
-
-    logoutBtn.addEventListener('click', () => {
-      localStorage.setItem('bb_logged_in', '0');
-      localStorage.removeItem('bb_current_user');
-      location.href = 'index.html';
+    accountPasswordCancel.addEventListener('click', closeChangePassword);
+    accountPasswordForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitChangePassword();
     });
+    accountPasswordModal.addEventListener('click', (e) => { if (e.target === accountPasswordModal) closeChangePassword(); });
 
     showSection('overview');
     syncMobileMenu();
