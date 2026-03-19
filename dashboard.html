@@ -21,16 +21,20 @@
           <p class="sidebar-copy">Track spending, plan smarter, and keep your weekly baon under control.</p>
         </div>
         <nav class="menu" id="dashboard-menu">
+          <button class="menu-settings-btn" id="menu-settings-btn" type="button" aria-expanded="false" aria-controls="menu-settings-panel" aria-label="Open account menu">
+            &#9776;
+          </button>
+          <div class="menu-settings-panel" id="menu-settings-panel">
+            <button class="menu-settings-action" id="menu-settings-manage" type="button">Manage account</button>
+            <button class="menu-settings-action" id="menu-settings-reset" type="button">Reset</button>
+            <button class="menu-settings-action" id="menu-settings-logout" type="button">Log out</button>
+          </div>
           <a class="menu-link active" href="#overview">Dashboard</a>
           <a class="menu-link" href="#income">Income</a>
           <a class="menu-link" href="#expenses">Expenses</a>
           <a class="menu-link" href="#budget">Budget</a>
           <a class="menu-link" href="#saving-goal">Saving Goal</a>
           <a class="menu-link" href="#forecast">Forecast</a>
-          <div class="menu-side-actions">
-            <button class="menu-side-action" id="menu-side-reset" type="button">Reset</button>
-            <button class="menu-side-action" id="menu-side-logout" type="button">Log out</button>
-          </div>
         </nav>
         <div class="sidebar-accent" aria-hidden="true"></div>
       </aside>
@@ -39,6 +43,8 @@
         <header class="header">
           <h2>Financial Overview</h2>
           <div class="user">
+            <button class="action-btn" id="quick-budget-btn" type="button">Add Budget</button>
+            <button class="action-btn" id="set-budget-btn" type="button">Set Budget</button>
             <span id="user-name">Guest</span>
           </div>
         </header>
@@ -109,8 +115,8 @@
         </section>
 
         <section class="section" id="income"><div class="section-title"><h3>Income</h3><button id="add-income-btn" class="action-btn" type="button">Add Income</button></div><div class="content-grid"><article class="panel"><h4>Income Records</h4><table class="income-table"><thead><tr><th>Source</th><th>Date</th><th>Amount</th></tr></thead><tbody></tbody></table></article><article class="panel income-summary-card"><h4>Income Summary</h4><div class="summary-list"><p>This month: <strong>&#8369;0</strong></p><p>Average per week: <strong>&#8369;0</strong></p><p>Top source: <strong>-</strong></p></div></article></div></section>
-        <section class="section" id="expenses"><div class="section-title"><h3>Expenses</h3><button id="add-expense-btn" class="action-btn" type="button">Add Expense</button></div><div class="content-grid"><article class="panel"><h4>Recent Expenses</h4><table class="expense-table"><thead><tr><th>Category</th><th>Item</th><th>Amount</th></tr></thead><tbody></tbody></table></article><article class="panel totals-panel"><h4>Category Totals</h4><div class="totals-list"><p>Food: <strong>&#8369;0</strong></p><p>Transport: <strong>&#8369;0</strong></p><p>Leisure: <strong>&#8369;0</strong></p><p>School: <strong>&#8369;0</strong></p></div></article></div></section>
-        <section class="section" id="budget"><div class="section-title"><h3>Budget</h3><div class="section-actions"><button id="set-budget-btn" class="action-btn" type="button">Set Budget</button></div></div><article class="panel"><h4>Monthly Budget Progress</h4><div class="budget-row"><span class="budget-cat">Food</span><div class="progress"><i style="width:0%"></i></div><span class="budget-values">&#8369;0 / &#8369;0</span><span class="budget-pct">0%</span></div><div class="budget-row"><span class="budget-cat">Transport</span><div class="progress"><i style="width:0%"></i></div><span class="budget-values">&#8369;0 / &#8369;0</span><span class="budget-pct">0%</span></div><div class="budget-row"><span class="budget-cat">Leisure</span><div class="progress"><i style="width:0%"></i></div><span class="budget-values">&#8369;0 / &#8369;0</span><span class="budget-pct">0%</span></div><div class="budget-row"><span class="budget-cat">School</span><div class="progress"><i style="width:0%"></i></div><span class="budget-values">&#8369;0 / &#8369;0</span><span class="budget-pct">0%</span></div></article></section>
+        <section class="section" id="expenses"><div class="section-title"><h3>Expenses</h3><button id="add-expense-btn" class="action-btn" type="button">Add Expense</button></div><div class="content-grid"><article class="panel"><h4>Recent Expenses</h4><div class="expenses-scroll"><table class="expense-table"><thead><tr><th>Category</th><th>Item</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel totals-panel"><h4>Category Totals</h4><div class="totals-scroll"><div class="totals-list" id="category-totals-list"><p>No expenses yet</p></div></div></article></div></section>
+        <section class="section" id="budget"><div class="section-title"><h3>Budget</h3></div><article class="panel"><h4>Monthly Budget Progress</h4><div id="budget-rows"><p>No budget categories yet</p></div></article></section>
         <section class="section" id="forecast"><div class="section-title"><h3>Forecast</h3><button id="run-forecast-btn" class="action-btn" type="button">Run Forecast</button></div><div class="content-grid"><article class="panel"><h4>End-of-Month Prediction</h4><p>Estimated remaining money: <strong>&#8369;0</strong></p><p>High-risk category: <strong>-</strong></p><p>Chance of overspending: <strong>0%</strong></p></article><article class="panel"><h4>Forecast Breakdown</h4><div class="pie forecast-pie"></div><ul class="legend forecast-legend"><li>Food - 38%</li><li>Transport - 24%</li><li>Leisure - 16%</li><li>School - 22%</li></ul></article></div></section>
       </main>
     </div>
@@ -146,14 +152,18 @@
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.querySelector('.sidebar');
     const menu = document.getElementById('dashboard-menu');
-    const menuSideReset = document.getElementById('menu-side-reset');
-    const menuSideLogout = document.getElementById('menu-side-logout');
+    const menuSettingsBtn = document.getElementById('menu-settings-btn');
+    const menuSettingsPanel = document.getElementById('menu-settings-panel');
+    const menuSettingsManage = document.getElementById('menu-settings-manage');
+    const menuSettingsReset = document.getElementById('menu-settings-reset');
+    const menuSettingsLogout = document.getElementById('menu-settings-logout');
     const menuBackdrop = document.getElementById('menu-backdrop');
     const menuLinks = document.querySelectorAll('.menu-link');
     const sections = document.querySelectorAll('#dash .section');
     const addIncomeBtn = document.getElementById('add-income-btn');
     const addExpenseBtn = document.getElementById('add-expense-btn');
     const setBudgetBtn = document.getElementById('set-budget-btn');
+    const quickBudgetBtn = document.getElementById('quick-budget-btn');
     const addDailySavingBtn = document.getElementById('add-daily-saving-btn');
     const setSavingGoalBtn = document.getElementById('set-saving-goal-btn');
     const runForecastBtn = document.getElementById('run-forecast-btn');
@@ -165,8 +175,8 @@
     const incomeTbody = document.querySelector('#income tbody');
     const expenseTbody = document.querySelector('#expenses tbody');
     const incomeSummaryValues = document.querySelectorAll('#income .panel:nth-child(2) strong');
-    const categoryTotals = document.querySelectorAll('#expenses .panel:nth-child(2) strong');
-    const budgetRows = document.querySelectorAll('#budget .budget-row');
+    const categoryTotalsList = document.getElementById('category-totals-list');
+    const budgetRowsContainer = document.getElementById('budget-rows');
     const weeklyBars = document.querySelectorAll('#overview .bar-chart .bar');
     const scaleTop = document.getElementById('scale-top');
     const scaleMid = document.getElementById('scale-mid');
@@ -242,7 +252,7 @@
       const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
       return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
     };
-    const defaultState = () => ({ incomes: [], expenses: [], budget: { Food:0, Transport:0, Leisure:0, School:0 }, savingGoal: { name: '', target: 0, saved: 0, history: [] }, weekKey: '' });
+    const defaultState = () => ({ incomes: [], expenses: [], budget: {}, savingGoal: { name: '', target: 0, saved: 0, history: [] }, weekKey: '' });
 
     function showBottomPopup(message){ bottomPopupText.textContent = message; bottomPopup.classList.add('open'); }
     function closeBottomPopup(){ bottomPopup.classList.remove('open'); }
@@ -254,15 +264,16 @@
       const raw = JSON.parse(localStorage.getItem(appKey()) || JSON.stringify(defaultState()));
       raw.incomes = Array.isArray(raw.incomes) ? raw.incomes : [];
       raw.expenses = Array.isArray(raw.expenses) ? raw.expenses : [];
-      raw.budget = raw.budget && typeof raw.budget === 'object' ? raw.budget : { Food:0, Transport:0, Leisure:0, School:0 };
+      raw.budget = raw.budget && typeof raw.budget === 'object' ? raw.budget : {};
       raw.savingGoal = raw.savingGoal && typeof raw.savingGoal === 'object' ? raw.savingGoal : { name: '', target: 0, saved: 0, history: [] };
       const wk = weekKey();
       if (raw.weekKey && raw.weekKey !== wk) { raw.incomes = []; raw.expenses = []; }
       raw.weekKey = wk;
-      const normalizedBudget = { Food:0, Transport:0, Leisure:0, School:0 };
+      const normalizedBudget = {};
       Object.keys(raw.budget).forEach((k) => {
-        const n = normalizeCategory(k);
-        if (n) normalizedBudget[n] = Number(raw.budget[k]) || 0;
+        const label = String(k || '').trim();
+        if (!label) return;
+        normalizedBudget[label] = Math.max(0, Number(raw.budget[k]) || 0);
       });
       raw.budget = normalizedBudget;
       raw.savingGoal = {
@@ -282,6 +293,7 @@
       sidebar.classList.remove('menu-open');
       menuToggle.setAttribute('aria-expanded', 'false');
       if (menuBackdrop) menuBackdrop.classList.remove('open');
+      closeSettingsPanel();
     }
 
     function syncMobileMenu() {
@@ -289,31 +301,64 @@
       if (window.innerWidth > 600) {
         sidebar.classList.remove('menu-open');
         menuToggle.setAttribute('aria-expanded', 'false');
+        closeSettingsPanel();
       }
+    }
+
+    function closeSettingsPanel(){
+      if (!menuSettingsPanel || !menuSettingsBtn) return;
+      menuSettingsPanel.classList.remove('open');
+      menuSettingsBtn.setAttribute('aria-expanded', 'false');
     }
 
     function showSection(id){
       sections.forEach((s) => s.classList.toggle('active-section', s.id === id));
       menuLinks.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === `#${id}`));
+      const showBudgetActions = id === 'budget';
+      if (quickBudgetBtn) quickBudgetBtn.style.display = showBudgetActions ? 'inline-flex' : 'none';
+      if (setBudgetBtn) setBudgetBtn.style.display = showBudgetActions ? 'inline-flex' : 'none';
     }
     menuLinks.forEach((l) => l.addEventListener('click', (e) => {
       e.preventDefault();
       showSection(l.getAttribute('href').slice(1));
+      closeSettingsPanel();
       if (window.innerWidth <= 600) closeMobileMenu();
     }));
+
+    if (menuSettingsBtn) {
+      menuSettingsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = menuSettingsPanel.classList.toggle('open');
+        menuSettingsBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+    if (menuSettingsPanel) {
+      menuSettingsPanel.addEventListener('click', (e) => e.stopPropagation());
+    }
+    document.addEventListener('click', () => closeSettingsPanel());
     function logoutAccount() {
       localStorage.setItem('bb_logged_in', '0');
       localStorage.removeItem('bb_current_user');
       location.href = 'index.html';
     }
-    if (menuSideReset) {
-      menuSideReset.addEventListener('click', () => {
+    if (menuSettingsReset) {
+      menuSettingsReset.addEventListener('click', () => {
+        closeSettingsPanel();
         if (window.innerWidth <= 600) closeMobileMenu();
         openReset();
       });
     }
-    if (menuSideLogout) {
-      menuSideLogout.addEventListener('click', () => {
+    if (menuSettingsManage) {
+      menuSettingsManage.addEventListener('click', () => {
+        closeSettingsPanel();
+        if (window.innerWidth <= 600) closeMobileMenu();
+        openManageAccount();
+      });
+    }
+    if (menuSettingsLogout) {
+      menuSettingsLogout.addEventListener('click', () => {
+        closeSettingsPanel();
         if (window.innerWidth <= 600) closeMobileMenu();
         openLogout();
       });
@@ -324,6 +369,7 @@
         const isOpen = sidebar.classList.toggle('menu-open');
         menuToggle.setAttribute('aria-expanded', String(isOpen));
         if (menuBackdrop) menuBackdrop.classList.toggle('open', isOpen);
+        if (!isOpen) closeSettingsPanel();
       });
     }
     if (menuBackdrop) {
@@ -425,21 +471,36 @@
       incomeSummaryValues[2].textContent = topSource;
 
       const totals = forecast.totals;
-      categoryTotals[0].textContent = money(totals.Food);
-      categoryTotals[1].textContent = money(totals.Transport);
-      categoryTotals[2].textContent = money(totals.Leisure);
-      categoryTotals[3].textContent = money(totals.School);
-
-      budgetRows.forEach((row, idx) => {
-        const cat = categories[idx];
-        const s = totals[cat] || 0;
-        const limit = Number(state.budget[cat] || 0);
-        const pct = limit > 0 ? Math.min(100, Math.round((s / limit) * 100)) : 0;
-        row.querySelector('.budget-cat').textContent = cat;
-        row.querySelector('.progress i').style.width = `${pct}%`;
-        row.querySelector('.budget-values').textContent = `${money(s)} / ${money(limit)}`;
-        row.querySelector('.budget-pct').textContent = `${pct}%`;
+      const dynamicCategoryTotals = {};
+      state.expenses.forEach((entry) => {
+        const label = String(entry.category || '').trim();
+        if (!label) return;
+        const key = label.toLowerCase();
+        if (!dynamicCategoryTotals[key]) dynamicCategoryTotals[key] = { label, amount: 0 };
+        dynamicCategoryTotals[key].amount += Number(entry.amount) || 0;
       });
+      const totalRows = Object.values(dynamicCategoryTotals).sort((a, b) => (b.amount - a.amount) || a.label.localeCompare(b.label));
+      categoryTotalsList.innerHTML = totalRows.length
+        ? totalRows.map((row) => `<p>${row.label}: <strong>${money(row.amount)}</strong></p>`).join('')
+        : '<p>No expenses yet</p>';
+
+      const expenseTotalsByCategory = {};
+      state.expenses.forEach((entry) => {
+        const label = String(entry.category || '').trim();
+        if (!label) return;
+        const key = label.toLowerCase();
+        expenseTotalsByCategory[key] = (expenseTotalsByCategory[key] || 0) + (Number(entry.amount) || 0);
+      });
+      const budgetEntries = Object.entries(state.budget || {})
+        .map(([cat, limit]) => ({ cat, limit: Math.max(0, Number(limit) || 0) }))
+        .sort((a, b) => a.cat.localeCompare(b.cat));
+      budgetRowsContainer.innerHTML = budgetEntries.length
+        ? budgetEntries.map((row) => {
+          const spentValue = expenseTotalsByCategory[row.cat.toLowerCase()] || 0;
+          const pct = row.limit > 0 ? Math.min(100, Math.round((spentValue / row.limit) * 100)) : 0;
+          return `<div class="budget-row"><span class="budget-cat">${row.cat}</span><div class="progress"><i style="width:${pct}%"></i></div><span class="budget-values">${money(spentValue)} / ${money(row.limit)}</span><span class="budget-pct">${pct}%</span></div>`;
+        }).join('')
+        : '<p>No budget categories yet</p>';
 
       const savedAmount = Number(state.savingGoal.saved || 0);
       const savingGoalTarget = Number(state.savingGoal.target || 0);
@@ -492,7 +553,7 @@
         entryFields.innerHTML = `<label>Source</label><input name="source" type="text" required><label>Amount</label><input name="amount" type="number" min="1" step="0.01" required><label>Date</label><input name="date" type="date" value="${today}" required>`;
       } else if (mode === 'expense') {
         entryModalTitle.textContent = 'Add Expense';
-        entryFields.innerHTML = `<label>Category</label><input name="category" type="text" placeholder="Food, Transport, Leisure, School" required><label>Item</label><input name="item" type="text" required><label>Amount</label><input name="amount" type="number" min="1" step="0.01" required><label>Date</label><input name="date" type="date" value="${today}" required>`;
+        entryFields.innerHTML = `<label>Category</label><input name="category" type="text" placeholder="Type any category" required><label>Item</label><input name="item" type="text" required><label>Amount</label><input name="amount" type="number" min="1" step="0.01" required><label>Date</label><input name="date" type="date" value="${today}" required>`;
       } else if (mode === 'saving') {
         const state = getState();
         entryModalTitle.textContent = 'Set Saving Goal';
@@ -502,7 +563,7 @@
         entryFields.innerHTML = `<label>Amount Saved Today</label><input name="dailySaved" type="number" min="0.01" step="0.01" placeholder="Enter today's savings" required><label>Date</label><input name="savedDate" type="date" value="${today}" required>`;
       } else {
         entryModalTitle.textContent = 'Set Budget';
-        entryFields.innerHTML = `<label>Category</label><input name="category" type="text" placeholder="Food, Transport, Leisure, School" required><label>Budget Amount</label><input name="limit" type="number" min="0" step="0.01" required>`;
+        entryFields.innerHTML = `<label>Category</label><input name="category" type="text" placeholder="Type any category" required><label>Budget Amount</label><input name="limit" type="number" min="0" step="0.01" required>`;
       }
       entryModal.classList.add('open');
     }
@@ -510,7 +571,9 @@
 
     addIncomeBtn.addEventListener('click', () => openEntryModal('income'));
     addExpenseBtn.addEventListener('click', () => openEntryModal('expense'));
-    setBudgetBtn.addEventListener('click', () => openEntryModal('budget'));
+    const openBudgetModal = () => openEntryModal('budget');
+    setBudgetBtn.addEventListener('click', openBudgetModal);
+    if (quickBudgetBtn) quickBudgetBtn.addEventListener('click', openBudgetModal);
     addDailySavingBtn.addEventListener('click', () => openEntryModal('daily-saving'));
     setSavingGoalBtn.addEventListener('click', () => openEntryModal('saving'));
     entryCancel.addEventListener('click', closeEntryModal);
@@ -527,19 +590,19 @@
         state.incomes.unshift({ source, amount, date });
       }
       if (modalMode === 'expense') {
-        const category = normalizeCategory(form.get('category'));
+        const category = String(form.get('category') || '').trim();
         const item = String(form.get('item') || '').trim();
         const amount = Number(form.get('amount'));
         const date = String(form.get('date') || '').trim();
-        if (!category) return showBottomPopup('Category must be Food, Transport, Leisure, or School.');
+        if (!category) return showBottomPopup('Please enter a category.');
         if (!parseDateSafe(date)) return showBottomPopup('Please enter a valid expense date.');
         if (!item || !Number.isFinite(amount) || amount <= 0) return showBottomPopup('Enter valid expense details.');
         state.expenses.unshift({ category, item, amount, date });
       }
       if (modalMode === 'budget') {
-        const category = normalizeCategory(form.get('category'));
+        const category = String(form.get('category') || '').trim();
         const limit = Number(form.get('limit'));
-        if (!category) return showBottomPopup('Category must be Food, Transport, Leisure, or School.');
+        if (!category) return showBottomPopup('Please enter a budget category.');
         if (!Number.isFinite(limit) || limit < 0) return showBottomPopup('Enter valid budget details.');
         state.budget[category] = limit;
       }

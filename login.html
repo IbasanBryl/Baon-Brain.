@@ -9,12 +9,12 @@
 <body>
   <div class="top-nav">
     <button onclick="location.href='index.html'">Home</button>
-    <button class="active">Login</button>
+    <button class="active" id="top-login-btn">Login</button>
     <button id="dash-nav-btn">Dashboard</button>
   </div>
 
   <section class="page active" id="auth">
-    <h2 class="auth-title">LOGIN / REGISTRATION</h2>
+    <h2 class="auth-title">Login / Registration</h2>
     <div class="auth-body">
       <div class="container">
         <div class="auth-switch">
@@ -91,6 +91,9 @@
 
   <script>
     const dashBtn = document.getElementById('dash-nav-btn');
+    const topLoginBtn = document.getElementById('top-login-btn');
+    const isLoggedIn = localStorage.getItem('bb_logged_in') === '1';
+    if (isLoggedIn && topLoginBtn) topLoginBtn.style.display = 'none';
     const authTabs = document.querySelectorAll('.auth-tab');
     const signInTabBtn = document.getElementById('signin-tab-btn');
     const signUpTabBtn = document.getElementById('signup-tab-btn');
