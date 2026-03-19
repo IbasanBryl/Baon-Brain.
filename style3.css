@@ -1316,6 +1316,36 @@ th{
   margin-bottom:14px;
 }
 
+.account-card{
+  width:min(520px, 96vw);
+}
+
+.account-card h3{
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+#account-form .entry-fields{
+  gap:7px;
+}
+
+#account-form .entry-fields label{
+  margin-top:2px;
+}
+
+#account-form input[readonly]{
+  opacity:.95;
+  background:#111b29;
+  color:#cfdefa;
+}
+
+.account-help{
+  font-size:15px;
+  line-height:1.45;
+  color:#c8d8f7;
+  margin:10px 0 0;
+}
+
 .entry-fields{
   display:grid;
   gap:8px;
@@ -1673,6 +1703,12 @@ th{
   }
   .entry-modal-card h3{
     font-size:24px;
+  }
+  .account-card h3{
+    font-size:26px;
+  }
+  .account-help{
+    font-size:14px;
   }
   .entry-actions{
     justify-content:stretch;

@@ -25,9 +25,9 @@
             &#9881;
           </button>
           <div class="menu-settings-panel" id="menu-settings-panel">
+            <button class="menu-settings-action" id="menu-settings-manage" type="button">Manage account</button>
             <button class="menu-settings-action" id="menu-settings-reset" type="button">Reset</button>
             <button class="menu-settings-action" id="menu-settings-logout" type="button">Log out</button>
-            <button class="menu-settings-action" id="menu-settings-manage" type="button">Manage account</button>
           </div>
           <a class="menu-link active" href="#overview">Dashboard</a>
           <a class="menu-link" href="#income">Income</a>
@@ -125,12 +125,25 @@
   <div id="entry-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card"><h3 id="entry-modal-title">Add Entry</h3><form id="entry-form" novalidate><div class="entry-fields"></div><div class="entry-actions"><button type="button" id="entry-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="entry-save" class="entry-btn submit">Save</button></div></form></div></div>
   <div id="reset-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card reset-card"><h3>Reset Records</h3><p class="reset-text">Reset all income and expense records now?</p><div class="entry-actions"><button type="button" id="reset-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="reset-confirm" class="entry-btn submit">OK</button></div></div></div>
   <div id="bottom-popup" class="bottom-popup" aria-hidden="true"><div class="bottom-popup-card"><p id="bottom-popup-text">Message</p><button type="button" id="bottom-popup-ok" class="entry-btn submit">OK</button></div></div>
+  <div id="account-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card account-card"><h3>Manage Account</h3><form id="account-form" novalidate><div class="entry-fields"><label for="account-email">Email</label><input id="account-email" type="email" readonly><label for="account-display-name">Display Name</label><input id="account-display-name" type="text" maxlength="32" placeholder="How your name appears"></div><p class="account-help">Display name appears in your dashboard header.</p><div class="entry-actions"><button type="button" id="account-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="account-save" class="entry-btn submit">Save</button></div></form></div></div>
 
   <script>
     if (localStorage.getItem('bb_logged_in') !== '1') location.href = 'login.html';
 
     const currentUserEmail = localStorage.getItem('bb_current_user') || 'guest';
-    document.getElementById('user-name').textContent = currentUserEmail.split('@')[0] || 'Guest';
+    const userNameEl = document.getElementById('user-name');
+    const profileKey = () => `bb_profile_${currentUserEmail || 'guest'}`;
+    const getProfile = () => {
+      const raw = JSON.parse(localStorage.getItem(profileKey()) || '{}');
+      return { displayName: String(raw.displayName || '').trim() };
+    };
+    const saveProfile = (profile) => localStorage.setItem(profileKey(), JSON.stringify(profile));
+    function updateUserName() {
+      const profile = getProfile();
+      const fallbackName = currentUserEmail.split('@')[0] || 'Guest';
+      userNameEl.textContent = profile.displayName || fallbackName;
+    }
+    updateUserName();
 
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.querySelector('.sidebar');
@@ -187,6 +200,12 @@
     const bottomPopup = document.getElementById('bottom-popup');
     const bottomPopupText = document.getElementById('bottom-popup-text');
     const bottomPopupOk = document.getElementById('bottom-popup-ok');
+    const accountModal = document.getElementById('account-modal');
+    const accountForm = document.getElementById('account-form');
+    const accountEmail = document.getElementById('account-email');
+    const accountDisplayName = document.getElementById('account-display-name');
+    const accountCancel = document.getElementById('account-cancel');
+    const accountSave = document.getElementById('account-save');
     let modalMode = '';
 
     const categories = ['Food', 'Transport', 'Leisure', 'School'];
@@ -320,8 +339,8 @@
     if (menuSettingsManage) {
       menuSettingsManage.addEventListener('click', () => {
         closeSettingsPanel();
-        const userLabel = currentUserEmail || 'guest';
-        showBottomPopup(`Manage account: ${userLabel}\nThis feature will be available soon.`);
+        if (window.innerWidth <= 600) closeMobileMenu();
+        openManageAccount();
       });
     }
 
@@ -591,6 +610,22 @@
 
     function openReset(){ resetModal.classList.add('open'); }
     function closeReset(){ resetModal.classList.remove('open'); }
+    function openManageAccount(){
+      const profile = getProfile();
+      accountEmail.value = currentUserEmail;
+      accountDisplayName.value = profile.displayName;
+      accountModal.classList.add('open');
+    }
+    function closeManageAccount(){
+      accountModal.classList.remove('open');
+    }
+    function saveManageAccount(){
+      const displayName = String(accountDisplayName.value || '').trim().slice(0, 32);
+      saveProfile({ displayName });
+      updateUserName();
+      closeManageAccount();
+      showBottomPopup(displayName ? 'Account updated successfully.' : 'Display name cleared. Using your email name instead.');
+    }
     function confirmReset(){
       const state = getState();
       state.incomes = [];
@@ -605,6 +640,13 @@
     resetCancel.addEventListener('click', closeReset);
     resetConfirm.addEventListener('click', confirmReset);
     resetModal.addEventListener('click', (e) => { if (e.target === resetModal) closeReset(); });
+    accountCancel.addEventListener('click', closeManageAccount);
+    accountSave.addEventListener('click', saveManageAccount);
+    accountForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      saveManageAccount();
+    });
+    accountModal.addEventListener('click', (e) => { if (e.target === accountModal) closeManageAccount(); });
 
     logoutBtn.addEventListener('click', () => {
       localStorage.setItem('bb_logged_in', '0');
