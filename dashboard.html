@@ -44,7 +44,6 @@
         <header class="header">
           <h2>Financial Overview</h2>
           <div class="user">
-            <button class="action-btn" id="quick-budget-btn" type="button">Add Budget</button>
           </div>
         </header>
 
@@ -111,23 +110,53 @@
               <button id="set-saving-goal-btn" class="action-btn" type="button">Set Saving Goal</button>
             </div>
           </div>
-          <article class="panel savings-goal-panel">
-            <div class="saving-goal-summary">
-              <div class="saving-goal-copy">
-                <p id="saving-goal-name" class="saving-goal-name">No saving goal yet</p>
-                <p id="saving-goal-amounts" class="saving-goal-amounts">&#8369;0 saved of &#8369;0 target</p>
+          <div class="content-grid saving-goal-grid">
+            <article class="panel savings-goal-panel">
+              <div class="panel-head">
+                <div>
+                  <h4>Goal Progress</h4>
+                  <p id="saving-goal-caption" class="panel-subtext">Set a target amount to start tracking progress.</p>
+                </div>
+                <span id="saving-goal-badge" class="panel-badge">Not set</span>
               </div>
-              <span id="saving-goal-percent" class="saving-goal-percent">0%</span>
-            </div>
-            <div class="saving-goal-track"><i id="saving-goal-fill" style="width:0%"></i></div>
-            <p id="saving-goal-status" class="saving-goal-status">Set a target amount to start tracking progress.</p>
-            <div class="saving-history">
-              <div class="saving-history-head">
+              <div class="saving-goal-summary">
+                <div class="saving-goal-copy">
+                  <p id="saving-goal-name" class="saving-goal-name">No saving goal yet</p>
+                  <p id="saving-goal-amounts" class="saving-goal-amounts">&#8369;0 saved of &#8369;0 target</p>
+                </div>
+                <span id="saving-goal-percent" class="saving-goal-percent">0%</span>
+              </div>
+              <div class="saving-goal-track"><i id="saving-goal-fill" style="width:0%"></i></div>
+              <p id="saving-goal-status" class="saving-goal-status">Set a target amount to start tracking progress.</p>
+            </article>
+            <article class="panel saving-goal-summary-card">
+              <div class="panel-head">
+                <div>
+                  <h4>Saving Snapshot</h4>
+                  <p class="panel-subtext">A quick check on how close you are to your target.</p>
+                </div>
+              </div>
+              <div class="summary-list saving-summary-list">
+                <div class="summary-item accent-soft"><span>Target</span><strong id="saving-target-total">&#8369;0</strong></div>
+                <div class="summary-item"><span>Saved</span><strong id="saving-saved-total">&#8369;0</strong></div>
+                <div class="summary-item"><span>Remaining</span><strong id="saving-remaining-total">&#8369;0</strong></div>
+                <div class="summary-item"><span>Entries</span><strong id="saving-entry-count">0</strong></div>
+              </div>
+              <p id="saving-summary-note" class="saving-summary-note">Set your goal to unlock a clearer savings snapshot.</p>
+            </article>
+          </div>
+          <article class="panel saving-history-panel">
+            <div class="panel-head saving-history-head">
+              <div>
                 <h4>Saving History</h4>
+                <p id="saving-history-caption" class="panel-subtext">Every savings entry you add will be listed here.</p>
               </div>
+              <span id="saving-history-badge" class="panel-badge">0 entries</span>
+            </div>
+            <div class="saving-history-scroll">
               <table class="saving-history-table">
                 <thead><tr><th>Date</th><th>Amount</th></tr></thead>
-                <tbody id="saving-history-body"><tr><td colspan="2">No savings history yet</td></tr></tbody>
+                <tbody id="saving-history-body"><tr class="empty-row"><td colspan="2"><div class="table-empty-state compact"><strong>No savings history yet</strong><span>Add daily savings after setting a goal to build your history here.</span></div></td></tr></tbody>
               </table>
             </div>
           </article>
@@ -135,8 +164,8 @@
 
         <section class="section" id="income"><div class="section-title income-head"><div><h3>Income</h3><p class="section-subtext">Track every allowance, side hustle, or money added to your weekly budget.</p></div><button id="add-income-btn" class="action-btn" type="button">Add Income</button></div><div class="content-grid income-grid"><article class="panel income-records-panel"><div class="panel-head"><div><h4>Income Records</h4><p id="income-records-caption" class="panel-subtext">Your income history appears here once you start adding entries.</p></div><span id="income-records-badge" class="panel-badge">0 records</span></div><div class="income-table-wrap"><table class="income-table"><thead><tr><th>Source</th><th>Date</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel income-summary-card"><div class="panel-head"><div><h4>Income Summary</h4><p class="panel-subtext">A quick look at how much money has come in this month.</p></div></div><div class="summary-list income-summary-list"><div class="summary-item"><span>This month</span><strong id="income-month-total">&#8369;0</strong></div><div class="summary-item"><span>Average per week</span><strong id="income-week-average">&#8369;0</strong></div><div class="summary-item"><span>Top source</span><strong id="income-top-source">-</strong></div><div class="summary-item accent"><span>Records tracked</span><strong id="income-record-count">0</strong></div></div><p id="income-summary-note" class="income-summary-note">Add your first income entry to start building a clearer picture.</p></article></div></section>
         <section class="section" id="expenses"><div class="section-title expenses-head"><div><h3>Expenses</h3><p class="section-subtext">Keep an eye on where your baon goes and spot which categories are eating the most of your budget.</p></div><button id="add-expense-btn" class="action-btn" type="button">Add Expense</button></div><div class="content-grid expenses-grid"><article class="panel expense-records-panel"><div class="panel-head"><div><h4>Recent Expenses</h4><p id="expense-records-caption" class="panel-subtext">Your most recent expense entries will appear here.</p></div><span id="expense-records-badge" class="panel-badge">0 records</span></div><div class="expenses-scroll expense-table-wrap"><table class="expense-table"><thead><tr><th>Category</th><th>Item</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel totals-panel"><div class="panel-head"><div><h4>Category Totals</h4><p class="panel-subtext">See which spending groups are taking the biggest share.</p></div></div><div class="summary-list expense-summary-list"><div class="summary-item warm"><span>Total spent</span><strong id="expense-total-spent">&#8369;0</strong></div><div class="summary-item"><span>Top category</span><strong id="expense-top-category">-</strong></div><div class="summary-item"><span>Expenses tracked</span><strong id="expense-record-count">0</strong></div></div><div class="totals-scroll"><div class="totals-list" id="category-totals-list"><p>No expenses yet</p></div></div><p id="expense-summary-note" class="expense-summary-note">Add an expense to see your category totals build up here.</p></article></div></section>
-        <section class="section" id="budget"><div class="section-title budget-head"><div><h3>Budget</h3><p class="section-subtext">Set category limits and watch how close each one is to being fully used.</p></div></div><div class="content-grid budget-grid"><article class="panel budget-progress-panel"><div class="panel-head"><div><h4>Monthly Budget Progress</h4><p id="budget-progress-caption" class="panel-subtext">Each category will show how much you have spent against its limit.</p></div><span id="budget-progress-badge" class="panel-badge">0 categories</span></div><div id="budget-rows"><div class="table-empty-state compact"><strong>No budget categories yet</strong><span>Add a budget category to start tracking your limits.</span></div></div></article><article class="panel budget-summary-card"><div class="panel-head"><div><h4>Budget Snapshot</h4><p class="panel-subtext">A quick read on how your category budgets are performing.</p></div></div><div class="summary-list budget-summary-list"><div class="summary-item cool"><span>Total budgeted</span><strong id="budget-total-limit">&#8369;0</strong></div><div class="summary-item"><span>Total spent</span><strong id="budget-total-spent">&#8369;0</strong></div><div class="summary-item"><span>Categories</span><strong id="budget-category-count">0</strong></div><div class="summary-item"><span>Closest to limit</span><strong id="budget-top-category">-</strong></div></div><p id="budget-summary-note" class="budget-summary-note">Add your first category budget to start tracking spending progress.</p></article></div></section>
-        <section class="section" id="forecast"><div class="section-title"><h3>Forecast</h3><button id="run-forecast-btn" class="action-btn" type="button">Run Forecast</button></div><div class="content-grid"><article class="panel"><h4>End-of-Month Prediction</h4><p>Estimated remaining money: <strong>&#8369;0</strong></p><p>High-risk category: <strong>-</strong></p><p>Chance of overspending: <strong>0%</strong></p></article><article class="panel"><h4>Forecast Breakdown</h4><div class="pie forecast-pie"></div><ul class="legend forecast-legend"><li>Food - 38%</li><li>Transport - 24%</li><li>Leisure - 16%</li><li>School - 22%</li></ul></article></div></section>
+        <section class="section" id="budget"><div class="section-title budget-head"><div><h3>Budget</h3><p class="section-subtext">Set category limits and watch how close each one is to being fully used.</p></div></div><div class="content-grid budget-grid"><article class="panel budget-progress-panel"><div class="panel-head"><div><h4>Monthly Budget Progress</h4><p id="budget-progress-caption" class="panel-subtext">Each category will show how much you have spent against its limit.</p></div><span id="budget-progress-badge" class="panel-badge">0 categories</span></div><div id="budget-rows"><div class="table-empty-state compact"><strong>No budget categories yet</strong><span>Add a budget category to start tracking your limits.</span></div></div></article><div class="budget-side-stack"><div class="budget-summary-action"><button class="action-btn" id="quick-budget-btn" type="button">Add Budget</button></div><article class="panel budget-summary-card"><div class="panel-head"><div><h4>Budget Snapshot</h4><p class="panel-subtext">A quick read on how your category budgets compare with your overall monthly budget.</p></div></div><div class="summary-list budget-summary-list"><div class="summary-item cool"><span>Total budgeted</span><strong id="budget-total-limit">&#8369;0</strong></div><div class="summary-item"><span>Total spent</span><strong id="budget-total-spent">&#8369;0</strong></div><div class="summary-item"><span>Remaining budget</span><strong id="budget-total-remaining">&#8369;0</strong></div><div class="summary-item"><span>Overall used</span><strong id="budget-overall-used">0%</strong></div><div class="summary-item"><span>Closest to limit</span><strong id="budget-top-category">-</strong></div></div><p id="budget-summary-note" class="budget-summary-note">Add your first category budget to start tracking spending progress.</p><p id="budget-comparison-note" class="budget-comparison-note">Budget progress and snapshot will compare here once you add categories.</p></article></div></div></section>
+        <section class="section" id="forecast"><div class="section-title forecast-head"><div><h3>Forecast</h3><p class="section-subtext">Use your current income and spending pace to estimate how the rest of the month may look.</p></div><button id="run-forecast-btn" class="action-btn" type="button">Run Forecast</button></div><div class="content-grid forecast-grid"><article class="panel forecast-panel"><div class="panel-head"><div><h4>End-of-Month Prediction</h4><p id="forecast-caption" class="panel-subtext">Run the forecast to refresh your latest month-end estimate.</p></div><span id="forecast-badge" class="panel-badge">Waiting</span></div><div id="forecast-panel-body"><div class="forecast-kpis"><div class="kpi"><span class="kpi-label">Estimated Remaining</span><strong>&#8369;0</strong></div><div class="kpi"><span class="kpi-label">High-Risk Category</span><strong>-</strong></div><div class="kpi"><span class="kpi-label">Projected Daily Spend</span><strong>&#8369;0</strong></div></div><div class="risk-box"><div class="risk-head"><span>Chance of Overspending</span><strong>0%</strong></div><div class="risk-track"><i style="width:0%"></i></div></div></div></article><article class="panel forecast-breakdown-panel"><div class="panel-head"><div><h4>Forecast Breakdown</h4><p id="forecast-breakdown-caption" class="panel-subtext">See which categories are likely to shape your month-end spending.</p></div></div><div class="category-visual forecast-visual"><div class="pie-shell"><div class="pie forecast-pie"></div><div class="pie-center" id="forecast-pie-center">No data yet</div></div><ul class="legend forecast-legend"><li>No category data yet</li></ul></div></article></div></section>
       </main>
     </div>
   </section>
@@ -211,9 +240,11 @@
     const budgetRowsContainer = document.getElementById('budget-rows');
     const budgetTotalLimitEl = document.getElementById('budget-total-limit');
     const budgetTotalSpentEl = document.getElementById('budget-total-spent');
-    const budgetCategoryCountEl = document.getElementById('budget-category-count');
+    const budgetTotalRemainingEl = document.getElementById('budget-total-remaining');
+    const budgetOverallUsedEl = document.getElementById('budget-overall-used');
     const budgetTopCategoryEl = document.getElementById('budget-top-category');
     const budgetSummaryNoteEl = document.getElementById('budget-summary-note');
+    const budgetComparisonNoteEl = document.getElementById('budget-comparison-note');
     const weeklyBars = document.querySelectorAll('#overview .bar-chart .bar');
     const scaleTop = document.getElementById('scale-top');
     const scaleMid = document.getElementById('scale-mid');
@@ -225,14 +256,27 @@
     const overviewPieCenter = document.getElementById('overview-pie-center');
     const overviewLegend = document.getElementById('overview-legend');
     const overviewAlerts = document.getElementById('overview-alerts');
+    const savingGoalCaptionEl = document.getElementById('saving-goal-caption');
+    const savingGoalBadgeEl = document.getElementById('saving-goal-badge');
     const savingGoalNameEl = document.getElementById('saving-goal-name');
     const savingGoalAmountsEl = document.getElementById('saving-goal-amounts');
     const savingGoalPercentEl = document.getElementById('saving-goal-percent');
     const savingGoalFillEl = document.getElementById('saving-goal-fill');
     const savingGoalStatusEl = document.getElementById('saving-goal-status');
+    const savingTargetTotalEl = document.getElementById('saving-target-total');
+    const savingSavedTotalEl = document.getElementById('saving-saved-total');
+    const savingRemainingTotalEl = document.getElementById('saving-remaining-total');
+    const savingEntryCountEl = document.getElementById('saving-entry-count');
+    const savingSummaryNoteEl = document.getElementById('saving-summary-note');
+    const savingHistoryCaptionEl = document.getElementById('saving-history-caption');
+    const savingHistoryBadgeEl = document.getElementById('saving-history-badge');
     const savingHistoryBody = document.getElementById('saving-history-body');
-    const forecastPanel = document.querySelector('#forecast .panel:first-child');
+    const forecastCaptionEl = document.getElementById('forecast-caption');
+    const forecastBadgeEl = document.getElementById('forecast-badge');
+    const forecastBreakdownCaptionEl = document.getElementById('forecast-breakdown-caption');
+    const forecastPanelBody = document.getElementById('forecast-panel-body');
     const forecastPie = document.querySelector('.forecast-pie');
+    const forecastPieCenter = document.getElementById('forecast-pie-center');
     const forecastLegend = document.querySelector('.forecast-legend');
 
     const entryModal = document.getElementById('entry-modal');
@@ -459,7 +503,7 @@
 
     function renderBreakdown(totals){
       renderPieBreakdown(overviewPie, overviewLegend, overviewPieCenter, totals);
-      renderPieBreakdown(forecastPie, forecastLegend, null, totals);
+      renderPieBreakdown(forecastPie, forecastLegend, forecastPieCenter, totals);
     }
 
     function renderOverviewAlerts(allowance, spent, budgetEntries, expenseTotalsByCategory) {
@@ -570,7 +614,7 @@
       state.expenses.forEach((e) => { const n = normalizeCategory(e.category); if (n) totals[n] += e.amount; });
       const riskCategory = Object.entries(totals).sort((a,b) => b[1]-a[1])[0]?.[0] || '-';
       const risk = allowance > 0 ? Math.min(99, Math.max(0, Math.round((spent / allowance) * 100 + (extra > remaining ? 15 : 0)))) : 0;
-      return { projected: remaining - extra, riskCategory, risk, totals };
+      return { projected: remaining - extra, riskCategory, risk, totals, burn };
     }
 
     function renderFinance(){
@@ -667,10 +711,13 @@
       });
       const totalBudgetLimit = budgetRows.reduce((sum, row) => sum + row.limit, 0);
       const totalBudgetSpent = budgetRows.reduce((sum, row) => sum + row.spentValue, 0);
+      const totalBudgetRemaining = Math.max(0, totalBudgetLimit - totalBudgetSpent);
+      const overallBudgetPct = totalBudgetLimit > 0 ? Math.min(100, Math.round((totalBudgetSpent / totalBudgetLimit) * 100)) : 0;
       const closestBudget = [...budgetRows].sort((a, b) => b.pct - a.pct)[0];
       if (budgetTotalLimitEl) budgetTotalLimitEl.textContent = money(totalBudgetLimit);
       if (budgetTotalSpentEl) budgetTotalSpentEl.textContent = money(totalBudgetSpent);
-      if (budgetCategoryCountEl) budgetCategoryCountEl.textContent = String(budgetRows.length);
+      if (budgetTotalRemainingEl) budgetTotalRemainingEl.textContent = money(totalBudgetRemaining);
+      if (budgetOverallUsedEl) budgetOverallUsedEl.textContent = `${overallBudgetPct}%`;
       if (budgetTopCategoryEl) budgetTopCategoryEl.textContent = closestBudget ? closestBudget.cat : '-';
       if (budgetProgressBadge) budgetProgressBadge.textContent = `${budgetRows.length} categor${budgetRows.length === 1 ? 'y' : 'ies'}`;
       if (budgetProgressCaption) {
@@ -685,6 +732,11 @@
             : `${closestBudget.cat} is your tightest budget right now with ${money(Math.max(0, closestBudget.limit - closestBudget.spentValue))} remaining.`)
           : 'Add your first category budget to start tracking spending progress.';
       }
+      if (budgetComparisonNoteEl) {
+        budgetComparisonNoteEl.textContent = closestBudget
+          ? `Overall, you have used ${overallBudgetPct}% of your total budget. ${closestBudget.cat} is ahead of that average at ${closestBudget.pct}%.`
+          : 'Budget progress and snapshot will compare here once you add categories.';
+      }
       budgetRowsContainer.innerHTML = budgetEntries.length
         ? budgetRows.map((row) => {
           const remainingValue = Math.max(0, row.limit - row.spentValue);
@@ -696,10 +748,20 @@
       const savedAmount = Number(state.savingGoal.saved || 0);
       const savingGoalTarget = Number(state.savingGoal.target || 0);
       const savingGoalPct = savingGoalTarget > 0 ? Math.min(100, Math.round((savedAmount / savingGoalTarget) * 100)) : 0;
+      const remainingSavingAmount = Math.max(0, savingGoalTarget - savedAmount);
       savingGoalNameEl.textContent = state.savingGoal.name || 'No saving goal yet';
       savingGoalAmountsEl.textContent = savingGoalTarget > 0 ? `${money(savedAmount)} saved of ${money(savingGoalTarget)} target` : 'Set a target amount to start tracking progress.';
       savingGoalPercentEl.textContent = `${savingGoalPct}%`;
       savingGoalFillEl.style.width = `${savingGoalPct}%`;
+      if (savingTargetTotalEl) savingTargetTotalEl.textContent = money(savingGoalTarget);
+      if (savingSavedTotalEl) savingSavedTotalEl.textContent = money(savedAmount);
+      if (savingRemainingTotalEl) savingRemainingTotalEl.textContent = money(remainingSavingAmount);
+      if (savingGoalBadgeEl) savingGoalBadgeEl.textContent = savingGoalTarget > 0 ? `${savingGoalPct}% complete` : 'Not set';
+      if (savingGoalCaptionEl) {
+        savingGoalCaptionEl.textContent = savingGoalTarget > 0
+          ? `${state.savingGoal.name} is your active savings goal.`
+          : 'Set a target amount to start tracking progress.';
+      }
       if (savingGoalTarget > 0) {
         const difference = savingGoalTarget - savedAmount;
         savingGoalStatusEl.textContent = difference > 0
@@ -709,12 +771,38 @@
         savingGoalStatusEl.textContent = 'Set a target amount to start tracking progress.';
       }
       const savingHistory = [...(state.savingGoal.history || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
+      if (savingEntryCountEl) savingEntryCountEl.textContent = String(savingHistory.length);
+      if (savingHistoryBadgeEl) savingHistoryBadgeEl.textContent = `${savingHistory.length} entr${savingHistory.length === 1 ? 'y' : 'ies'}`;
+      if (savingHistoryCaptionEl) {
+        savingHistoryCaptionEl.textContent = savingHistory.length
+          ? `Latest savings entry: ${savingHistory[0].date}.`
+          : 'Every savings entry you add will be listed here.';
+      }
+      if (savingSummaryNoteEl) {
+        savingSummaryNoteEl.textContent = savingGoalTarget > 0
+          ? (savingGoalPct >= 100
+            ? 'You reached your target. Keep saving if you want to build a bigger cushion.'
+            : `${money(remainingSavingAmount)} still needed to reach your goal.`)
+          : 'Set your goal to unlock a clearer savings snapshot.';
+      }
       savingHistoryBody.innerHTML = savingHistory.length
         ? savingHistory.map((entry) => `<tr><td>${entry.date}</td><td class="amt-cell">${money(entry.amount)}</td></tr>`).join('')
-        : '<tr><td colspan="2">No savings history yet</td></tr>';
+        : '<tr class="empty-row"><td colspan="2"><div class="table-empty-state compact"><strong>No savings history yet</strong><span>Add daily savings after setting a goal to build your history here.</span></div></td></tr>';
 
-      forecastPanel.innerHTML = `
-        <h4>End-of-Month Prediction</h4>
+      const riskTone = forecast.risk >= 75 ? 'high' : forecast.risk >= 40 ? 'mid' : 'low';
+      if (forecastBadgeEl) forecastBadgeEl.textContent = forecast.risk > 0 ? `${forecast.risk}% risk` : 'Low risk';
+      if (forecastCaptionEl) {
+        forecastCaptionEl.textContent = state.expenses.length
+          ? `Based on ${state.expenses.length} expense entr${state.expenses.length === 1 ? 'y' : 'ies'}, this is your current month-end outlook.`
+          : 'Run the forecast to refresh your latest month-end estimate.';
+      }
+      if (forecastBreakdownCaptionEl) {
+        forecastBreakdownCaptionEl.textContent = spent > 0
+          ? `${forecast.riskCategory === '-' ? 'No single category stands out yet.' : `${forecast.riskCategory} is currently the biggest forecast risk.`}`
+          : 'See which categories are likely to shape your month-end spending.';
+      }
+
+      forecastPanelBody.innerHTML = `
         <div class="forecast-kpis">
           <div class="kpi">
             <span class="kpi-label">Estimated Remaining</span>
@@ -724,8 +812,12 @@
             <span class="kpi-label">High-Risk Category</span>
             <strong>${forecast.riskCategory}</strong>
           </div>
+          <div class="kpi">
+            <span class="kpi-label">Projected Daily Spend</span>
+            <strong>${money(Math.round(forecast.burn))}</strong>
+          </div>
         </div>
-        <div class="risk-box">
+        <div class="risk-box ${riskTone}">
           <div class="risk-head">
             <span>Chance of Overspending</span>
             <strong>${forecast.risk}%</strong>
