@@ -1467,7 +1467,15 @@ th{
   align-items:start;
 }
 
+.expenses-grid{
+  align-items:start;
+}
+
 .income-records-panel{
+  min-height:268px;
+}
+
+.expense-records-panel{
   min-height:268px;
 }
 
@@ -1475,6 +1483,13 @@ th{
   border-radius:16px;
   border:1px solid #dcecdf;
   background:linear-gradient(180deg,#fbfffc,#f5fbf7);
+  overflow:hidden;
+}
+
+.expense-table-wrap{
+  border-radius:16px;
+  border:1px solid #ecdcc0;
+  background:linear-gradient(180deg,#fffdf8,#fff8ef);
   overflow:hidden;
 }
 
@@ -1522,6 +1537,8 @@ th{
 
 .totals-panel{
   background:linear-gradient(160deg,#fff9ef 0%, #fff6e8 100%);
+  border-color:#ead7b5;
+  min-height:268px;
 }
 
 .expenses-scroll{
@@ -1600,6 +1617,26 @@ th{
   line-height:1.55;
 }
 
+.expense-summary-list{
+  margin-bottom:14px;
+}
+
+.summary-item.warm{
+  background:linear-gradient(135deg,#f3b757,#d98653);
+  border-color:transparent;
+}
+
+.summary-item.warm span,
+.summary-item.warm strong{
+  color:#fff9f4;
+}
+
+.expense-summary-note{
+  margin-top:14px;
+  color:#6c5b46;
+  line-height:1.55;
+}
+
 .empty-row td{
   padding:20px 18px;
 }
@@ -1621,9 +1658,13 @@ th{
   line-height:1.5;
 }
 
+.table-empty-state.compact{
+  min-height:0;
+}
+
 .totals-list{
   display:grid;
-  gap:10px;
+  gap:12px;
 }
 
 .totals-list p{
@@ -1632,6 +1673,53 @@ th{
   border-radius:10px;
   border:1px solid #ead7b5;
   background:#fffdf7;
+}
+
+.total-item{
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid #ead7b5;
+  background:#fffdf7;
+}
+
+.total-item-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.total-label{
+  color:#5c4e3f;
+  font-weight:700;
+}
+
+.total-item-head strong{
+  color:#3d3429;
+  font-size:18px;
+}
+
+.total-track{
+  height:10px;
+  margin-top:10px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#efe3cc;
+}
+
+.total-track i{
+  display:block;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#f2b154,#cf7a53);
+}
+
+.total-meta{
+  display:block;
+  margin-top:8px;
+  color:#826b4f;
+  font-size:13px;
+  font-weight:600;
 }
 
 .expenses-scroll::-webkit-scrollbar,
@@ -2270,6 +2358,10 @@ th{
   }
   .summary-item strong{
     font-size:20px;
+  }
+  .total-item-head{
+    align-items:flex-start;
+    flex-direction:column;
   }
   .action-btn{
     width:100%;

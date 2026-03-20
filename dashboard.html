@@ -134,7 +134,7 @@
         </section>
 
         <section class="section" id="income"><div class="section-title income-head"><div><h3>Income</h3><p class="section-subtext">Track every allowance, side hustle, or money added to your weekly budget.</p></div><button id="add-income-btn" class="action-btn" type="button">Add Income</button></div><div class="content-grid income-grid"><article class="panel income-records-panel"><div class="panel-head"><div><h4>Income Records</h4><p id="income-records-caption" class="panel-subtext">Your income history appears here once you start adding entries.</p></div><span id="income-records-badge" class="panel-badge">0 records</span></div><div class="income-table-wrap"><table class="income-table"><thead><tr><th>Source</th><th>Date</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel income-summary-card"><div class="panel-head"><div><h4>Income Summary</h4><p class="panel-subtext">A quick look at how much money has come in this month.</p></div></div><div class="summary-list income-summary-list"><div class="summary-item"><span>This month</span><strong id="income-month-total">&#8369;0</strong></div><div class="summary-item"><span>Average per week</span><strong id="income-week-average">&#8369;0</strong></div><div class="summary-item"><span>Top source</span><strong id="income-top-source">-</strong></div><div class="summary-item accent"><span>Records tracked</span><strong id="income-record-count">0</strong></div></div><p id="income-summary-note" class="income-summary-note">Add your first income entry to start building a clearer picture.</p></article></div></section>
-        <section class="section" id="expenses"><div class="section-title"><h3>Expenses</h3><button id="add-expense-btn" class="action-btn" type="button">Add Expense</button></div><div class="content-grid"><article class="panel"><h4>Recent Expenses</h4><div class="expenses-scroll"><table class="expense-table"><thead><tr><th>Category</th><th>Item</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel totals-panel"><h4>Category Totals</h4><div class="totals-scroll"><div class="totals-list" id="category-totals-list"><p>No expenses yet</p></div></div></article></div></section>
+        <section class="section" id="expenses"><div class="section-title expenses-head"><div><h3>Expenses</h3><p class="section-subtext">Keep an eye on where your baon goes and spot which categories are eating the most of your budget.</p></div><button id="add-expense-btn" class="action-btn" type="button">Add Expense</button></div><div class="content-grid expenses-grid"><article class="panel expense-records-panel"><div class="panel-head"><div><h4>Recent Expenses</h4><p id="expense-records-caption" class="panel-subtext">Your most recent expense entries will appear here.</p></div><span id="expense-records-badge" class="panel-badge">0 records</span></div><div class="expenses-scroll expense-table-wrap"><table class="expense-table"><thead><tr><th>Category</th><th>Item</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel totals-panel"><div class="panel-head"><div><h4>Category Totals</h4><p class="panel-subtext">See which spending groups are taking the biggest share.</p></div></div><div class="summary-list expense-summary-list"><div class="summary-item warm"><span>Total spent</span><strong id="expense-total-spent">&#8369;0</strong></div><div class="summary-item"><span>Top category</span><strong id="expense-top-category">-</strong></div><div class="summary-item"><span>Expenses tracked</span><strong id="expense-record-count">0</strong></div></div><div class="totals-scroll"><div class="totals-list" id="category-totals-list"><p>No expenses yet</p></div></div><p id="expense-summary-note" class="expense-summary-note">Add an expense to see your category totals build up here.</p></article></div></section>
         <section class="section" id="budget"><div class="section-title"><h3>Budget</h3></div><article class="panel"><h4>Monthly Budget Progress</h4><div id="budget-rows"><p>No budget categories yet</p></div></article></section>
         <section class="section" id="forecast"><div class="section-title"><h3>Forecast</h3><button id="run-forecast-btn" class="action-btn" type="button">Run Forecast</button></div><div class="content-grid"><article class="panel"><h4>End-of-Month Prediction</h4><p>Estimated remaining money: <strong>&#8369;0</strong></p><p>High-risk category: <strong>-</strong></p><p>Chance of overspending: <strong>0%</strong></p></article><article class="panel"><h4>Forecast Breakdown</h4><div class="pie forecast-pie"></div><ul class="legend forecast-legend"><li>Food - 38%</li><li>Transport - 24%</li><li>Leisure - 16%</li><li>School - 22%</li></ul></article></div></section>
       </main>
@@ -199,6 +199,12 @@
     const incomeRecordCountEl = document.getElementById('income-record-count');
     const incomeSummaryNoteEl = document.getElementById('income-summary-note');
     const expenseTbody = document.querySelector('#expenses tbody');
+    const expenseRecordsCaption = document.getElementById('expense-records-caption');
+    const expenseRecordsBadge = document.getElementById('expense-records-badge');
+    const expenseTotalSpentEl = document.getElementById('expense-total-spent');
+    const expenseTopCategoryEl = document.getElementById('expense-top-category');
+    const expenseRecordCountEl = document.getElementById('expense-record-count');
+    const expenseSummaryNoteEl = document.getElementById('expense-summary-note');
     const categoryTotalsList = document.getElementById('category-totals-list');
     const budgetRowsContainer = document.getElementById('budget-rows');
     const weeklyBars = document.querySelectorAll('#overview .bar-chart .bar');
@@ -575,7 +581,9 @@
       incomeTbody.innerHTML = state.incomes.length
         ? state.incomes.map((i) => `<tr><td><span class="income-pill">${i.source}</span></td><td>${i.date}</td><td class="amt-cell">${money(i.amount)}</td></tr>`).join('')
         : '<tr class="empty-row"><td colspan="3"><div class="table-empty-state"><strong>No income yet</strong><span>Add allowance, salary, or side income to start tracking your balance.</span></div></td></tr>';
-      expenseTbody.innerHTML = state.expenses.length ? state.expenses.map((i) => `<tr><td><span class="cat-pill">${i.category}</span></td><td>${i.item}</td><td class="amt-cell">${money(i.amount)}</td></tr>`).join('') : '<tr><td colspan="3">No expenses yet</td></tr>';
+      expenseTbody.innerHTML = state.expenses.length
+        ? state.expenses.map((i) => `<tr><td><span class="cat-pill">${i.category}</span></td><td>${i.item}</td><td class="amt-cell">${money(i.amount)}</td></tr>`).join('')
+        : '<tr class="empty-row"><td colspan="3"><div class="table-empty-state"><strong>No expenses yet</strong><span>Add food, transport, school, or other spending to see where your money goes.</span></div></td></tr>';
       renderWeeklyBars(state.expenses);
 
       const now = new Date();
@@ -611,9 +619,28 @@
         dynamicCategoryTotals[key].amount += Number(entry.amount) || 0;
       });
       const totalRows = Object.values(dynamicCategoryTotals).sort((a, b) => (b.amount - a.amount) || a.label.localeCompare(b.label));
+      const latestExpense = state.expenses[0];
+      const topExpenseCategory = totalRows[0]?.label || '-';
+      if (expenseTotalSpentEl) expenseTotalSpentEl.textContent = money(spent);
+      if (expenseTopCategoryEl) expenseTopCategoryEl.textContent = topExpenseCategory;
+      if (expenseRecordCountEl) expenseRecordCountEl.textContent = String(state.expenses.length);
+      if (expenseRecordsBadge) expenseRecordsBadge.textContent = `${state.expenses.length} record${state.expenses.length === 1 ? '' : 's'}`;
+      if (expenseRecordsCaption) {
+        expenseRecordsCaption.textContent = latestExpense
+          ? `Latest entry: ${latestExpense.item} in ${latestExpense.category}.`
+          : 'Your most recent expense entries will appear here.';
+      }
+      if (expenseSummaryNoteEl) {
+        expenseSummaryNoteEl.textContent = state.expenses.length
+          ? `${topExpenseCategory} is your biggest spending category right now.`
+          : 'Add an expense to see your category totals build up here.';
+      }
       categoryTotalsList.innerHTML = totalRows.length
-        ? totalRows.map((row) => `<p>${row.label}: <strong>${money(row.amount)}</strong></p>`).join('')
-        : '<p>No expenses yet</p>';
+        ? totalRows.map((row) => {
+          const share = spent > 0 ? Math.round((row.amount / spent) * 100) : 0;
+          return `<div class="total-item"><div class="total-item-head"><span class="total-label">${row.label}</span><strong>${money(row.amount)}</strong></div><div class="total-track"><i style="width:${share}%"></i></div><span class="total-meta">${share}% of total spending</span></div>`;
+        }).join('')
+        : '<div class="table-empty-state compact"><strong>No category totals yet</strong><span>Once you add expenses, each category total will appear here.</span></div>';
 
       const expenseTotalsByCategory = {};
       state.expenses.forEach((entry) => {
