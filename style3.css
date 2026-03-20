@@ -1194,6 +1194,13 @@ a{ text-decoration:none; color:inherit; }
   margin-bottom:12px;
 }
 
+.section-subtext{
+  margin-top:6px;
+  color:#76695a;
+  font-size:16px;
+  line-height:1.5;
+}
+
 .section-actions{
   display:flex;
   gap:10px;
@@ -1245,6 +1252,35 @@ a{ text-decoration:none; color:inherit; }
 .panel h4{
   font-size:28px;
   margin-bottom:10px;
+}
+
+.panel-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:14px;
+}
+
+.panel-subtext{
+  color:#7a6a54;
+  font-size:15px;
+  line-height:1.5;
+}
+
+.panel-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:34px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:#edf6f4;
+  border:1px solid #cae2dd;
+  color:#1f6a69;
+  font-size:13px;
+  font-weight:700;
+  white-space:nowrap;
 }
 
 .savings-goal-panel{
@@ -1427,6 +1463,29 @@ th{
   border-bottom:2px solid #c7e2d7;
 }
 
+.income-grid{
+  align-items:start;
+}
+
+.income-records-panel{
+  min-height:268px;
+}
+
+.income-table-wrap{
+  border-radius:16px;
+  border:1px solid #dcecdf;
+  background:linear-gradient(180deg,#fbfffc,#f5fbf7);
+  overflow:hidden;
+}
+
+.income-table tbody tr{
+  transition:background .2s ease;
+}
+
+.income-table tbody tr:hover{
+  background:#f8fdf9;
+}
+
 .expense-table tbody tr{
   transition:background .2s ease;
 }
@@ -1481,6 +1540,8 @@ th{
 
 .income-summary-card{
   background:linear-gradient(160deg,#f2fbf6 0%, #edf8f2 100%);
+  border-color:#cfe5d9;
+  min-height:268px;
 }
 
 .summary-list{
@@ -1494,6 +1555,70 @@ th{
   border-radius:10px;
   border:1px solid #cbe6da;
   background:#fbfffd;
+}
+
+.income-summary-list{
+  gap:12px;
+}
+
+.summary-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin:0;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid #cbe6da;
+  background:rgba(255,255,255,.82);
+}
+
+.summary-item span{
+  color:#537163;
+  font-size:15px;
+  font-weight:600;
+}
+
+.summary-item strong{
+  font-size:22px;
+  color:#214b44;
+}
+
+.summary-item.accent{
+  background:linear-gradient(135deg,#2d727a,#4f8f82);
+  border-color:transparent;
+}
+
+.summary-item.accent span,
+.summary-item.accent strong{
+  color:#f4fffb;
+}
+
+.income-summary-note{
+  margin-top:14px;
+  color:#5c715f;
+  line-height:1.55;
+}
+
+.empty-row td{
+  padding:20px 18px;
+}
+
+.table-empty-state{
+  display:grid;
+  gap:6px;
+  min-height:118px;
+  align-content:center;
+}
+
+.table-empty-state strong{
+  font-size:24px;
+  color:#24463f;
+}
+
+.table-empty-state span{
+  color:#627366;
+  line-height:1.5;
 }
 
 .totals-list{
@@ -2126,8 +2251,25 @@ th{
     align-items:flex-start;
     gap:8px;
   }
+  .section-subtext{
+    font-size:15px;
+  }
   .section-actions{
     width:100%;
+  }
+  .panel-head{
+    flex-direction:column;
+    gap:10px;
+  }
+  .panel-badge{
+    align-self:flex-start;
+  }
+  .summary-item{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .summary-item strong{
+    font-size:20px;
   }
   .action-btn{
     width:100%;
@@ -2324,6 +2466,9 @@ th{
 @media(max-width:420px){
   .chart-box{
     padding:14px;
+  }
+  .table-empty-state strong{
+    font-size:20px;
   }
   .pie-shell{
     height:180px;

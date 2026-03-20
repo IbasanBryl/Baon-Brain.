@@ -133,7 +133,7 @@
           </article>
         </section>
 
-        <section class="section" id="income"><div class="section-title"><h3>Income</h3><button id="add-income-btn" class="action-btn" type="button">Add Income</button></div><div class="content-grid"><article class="panel"><h4>Income Records</h4><table class="income-table"><thead><tr><th>Source</th><th>Date</th><th>Amount</th></tr></thead><tbody></tbody></table></article><article class="panel income-summary-card"><h4>Income Summary</h4><div class="summary-list"><p>This month: <strong>&#8369;0</strong></p><p>Average per week: <strong>&#8369;0</strong></p><p>Top source: <strong>-</strong></p></div></article></div></section>
+        <section class="section" id="income"><div class="section-title income-head"><div><h3>Income</h3><p class="section-subtext">Track every allowance, side hustle, or money added to your weekly budget.</p></div><button id="add-income-btn" class="action-btn" type="button">Add Income</button></div><div class="content-grid income-grid"><article class="panel income-records-panel"><div class="panel-head"><div><h4>Income Records</h4><p id="income-records-caption" class="panel-subtext">Your income history appears here once you start adding entries.</p></div><span id="income-records-badge" class="panel-badge">0 records</span></div><div class="income-table-wrap"><table class="income-table"><thead><tr><th>Source</th><th>Date</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel income-summary-card"><div class="panel-head"><div><h4>Income Summary</h4><p class="panel-subtext">A quick look at how much money has come in this month.</p></div></div><div class="summary-list income-summary-list"><div class="summary-item"><span>This month</span><strong id="income-month-total">&#8369;0</strong></div><div class="summary-item"><span>Average per week</span><strong id="income-week-average">&#8369;0</strong></div><div class="summary-item"><span>Top source</span><strong id="income-top-source">-</strong></div><div class="summary-item accent"><span>Records tracked</span><strong id="income-record-count">0</strong></div></div><p id="income-summary-note" class="income-summary-note">Add your first income entry to start building a clearer picture.</p></article></div></section>
         <section class="section" id="expenses"><div class="section-title"><h3>Expenses</h3><button id="add-expense-btn" class="action-btn" type="button">Add Expense</button></div><div class="content-grid"><article class="panel"><h4>Recent Expenses</h4><div class="expenses-scroll"><table class="expense-table"><thead><tr><th>Category</th><th>Item</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel totals-panel"><h4>Category Totals</h4><div class="totals-scroll"><div class="totals-list" id="category-totals-list"><p>No expenses yet</p></div></div></article></div></section>
         <section class="section" id="budget"><div class="section-title"><h3>Budget</h3></div><article class="panel"><h4>Monthly Budget Progress</h4><div id="budget-rows"><p>No budget categories yet</p></div></article></section>
         <section class="section" id="forecast"><div class="section-title"><h3>Forecast</h3><button id="run-forecast-btn" class="action-btn" type="button">Run Forecast</button></div><div class="content-grid"><article class="panel"><h4>End-of-Month Prediction</h4><p>Estimated remaining money: <strong>&#8369;0</strong></p><p>High-risk category: <strong>-</strong></p><p>Chance of overspending: <strong>0%</strong></p></article><article class="panel"><h4>Forecast Breakdown</h4><div class="pie forecast-pie"></div><ul class="legend forecast-legend"><li>Food - 38%</li><li>Transport - 24%</li><li>Leisure - 16%</li><li>School - 22%</li></ul></article></div></section>
@@ -191,8 +191,14 @@
     const remainingEl = document.querySelector('#overview .card:nth-child(3) p');
     const forecastEl = document.querySelector('#overview .card:nth-child(4) p');
     const incomeTbody = document.querySelector('#income tbody');
+    const incomeRecordsCaption = document.getElementById('income-records-caption');
+    const incomeRecordsBadge = document.getElementById('income-records-badge');
+    const incomeMonthTotalEl = document.getElementById('income-month-total');
+    const incomeWeekAverageEl = document.getElementById('income-week-average');
+    const incomeTopSourceEl = document.getElementById('income-top-source');
+    const incomeRecordCountEl = document.getElementById('income-record-count');
+    const incomeSummaryNoteEl = document.getElementById('income-summary-note');
     const expenseTbody = document.querySelector('#expenses tbody');
-    const incomeSummaryValues = document.querySelectorAll('#income .panel:nth-child(2) strong');
     const categoryTotalsList = document.getElementById('category-totals-list');
     const budgetRowsContainer = document.getElementById('budget-rows');
     const weeklyBars = document.querySelectorAll('#overview .bar-chart .bar');
@@ -566,7 +572,9 @@
       remainingEl.textContent = money(remaining);
       forecastEl.textContent = money(Math.round(forecast.projected));
 
-      incomeTbody.innerHTML = state.incomes.length ? state.incomes.map((i) => `<tr><td><span class="income-pill">${i.source}</span></td><td>${i.date}</td><td class="amt-cell">${money(i.amount)}</td></tr>`).join('') : '<tr><td colspan="3">No income yet</td></tr>';
+      incomeTbody.innerHTML = state.incomes.length
+        ? state.incomes.map((i) => `<tr><td><span class="income-pill">${i.source}</span></td><td>${i.date}</td><td class="amt-cell">${money(i.amount)}</td></tr>`).join('')
+        : '<tr class="empty-row"><td colspan="3"><div class="table-empty-state"><strong>No income yet</strong><span>Add allowance, salary, or side income to start tracking your balance.</span></div></td></tr>';
       expenseTbody.innerHTML = state.expenses.length ? state.expenses.map((i) => `<tr><td><span class="cat-pill">${i.category}</span></td><td>${i.item}</td><td class="amt-cell">${money(i.amount)}</td></tr>`).join('') : '<tr><td colspan="3">No expenses yet</td></tr>';
       renderWeeklyBars(state.expenses);
 
@@ -576,9 +584,22 @@
       const bySource = {};
       monthlyIncomes.forEach((i) => { bySource[i.source] = (bySource[i.source] || 0) + i.amount; });
       const topSource = Object.entries(bySource).sort((a,b) => b[1]-a[1])[0]?.[0] || '-';
-      incomeSummaryValues[0].textContent = money(monthTotal);
-      incomeSummaryValues[1].textContent = money(monthTotal / 4);
-      incomeSummaryValues[2].textContent = topSource;
+      const latestIncome = state.incomes[0];
+      if (incomeMonthTotalEl) incomeMonthTotalEl.textContent = money(monthTotal);
+      if (incomeWeekAverageEl) incomeWeekAverageEl.textContent = money(monthTotal / 4);
+      if (incomeTopSourceEl) incomeTopSourceEl.textContent = topSource;
+      if (incomeRecordCountEl) incomeRecordCountEl.textContent = String(state.incomes.length);
+      if (incomeRecordsBadge) incomeRecordsBadge.textContent = `${state.incomes.length} record${state.incomes.length === 1 ? '' : 's'}`;
+      if (incomeRecordsCaption) {
+        incomeRecordsCaption.textContent = latestIncome
+          ? `Latest entry: ${latestIncome.source} on ${latestIncome.date}.`
+          : 'Your income history appears here once you start adding entries.';
+      }
+      if (incomeSummaryNoteEl) {
+        incomeSummaryNoteEl.textContent = state.incomes.length
+          ? `Your strongest source this month is ${topSource}. Keep adding entries to improve your weekly average.`
+          : 'Add your first income entry to start building a clearer picture.';
+      }
 
       const totals = forecast.totals;
       const dynamicCategoryTotals = {};
