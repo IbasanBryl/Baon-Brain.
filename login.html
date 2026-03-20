@@ -91,9 +91,6 @@
 
   <script>
     const dashBtn = document.getElementById('dash-nav-btn');
-    const topLoginBtn = document.getElementById('top-login-btn');
-    const isLoggedIn = localStorage.getItem('bb_logged_in') === '1';
-    if (isLoggedIn && topLoginBtn) topLoginBtn.style.display = 'none';
     const authTabs = document.querySelectorAll('.auth-tab');
     const signInTabBtn = document.getElementById('signin-tab-btn');
     const signUpTabBtn = document.getElementById('signup-tab-btn');

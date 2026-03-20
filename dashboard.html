@@ -111,24 +111,41 @@
             </div>
           </div>
           <div class="content-grid saving-goal-grid">
-            <article class="panel savings-goal-panel">
-              <div class="panel-head">
-                <div>
-                  <h4>Goal Progress</h4>
-                  <p id="saving-goal-caption" class="panel-subtext">Set a target amount to start tracking progress.</p>
+            <div class="saving-goal-main-stack">
+              <article class="panel savings-goal-panel">
+                <div class="panel-head">
+                  <div>
+                    <h4>Goal Progress</h4>
+                    <p id="saving-goal-caption" class="panel-subtext">Set a target amount to start tracking progress.</p>
+                  </div>
+                  <span id="saving-goal-badge" class="panel-badge">Not set</span>
                 </div>
-                <span id="saving-goal-badge" class="panel-badge">Not set</span>
-              </div>
-              <div class="saving-goal-summary">
-                <div class="saving-goal-copy">
-                  <p id="saving-goal-name" class="saving-goal-name">No saving goal yet</p>
-                  <p id="saving-goal-amounts" class="saving-goal-amounts">&#8369;0 saved of &#8369;0 target</p>
+                <div class="saving-goal-summary">
+                  <div class="saving-goal-copy">
+                    <p id="saving-goal-name" class="saving-goal-name">No saving goal yet</p>
+                    <p id="saving-goal-amounts" class="saving-goal-amounts">&#8369;0 saved of &#8369;0 target</p>
+                  </div>
+                  <span id="saving-goal-percent" class="saving-goal-percent">0%</span>
                 </div>
-                <span id="saving-goal-percent" class="saving-goal-percent">0%</span>
-              </div>
-              <div class="saving-goal-track"><i id="saving-goal-fill" style="width:0%"></i></div>
-              <p id="saving-goal-status" class="saving-goal-status">Set a target amount to start tracking progress.</p>
-            </article>
+                <div class="saving-goal-track"><i id="saving-goal-fill" style="width:0%"></i></div>
+                <p id="saving-goal-status" class="saving-goal-status">Set a target amount to start tracking progress.</p>
+              </article>
+              <article class="panel saving-history-panel">
+                <div class="panel-head saving-history-head">
+                  <div>
+                    <h4>Saving History</h4>
+                    <p id="saving-history-caption" class="panel-subtext">Every savings entry you add will be listed here.</p>
+                  </div>
+                  <span id="saving-history-badge" class="panel-badge">0 entries</span>
+                </div>
+                <div class="saving-history-scroll">
+                  <table class="saving-history-table">
+                    <thead><tr><th>Date</th><th>Amount</th></tr></thead>
+                    <tbody id="saving-history-body"><tr class="empty-row"><td colspan="2"><div class="table-empty-state compact"><strong>No savings history yet</strong><span>Add daily savings after setting a goal to build your history here.</span></div></td></tr></tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
             <article class="panel saving-goal-summary-card">
               <div class="panel-head">
                 <div>
@@ -145,21 +162,6 @@
               <p id="saving-summary-note" class="saving-summary-note">Set your goal to unlock a clearer savings snapshot.</p>
             </article>
           </div>
-          <article class="panel saving-history-panel">
-            <div class="panel-head saving-history-head">
-              <div>
-                <h4>Saving History</h4>
-                <p id="saving-history-caption" class="panel-subtext">Every savings entry you add will be listed here.</p>
-              </div>
-              <span id="saving-history-badge" class="panel-badge">0 entries</span>
-            </div>
-            <div class="saving-history-scroll">
-              <table class="saving-history-table">
-                <thead><tr><th>Date</th><th>Amount</th></tr></thead>
-                <tbody id="saving-history-body"><tr class="empty-row"><td colspan="2"><div class="table-empty-state compact"><strong>No savings history yet</strong><span>Add daily savings after setting a goal to build your history here.</span></div></td></tr></tbody>
-              </table>
-            </div>
-          </article>
         </section>
 
         <section class="section" id="income"><div class="section-title income-head"><div><h3>Income</h3><p class="section-subtext">Track every allowance, side hustle, or money added to your weekly budget.</p></div><button id="add-income-btn" class="action-btn" type="button">Add Income</button></div><div class="content-grid income-grid"><article class="panel income-records-panel"><div class="panel-head"><div><h4>Income Records</h4><p id="income-records-caption" class="panel-subtext">Your income history appears here once you start adding entries.</p></div><span id="income-records-badge" class="panel-badge">0 records</span></div><div class="income-table-wrap"><table class="income-table"><thead><tr><th>Source</th><th>Date</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel income-summary-card"><div class="panel-head"><div><h4>Income Summary</h4><p class="panel-subtext">A quick look at how much money has come in this month.</p></div></div><div class="summary-list income-summary-list"><div class="summary-item"><span>This month</span><strong id="income-month-total">&#8369;0</strong></div><div class="summary-item"><span>Average per week</span><strong id="income-week-average">&#8369;0</strong></div><div class="summary-item"><span>Top source</span><strong id="income-top-source">-</strong></div><div class="summary-item accent"><span>Records tracked</span><strong id="income-record-count">0</strong></div></div><p id="income-summary-note" class="income-summary-note">Add your first income entry to start building a clearer picture.</p></article></div></section>
@@ -252,10 +254,22 @@
     const weeklyChartCaption = document.getElementById('weekly-chart-caption');
     const weeklyChartBadge = document.getElementById('weekly-chart-badge');
     const weeklyEmptyState = document.getElementById('weekly-empty-state');
+    const weeklyChartBox = document.getElementById('weekly-bars')?.closest('.chart-box');
     const overviewPie = document.getElementById('overview-pie');
     const overviewPieCenter = document.getElementById('overview-pie-center');
     const overviewLegend = document.getElementById('overview-legend');
     const overviewAlerts = document.getElementById('overview-alerts');
+    const incomeRecordsPanel = document.querySelector('.income-records-panel');
+    const incomeSummaryCard = document.querySelector('.income-summary-card');
+    const expenseRecordsPanel = document.querySelector('.expense-records-panel');
+    const totalsPanel = document.querySelector('.totals-panel');
+    const budgetProgressPanel = document.querySelector('.budget-progress-panel');
+    const budgetSummaryCard = document.querySelector('.budget-summary-card');
+    const savingsGoalPanel = document.querySelector('.savings-goal-panel');
+    const savingGoalSummaryCard = document.querySelector('.saving-goal-summary-card');
+    const savingHistoryPanel = document.querySelector('.saving-history-panel');
+    const forecastPanel = document.querySelector('.forecast-panel');
+    const forecastBreakdownPanel = document.querySelector('.forecast-breakdown-panel');
     const savingGoalCaptionEl = document.getElementById('saving-goal-caption');
     const savingGoalBadgeEl = document.getElementById('saving-goal-badge');
     const savingGoalNameEl = document.getElementById('saving-goal-name');
@@ -353,6 +367,9 @@
     function closeBottomPopup(){ bottomPopup.classList.remove('open'); }
     bottomPopupOk.addEventListener('click', closeBottomPopup);
     bottomPopup.addEventListener('click', (e) => { if (e.target === bottomPopup) closeBottomPopup(); });
+    function toggleEmptyState(el, isEmpty) {
+      if (el) el.classList.toggle('is-empty', Boolean(isEmpty));
+    }
     window.alert = (m) => showBottomPopup(String(m ?? ''));
 
     function getState(){
@@ -473,6 +490,7 @@
 
     function renderPieBreakdown(pieEl, legendEl, centerEl, totals){
       if (!pieEl || !legendEl) return;
+      const piePanel = pieEl.closest('.chart-box, .panel');
       const colors = ['#e58c5f','#4c8a88','#79a77f','#edbb60'];
       const vals = categories.map((c) => totals[c] || 0);
       const total = vals.reduce((a,b) => a+b, 0);
@@ -481,6 +499,7 @@
         pieEl.classList.add('is-empty');
         legendEl.innerHTML = '<li>No category data yet</li>';
         if (centerEl) centerEl.textContent = 'No data yet';
+        toggleEmptyState(piePanel, true);
         return;
       }
 
@@ -499,6 +518,7 @@
         .filter(Boolean)
         .join('');
       if (centerEl) centerEl.textContent = `${money(total)} spent`;
+      toggleEmptyState(piePanel, false);
     }
 
     function renderBreakdown(totals){
@@ -592,6 +612,7 @@
         weeklyChartBadge.textContent = hasData ? `${money(dayTotals.reduce((sum, value) => sum + value, 0))} this week` : 'Waiting for data';
       }
       if (weeklyEmptyState) weeklyEmptyState.hidden = hasData;
+      toggleEmptyState(weeklyChartBox, !hasData);
 
       weeklyBars.forEach((bar, index) => {
         const value = dayTotals[index] || 0;
@@ -659,6 +680,8 @@
           ? `Your strongest source this month is ${topSource}. Keep adding entries to improve your weekly average.`
           : 'Add your first income entry to start building a clearer picture.';
       }
+      toggleEmptyState(incomeRecordsPanel, !state.incomes.length);
+      toggleEmptyState(incomeSummaryCard, !state.incomes.length);
 
       const totals = forecast.totals;
       const dynamicCategoryTotals = {};
@@ -692,6 +715,8 @@
           return `<div class="total-item"><div class="total-item-head"><span class="total-label">${row.label}</span><strong>${money(row.amount)}</strong></div><div class="total-track"><i style="width:${share}%"></i></div><span class="total-meta">${share}% of total spending</span></div>`;
         }).join('')
         : '<div class="table-empty-state compact"><strong>No category totals yet</strong><span>Once you add expenses, each category total will appear here.</span></div>';
+      toggleEmptyState(expenseRecordsPanel, !state.expenses.length);
+      toggleEmptyState(totalsPanel, !totalRows.length);
 
       const expenseTotalsByCategory = {};
       state.expenses.forEach((entry) => {
@@ -744,6 +769,8 @@
           return `<div class="budget-row ${tone}"><div class="budget-row-head"><span class="budget-cat">${row.cat}</span><span class="budget-pct">${row.pct}%</span></div><div class="progress"><i style="width:${row.pct}%"></i></div><div class="budget-row-meta"><span class="budget-values">${money(row.spentValue)} spent of ${money(row.limit)}</span><span class="budget-remaining">${row.pct >= 100 ? `${money(row.spentValue - row.limit)} over limit` : `${money(remainingValue)} left`}</span></div></div>`;
         }).join('')
         : '<div class="table-empty-state compact"><strong>No budget categories yet</strong><span>Add a budget category to start tracking your limits.</span></div>';
+      toggleEmptyState(budgetProgressPanel, !budgetEntries.length);
+      toggleEmptyState(budgetSummaryCard, !budgetEntries.length);
 
       const savedAmount = Number(state.savingGoal.saved || 0);
       const savingGoalTarget = Number(state.savingGoal.target || 0);
@@ -788,6 +815,9 @@
       savingHistoryBody.innerHTML = savingHistory.length
         ? savingHistory.map((entry) => `<tr><td>${entry.date}</td><td class="amt-cell">${money(entry.amount)}</td></tr>`).join('')
         : '<tr class="empty-row"><td colspan="2"><div class="table-empty-state compact"><strong>No savings history yet</strong><span>Add daily savings after setting a goal to build your history here.</span></div></td></tr>';
+      toggleEmptyState(savingsGoalPanel, savingGoalTarget <= 0);
+      toggleEmptyState(savingGoalSummaryCard, savingGoalTarget <= 0);
+      toggleEmptyState(savingHistoryPanel, !savingHistory.length);
 
       const riskTone = forecast.risk >= 75 ? 'high' : forecast.risk >= 40 ? 'mid' : 'low';
       if (forecastBadgeEl) forecastBadgeEl.textContent = forecast.risk > 0 ? `${forecast.risk}% risk` : 'Low risk';
@@ -825,6 +855,7 @@
           <div class="risk-track"><i style="width:${forecast.risk}%"></i></div>
         </div>
       `;
+      toggleEmptyState(forecastPanel, !state.expenses.length && !state.incomes.length);
       renderOverviewAlerts(allowance, spent, budgetEntries, expenseTotalsByCategory);
       renderBreakdown(totals);
     }

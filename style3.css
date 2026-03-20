@@ -1249,6 +1249,22 @@ a{ text-decoration:none; color:inherit; }
   box-shadow:0 6px 14px rgba(70,52,34,.1);
 }
 
+.panel.is-empty,
+.chart-box.is-empty,
+.income-records-panel.is-empty,
+.expense-records-panel.is-empty,
+.budget-progress-panel.is-empty,
+.budget-summary-card.is-empty,
+.income-summary-card.is-empty,
+.totals-panel.is-empty,
+.saving-history-panel.is-empty,
+.saving-goal-summary-card.is-empty,
+.savings-goal-panel.is-empty,
+.forecast-panel.is-empty,
+.forecast-breakdown-panel.is-empty{
+  min-height:0;
+}
+
 .panel h4{
   font-size:28px;
   margin-bottom:10px;
@@ -1284,14 +1300,20 @@ a{ text-decoration:none; color:inherit; }
 }
 
 .savings-goal-panel{
-  margin-bottom:16px;
+  margin-bottom:0;
   background:linear-gradient(160deg,#f7fbf7 0%, #eef7f1 100%);
   border-color:#c8e0d0;
 }
 
 .saving-goal-grid{
+  grid-template-columns:minmax(0,2fr) minmax(320px,1fr);
   align-items:start;
-  margin-bottom:16px;
+}
+
+.saving-goal-main-stack{
+  display:grid;
+  gap:16px;
+  align-content:start;
 }
 
 .saving-goal-summary-card,
@@ -1392,7 +1414,7 @@ a{ text-decoration:none; color:inherit; }
 }
 
 .saving-history-panel{
-  margin-bottom:16px;
+  margin-bottom:0;
 }
 
 .saving-history-head{
@@ -1404,6 +1426,13 @@ a{ text-decoration:none; color:inherit; }
   overflow-y:auto;
   overflow-x:hidden;
   padding-right:6px;
+}
+
+.income-records-panel.is-empty .income-table-wrap,
+.expense-records-panel.is-empty .expenses-scroll,
+.totals-panel.is-empty .totals-scroll,
+.saving-history-panel.is-empty .saving-history-scroll{
+  max-height:none;
 }
 
 .saving-history-table thead th{
@@ -1796,6 +1825,10 @@ th{
   align-content:center;
 }
 
+.panel.is-empty .table-empty-state{
+  min-height:82px;
+}
+
 .table-empty-state strong{
   font-size:24px;
   color:#24463f;
@@ -1874,6 +1907,39 @@ th{
 .totals-scroll::-webkit-scrollbar,
 .saving-history-scroll::-webkit-scrollbar{
   width:8px;
+}
+
+.chart-box.is-empty .bar-wrap{
+  display:none;
+}
+
+.chart-box.is-empty .chart-empty{
+  margin-top:0;
+}
+
+.chart-box.is-empty .category-visual,
+.forecast-breakdown-panel.is-empty .forecast-visual{
+  gap:12px;
+  justify-items:flex-start;
+}
+
+.chart-box.is-empty .pie-shell,
+.forecast-breakdown-panel.is-empty .pie-shell{
+  width:136px;
+  height:136px;
+}
+
+.chart-box.is-empty .pie,
+.forecast-breakdown-panel.is-empty .pie{
+  width:118px;
+  height:118px;
+}
+
+.chart-box.is-empty .pie-center,
+.forecast-breakdown-panel.is-empty .pie-center{
+  width:72px;
+  height:72px;
+  font-size:11px;
 }
 
 .expenses-scroll::-webkit-scrollbar-thumb,
@@ -3040,5 +3106,3 @@ th{
     max-height:360px;
   }
 }
-
-
