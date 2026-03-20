@@ -135,7 +135,7 @@
 
         <section class="section" id="income"><div class="section-title income-head"><div><h3>Income</h3><p class="section-subtext">Track every allowance, side hustle, or money added to your weekly budget.</p></div><button id="add-income-btn" class="action-btn" type="button">Add Income</button></div><div class="content-grid income-grid"><article class="panel income-records-panel"><div class="panel-head"><div><h4>Income Records</h4><p id="income-records-caption" class="panel-subtext">Your income history appears here once you start adding entries.</p></div><span id="income-records-badge" class="panel-badge">0 records</span></div><div class="income-table-wrap"><table class="income-table"><thead><tr><th>Source</th><th>Date</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel income-summary-card"><div class="panel-head"><div><h4>Income Summary</h4><p class="panel-subtext">A quick look at how much money has come in this month.</p></div></div><div class="summary-list income-summary-list"><div class="summary-item"><span>This month</span><strong id="income-month-total">&#8369;0</strong></div><div class="summary-item"><span>Average per week</span><strong id="income-week-average">&#8369;0</strong></div><div class="summary-item"><span>Top source</span><strong id="income-top-source">-</strong></div><div class="summary-item accent"><span>Records tracked</span><strong id="income-record-count">0</strong></div></div><p id="income-summary-note" class="income-summary-note">Add your first income entry to start building a clearer picture.</p></article></div></section>
         <section class="section" id="expenses"><div class="section-title expenses-head"><div><h3>Expenses</h3><p class="section-subtext">Keep an eye on where your baon goes and spot which categories are eating the most of your budget.</p></div><button id="add-expense-btn" class="action-btn" type="button">Add Expense</button></div><div class="content-grid expenses-grid"><article class="panel expense-records-panel"><div class="panel-head"><div><h4>Recent Expenses</h4><p id="expense-records-caption" class="panel-subtext">Your most recent expense entries will appear here.</p></div><span id="expense-records-badge" class="panel-badge">0 records</span></div><div class="expenses-scroll expense-table-wrap"><table class="expense-table"><thead><tr><th>Category</th><th>Item</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel totals-panel"><div class="panel-head"><div><h4>Category Totals</h4><p class="panel-subtext">See which spending groups are taking the biggest share.</p></div></div><div class="summary-list expense-summary-list"><div class="summary-item warm"><span>Total spent</span><strong id="expense-total-spent">&#8369;0</strong></div><div class="summary-item"><span>Top category</span><strong id="expense-top-category">-</strong></div><div class="summary-item"><span>Expenses tracked</span><strong id="expense-record-count">0</strong></div></div><div class="totals-scroll"><div class="totals-list" id="category-totals-list"><p>No expenses yet</p></div></div><p id="expense-summary-note" class="expense-summary-note">Add an expense to see your category totals build up here.</p></article></div></section>
-        <section class="section" id="budget"><div class="section-title"><h3>Budget</h3></div><article class="panel"><h4>Monthly Budget Progress</h4><div id="budget-rows"><p>No budget categories yet</p></div></article></section>
+        <section class="section" id="budget"><div class="section-title budget-head"><div><h3>Budget</h3><p class="section-subtext">Set category limits and watch how close each one is to being fully used.</p></div></div><div class="content-grid budget-grid"><article class="panel budget-progress-panel"><div class="panel-head"><div><h4>Monthly Budget Progress</h4><p id="budget-progress-caption" class="panel-subtext">Each category will show how much you have spent against its limit.</p></div><span id="budget-progress-badge" class="panel-badge">0 categories</span></div><div id="budget-rows"><div class="table-empty-state compact"><strong>No budget categories yet</strong><span>Add a budget category to start tracking your limits.</span></div></div></article><article class="panel budget-summary-card"><div class="panel-head"><div><h4>Budget Snapshot</h4><p class="panel-subtext">A quick read on how your category budgets are performing.</p></div></div><div class="summary-list budget-summary-list"><div class="summary-item cool"><span>Total budgeted</span><strong id="budget-total-limit">&#8369;0</strong></div><div class="summary-item"><span>Total spent</span><strong id="budget-total-spent">&#8369;0</strong></div><div class="summary-item"><span>Categories</span><strong id="budget-category-count">0</strong></div><div class="summary-item"><span>Closest to limit</span><strong id="budget-top-category">-</strong></div></div><p id="budget-summary-note" class="budget-summary-note">Add your first category budget to start tracking spending progress.</p></article></div></section>
         <section class="section" id="forecast"><div class="section-title"><h3>Forecast</h3><button id="run-forecast-btn" class="action-btn" type="button">Run Forecast</button></div><div class="content-grid"><article class="panel"><h4>End-of-Month Prediction</h4><p>Estimated remaining money: <strong>&#8369;0</strong></p><p>High-risk category: <strong>-</strong></p><p>Chance of overspending: <strong>0%</strong></p></article><article class="panel"><h4>Forecast Breakdown</h4><div class="pie forecast-pie"></div><ul class="legend forecast-legend"><li>Food - 38%</li><li>Transport - 24%</li><li>Leisure - 16%</li><li>School - 22%</li></ul></article></div></section>
       </main>
     </div>
@@ -205,8 +205,15 @@
     const expenseTopCategoryEl = document.getElementById('expense-top-category');
     const expenseRecordCountEl = document.getElementById('expense-record-count');
     const expenseSummaryNoteEl = document.getElementById('expense-summary-note');
+    const budgetProgressCaption = document.getElementById('budget-progress-caption');
+    const budgetProgressBadge = document.getElementById('budget-progress-badge');
     const categoryTotalsList = document.getElementById('category-totals-list');
     const budgetRowsContainer = document.getElementById('budget-rows');
+    const budgetTotalLimitEl = document.getElementById('budget-total-limit');
+    const budgetTotalSpentEl = document.getElementById('budget-total-spent');
+    const budgetCategoryCountEl = document.getElementById('budget-category-count');
+    const budgetTopCategoryEl = document.getElementById('budget-top-category');
+    const budgetSummaryNoteEl = document.getElementById('budget-summary-note');
     const weeklyBars = document.querySelectorAll('#overview .bar-chart .bar');
     const scaleTop = document.getElementById('scale-top');
     const scaleMid = document.getElementById('scale-mid');
@@ -653,13 +660,38 @@
         .map(([cat, limit]) => ({ cat, limit: Math.max(0, Number(limit) || 0) }))
         .filter((row) => row.limit > 0)
         .sort((a, b) => a.cat.localeCompare(b.cat));
+      const budgetRows = budgetEntries.map((row) => {
+        const spentValue = expenseTotalsByCategory[row.cat.toLowerCase()] || 0;
+        const pct = row.limit > 0 ? Math.min(100, Math.round((spentValue / row.limit) * 100)) : 0;
+        return { ...row, spentValue, pct };
+      });
+      const totalBudgetLimit = budgetRows.reduce((sum, row) => sum + row.limit, 0);
+      const totalBudgetSpent = budgetRows.reduce((sum, row) => sum + row.spentValue, 0);
+      const closestBudget = [...budgetRows].sort((a, b) => b.pct - a.pct)[0];
+      if (budgetTotalLimitEl) budgetTotalLimitEl.textContent = money(totalBudgetLimit);
+      if (budgetTotalSpentEl) budgetTotalSpentEl.textContent = money(totalBudgetSpent);
+      if (budgetCategoryCountEl) budgetCategoryCountEl.textContent = String(budgetRows.length);
+      if (budgetTopCategoryEl) budgetTopCategoryEl.textContent = closestBudget ? closestBudget.cat : '-';
+      if (budgetProgressBadge) budgetProgressBadge.textContent = `${budgetRows.length} categor${budgetRows.length === 1 ? 'y' : 'ies'}`;
+      if (budgetProgressCaption) {
+        budgetProgressCaption.textContent = closestBudget
+          ? `${closestBudget.cat} is currently the closest to its limit at ${closestBudget.pct}%.`
+          : 'Each category will show how much you have spent against its limit.';
+      }
+      if (budgetSummaryNoteEl) {
+        budgetSummaryNoteEl.textContent = closestBudget
+          ? (closestBudget.pct >= 100
+            ? `${closestBudget.cat} has already gone over budget.`
+            : `${closestBudget.cat} is your tightest budget right now with ${money(Math.max(0, closestBudget.limit - closestBudget.spentValue))} remaining.`)
+          : 'Add your first category budget to start tracking spending progress.';
+      }
       budgetRowsContainer.innerHTML = budgetEntries.length
-        ? budgetEntries.map((row) => {
-          const spentValue = expenseTotalsByCategory[row.cat.toLowerCase()] || 0;
-          const pct = row.limit > 0 ? Math.min(100, Math.round((spentValue / row.limit) * 100)) : 0;
-          return `<div class="budget-row"><span class="budget-cat">${row.cat}</span><div class="progress"><i style="width:${pct}%"></i></div><span class="budget-values">${money(spentValue)} / ${money(row.limit)}</span><span class="budget-pct">${pct}%</span></div>`;
+        ? budgetRows.map((row) => {
+          const remainingValue = Math.max(0, row.limit - row.spentValue);
+          const tone = row.pct >= 100 ? 'over' : row.pct >= 75 ? 'near' : 'safe';
+          return `<div class="budget-row ${tone}"><div class="budget-row-head"><span class="budget-cat">${row.cat}</span><span class="budget-pct">${row.pct}%</span></div><div class="progress"><i style="width:${row.pct}%"></i></div><div class="budget-row-meta"><span class="budget-values">${money(row.spentValue)} spent of ${money(row.limit)}</span><span class="budget-remaining">${row.pct >= 100 ? `${money(row.spentValue - row.limit)} over limit` : `${money(remainingValue)} left`}</span></div></div>`;
         }).join('')
-        : '<p>No budget categories yet</p>';
+        : '<div class="table-empty-state compact"><strong>No budget categories yet</strong><span>Add a budget category to start tracking your limits.</span></div>';
 
       const savedAmount = Number(state.savingGoal.saved || 0);
       const savingGoalTarget = Number(state.savingGoal.target || 0);
