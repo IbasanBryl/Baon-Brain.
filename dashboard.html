@@ -24,6 +24,7 @@
           <button class="menu-settings-btn" id="menu-settings-btn" type="button" aria-expanded="false" aria-controls="menu-settings-panel" aria-label="Open account menu">
             &#9776;
           </button>
+          <span id="user-name" class="sidebar-user-name">Guest</span>
           <div class="menu-settings-panel" id="menu-settings-panel">
             <button class="menu-settings-action" id="menu-settings-manage" type="button">Manage account</button>
             <button class="menu-settings-action" id="menu-settings-reset" type="button">Reset</button>
@@ -44,21 +45,25 @@
           <h2>Financial Overview</h2>
           <div class="user">
             <button class="action-btn" id="quick-budget-btn" type="button">Add Budget</button>
-            <button class="action-btn" id="set-budget-btn" type="button">Set Budget</button>
-            <span id="user-name">Guest</span>
           </div>
         </header>
 
         <section class="section active-section" id="overview">
           <div class="cards">
-            <article class="card"><h3>Total Allowance</h3><p>&#8369;0</p></article>
-            <article class="card"><h3>Total Spent</h3><p>&#8369;0</p></article>
-            <article class="card"><h3>Remaining</h3><p>&#8369;0</p></article>
-            <article class="card forecast-card"><h3>AI Forecast</h3><p>&#8369;0</p></article>
+            <article class="card stat-card"><span class="card-kicker">Income tracked</span><h3>Total Allowance</h3><p>&#8369;0</p><small class="card-note">Everything you have added as allowance or income.</small></article>
+            <article class="card stat-card"><span class="card-kicker">Outgoing cash</span><h3>Total Spent</h3><p>&#8369;0</p><small class="card-note">All recorded expenses across your categories.</small></article>
+            <article class="card stat-card"><span class="card-kicker">Available now</span><h3>Remaining</h3><p>&#8369;0</p><small class="card-note">What is left after your recorded spending.</small></article>
+            <article class="card stat-card forecast-card"><span class="card-kicker">Smart estimate</span><h3>AI Forecast</h3><p>&#8369;0</p><small class="card-note">Projected balance based on your current pace.</small></article>
           </div>
           <div class="charts">
             <article class="chart-box">
-              <h3>Weekly Spending</h3>
+              <div class="overview-head">
+                <div>
+                  <h3>Weekly Spending</h3>
+                  <p id="weekly-chart-caption" class="overview-subtext">See how your spending moves through the week.</p>
+                </div>
+                <span id="weekly-chart-badge" class="overview-badge">This Week</span>
+              </div>
               <div class="bar-wrap">
                 <div class="y-scale" id="weekly-scale">
                   <span id="scale-top">&#8369;0</span>
@@ -75,11 +80,25 @@
                   <div class="bar-item"><span class="bar" data-day="Sun"></span><small>Sun</small></div>
                 </div>
               </div>
+              <p id="weekly-empty-state" class="chart-empty" hidden>Add a few expenses and your weekly pattern will appear here.</p>
             </article>
-            <article class="chart-box"><h3>By Category</h3><div class="pie"></div><ul class="legend"><li>Food - 38%</li><li>Transport - 24%</li><li>Leisure - 16%</li><li>School - 22%</li></ul></article>
+            <article class="chart-box">
+              <div class="overview-head">
+                <div>
+                  <h3>By Category</h3>
+                  <p id="overview-category-caption" class="overview-subtext">Your biggest spending groups at a glance.</p>
+                </div>
+              </div>
+              <div class="category-visual">
+                <div class="pie-shell">
+                  <div class="pie" id="overview-pie"></div>
+                  <div class="pie-center" id="overview-pie-center">No data yet</div>
+                </div>
+                <ul class="legend" id="overview-legend"><li>No category data yet</li></ul>
+              </div>
+            </article>
           </div>
-          <div class="alert">Budget Alert: Food spending is 80% of your limit.</div>
-          <div class="alert">Savings Alert: You have used 65% of your weekly allowance.</div>
+          <div class="overview-alerts" id="overview-alerts"></div>
         </section>
         <section class="section" id="saving-goal">
           <div class="section-title savings-goal-head">
@@ -126,7 +145,7 @@
   <div id="reset-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card reset-card"><h3>Reset Records</h3><p class="reset-text">Reset all income and expense records now?</p><div class="entry-actions"><button type="button" id="reset-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="reset-confirm" class="entry-btn submit">OK</button></div></div></div>
   <div id="logout-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card reset-card"><h3>Log Out</h3><p class="reset-text">Log out now?</p><div class="entry-actions"><button type="button" id="logout-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="logout-confirm" class="entry-btn submit">OK</button></div></div></div>
   <div id="bottom-popup" class="bottom-popup" aria-hidden="true"><div class="bottom-popup-card"><p id="bottom-popup-text">Message</p><button type="button" id="bottom-popup-ok" class="entry-btn submit">OK</button></div></div>
-  <div id="account-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card account-card"><div class="account-mobile-head"><button type="button" id="account-back-btn" class="account-back-btn" aria-label="Close edit info">&#8249;</button><p>Edit info</p></div><h3>Manage Account</h3><form id="account-form" novalidate><div class="entry-fields"><label for="account-email">Email</label><input id="account-email" type="email" readonly><label for="account-display-name">Display Name</label><input id="account-display-name" type="text" maxlength="32" placeholder="How your name appears"></div><p class="account-help">Display name appears in your dashboard header.</p><button type="button" id="account-change-pass-btn" class="account-change-pass-btn">Change Password</button><div class="entry-actions"><button type="button" id="account-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="account-save" class="entry-btn submit">Save</button></div></form></div></div>
+  <div id="account-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card account-card"><div class="account-mobile-head"><button type="button" id="account-back-btn" class="account-back-btn" aria-label="Close edit info">&#8249;</button><p>Account</p></div><div class="account-hero"><p class="account-kicker">Profile Settings</p><h3>Manage Account</h3><p class="account-subtitle">Update how your account appears in the dashboard and keep your sign-in details organized.</p></div><form id="account-form" novalidate><div class="entry-fields account-fields"><div class="account-field"><label for="account-email">Email Address</label><input id="account-email" type="email" readonly><p class="account-field-note">This is your sign-in email and cannot be changed here.</p></div><div class="account-field"><label for="account-display-name">Display Name</label><input id="account-display-name" type="text" maxlength="32" placeholder="How your name appears"><p class="account-help">This name appears in your dashboard header and sidebar.</p></div></div><div class="account-security-card"><div><p class="account-section-title">Security</p><p class="account-section-copy">Change your password anytime to keep your account protected.</p></div><button type="button" id="account-change-pass-btn" class="account-change-pass-btn">Change Password</button></div><div class="entry-actions account-actions"><button type="button" id="account-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="account-save" class="entry-btn submit">Save Changes</button></div></form></div></div>
   <div id="account-password-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card"><h3>Change Password</h3><form id="account-password-form" novalidate><div class="entry-fields"><label for="current-password">Current Password</label><input id="current-password" name="current_password" type="password" minlength="6" required><label for="new-password">New Password</label><input id="new-password" name="new_password" type="password" minlength="6" required><label for="confirm-new-password">Confirm New Password</label><input id="confirm-new-password" name="confirm_new_password" type="password" minlength="6" required></div><div class="entry-actions"><button type="button" id="account-password-cancel" class="entry-btn cancel">Cancel</button><button type="submit" id="account-password-save" class="entry-btn submit">Update</button></div></form></div></div>
 
   <script>
@@ -162,7 +181,6 @@
     const sections = document.querySelectorAll('#dash .section');
     const addIncomeBtn = document.getElementById('add-income-btn');
     const addExpenseBtn = document.getElementById('add-expense-btn');
-    const setBudgetBtn = document.getElementById('set-budget-btn');
     const quickBudgetBtn = document.getElementById('quick-budget-btn');
     const addDailySavingBtn = document.getElementById('add-daily-saving-btn');
     const setSavingGoalBtn = document.getElementById('set-saving-goal-btn');
@@ -181,6 +199,13 @@
     const scaleTop = document.getElementById('scale-top');
     const scaleMid = document.getElementById('scale-mid');
     const scaleLow = document.getElementById('scale-low');
+    const weeklyChartCaption = document.getElementById('weekly-chart-caption');
+    const weeklyChartBadge = document.getElementById('weekly-chart-badge');
+    const weeklyEmptyState = document.getElementById('weekly-empty-state');
+    const overviewPie = document.getElementById('overview-pie');
+    const overviewPieCenter = document.getElementById('overview-pie-center');
+    const overviewLegend = document.getElementById('overview-legend');
+    const overviewAlerts = document.getElementById('overview-alerts');
     const savingGoalNameEl = document.getElementById('saving-goal-name');
     const savingGoalAmountsEl = document.getElementById('saving-goal-amounts');
     const savingGoalPercentEl = document.getElementById('saving-goal-percent');
@@ -223,6 +248,13 @@
     const appKey = () => `bb_finance_${currentUserEmail || 'guest'}`;
     const CURRENCY_SYMBOL = '\u20B1';
     const money = (n) => `${CURRENCY_SYMBOL}${Number(n || 0).toLocaleString()}`;
+    const normalizeLabel = (raw) => String(raw || '')
+      .trim()
+      .replace(/\s+/g, ' ')
+      .split(' ')
+      .filter(Boolean)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+      .join(' ');
     const normalizeCategory = (raw) => {
       const v = String(raw || '').trim().toLowerCase();
       if (v === 'food') return 'Food';
@@ -271,7 +303,7 @@
       raw.weekKey = wk;
       const normalizedBudget = {};
       Object.keys(raw.budget).forEach((k) => {
-        const label = String(k || '').trim();
+        const label = normalizeLabel(k);
         if (!label) return;
         normalizedBudget[label] = Math.max(0, Number(raw.budget[k]) || 0);
       });
@@ -316,7 +348,6 @@
       menuLinks.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === `#${id}`));
       const showBudgetActions = id === 'budget';
       if (quickBudgetBtn) quickBudgetBtn.style.display = showBudgetActions ? 'inline-flex' : 'none';
-      if (setBudgetBtn) setBudgetBtn.style.display = showBudgetActions ? 'inline-flex' : 'none';
     }
     menuLinks.forEach((l) => l.addEventListener('click', (e) => {
       e.preventDefault();
@@ -377,15 +408,84 @@
     }
     window.addEventListener('resize', syncMobileMenu);
 
-    function renderBreakdown(totals){
+    function renderPieBreakdown(pieEl, legendEl, centerEl, totals){
+      if (!pieEl || !legendEl) return;
       const colors = ['#e58c5f','#4c8a88','#79a77f','#edbb60'];
       const vals = categories.map((c) => totals[c] || 0);
       const total = vals.reduce((a,b) => a+b, 0);
-      const p = total ? vals.map((v) => Math.round((v/total)*100)) : [38,24,16,22];
+      if (!total) {
+        pieEl.style.background = 'conic-gradient(rgba(213, 201, 176, .72) 0 100%)';
+        pieEl.classList.add('is-empty');
+        legendEl.innerHTML = '<li>No category data yet</li>';
+        if (centerEl) centerEl.textContent = 'No data yet';
+        return;
+      }
+
+      const p = vals.map((v) => Math.round((v / total) * 100));
+      const diff = 100 - p.reduce((sum, value) => sum + value, 0);
+      if (diff !== 0) {
+        const largestIndex = p.indexOf(Math.max(...p));
+        p[largestIndex] += diff;
+      }
       let start = 0;
       const slices = p.map((pct, i) => { const end = start + pct; const s = `${colors[i]} ${start}% ${end}%`; start = end; return s; });
-      forecastPie.style.background = `conic-gradient(${slices.join(', ')})`;
-      forecastLegend.innerHTML = categories.map((c, i) => `<li>${c} - ${p[i]}%</li>`).join('');
+      pieEl.style.background = `conic-gradient(${slices.join(', ')})`;
+      pieEl.classList.remove('is-empty');
+      legendEl.innerHTML = categories
+        .map((c, i) => vals[i] > 0 ? `<li><span class="legend-dot" style="background:${colors[i]}"></span>${c} - ${p[i]}%</li>` : '')
+        .filter(Boolean)
+        .join('');
+      if (centerEl) centerEl.textContent = `${money(total)} spent`;
+    }
+
+    function renderBreakdown(totals){
+      renderPieBreakdown(overviewPie, overviewLegend, overviewPieCenter, totals);
+      renderPieBreakdown(forecastPie, forecastLegend, null, totals);
+    }
+
+    function renderOverviewAlerts(allowance, spent, budgetEntries, expenseTotalsByCategory) {
+      if (!overviewAlerts) return;
+      const alerts = [];
+
+      if (budgetEntries.length) {
+        const riskiest = budgetEntries
+          .map((row) => {
+            const spentValue = expenseTotalsByCategory[row.cat.toLowerCase()] || 0;
+            const pct = row.limit > 0 ? (spentValue / row.limit) * 100 : 0;
+            return { ...row, spentValue, pct };
+          })
+          .sort((a, b) => b.pct - a.pct)[0];
+
+        if (riskiest) {
+          if (riskiest.pct >= 100) {
+            alerts.push({ tone: 'danger', text: `${riskiest.cat} is over budget by ${money(riskiest.spentValue - riskiest.limit)}.` });
+          } else if (riskiest.pct >= 75) {
+            alerts.push({ tone: 'warn', text: `${riskiest.cat} is already at ${Math.round(riskiest.pct)}% of its budget.` });
+          } else {
+            alerts.push({ tone: 'good', text: `Budget check looks healthy. ${riskiest.cat} is your highest tracked category at ${Math.round(riskiest.pct)}%.` });
+          }
+        }
+      } else {
+        alerts.push({ tone: 'neutral', text: 'Add a budget to get category alerts and overspending warnings.' });
+      }
+
+      if (allowance > 0) {
+        const allowancePct = Math.round((spent / allowance) * 100);
+        const remainingCash = allowance - spent;
+        if (allowancePct >= 100) {
+          alerts.push({ tone: 'danger', text: `You have used ${allowancePct}% of your tracked allowance.` });
+        } else if (allowancePct >= 65) {
+          alerts.push({ tone: 'warn', text: `You have used ${allowancePct}% of your tracked allowance and have ${money(remainingCash)} left.` });
+        } else {
+          alerts.push({ tone: 'good', text: `You still have ${money(remainingCash)} available from your tracked allowance.` });
+        }
+      } else {
+        alerts.push({ tone: 'neutral', text: 'Add income and expenses to unlock smarter overview insights.' });
+      }
+
+      overviewAlerts.innerHTML = alerts
+        .map((alert) => `<div class="alert ${alert.tone}">${alert.text}</div>`)
+        .join('');
     }
 
     function renderWeeklyBars(expenses) {
@@ -420,14 +520,24 @@
       if (scaleTop) scaleTop.textContent = money(scaleMax);
       if (scaleMid) scaleMid.textContent = money(Math.round(scaleMax / 2));
       if (scaleLow) scaleLow.textContent = money(0);
+      if (weeklyChartCaption) {
+        weeklyChartCaption.textContent = hasData
+          ? `Highest daily spend this week: ${money(rawMax)}.`
+          : 'See how your spending moves through the week.';
+      }
+      if (weeklyChartBadge) {
+        weeklyChartBadge.textContent = hasData ? `${money(dayTotals.reduce((sum, value) => sum + value, 0))} this week` : 'Waiting for data';
+      }
+      if (weeklyEmptyState) weeklyEmptyState.hidden = hasData;
 
       weeklyBars.forEach((bar, index) => {
         const value = dayTotals[index] || 0;
         const normalized = Math.min(value / calcMax, 1);
         const eased = Math.sqrt(normalized);
-        const pct = value > 0 ? Math.max(16, Math.round(18 + eased * 74)) : 8;
+        const pct = value > 0 ? Math.max(16, Math.round(18 + eased * 74)) : (hasData ? 3 : 1);
         bar.style.height = `${pct}%`;
         bar.title = `${bar.dataset.day}: ${money(value)}`;
+        bar.classList.toggle('empty-bar', value === 0);
       });
     }
 
@@ -493,6 +603,7 @@
       });
       const budgetEntries = Object.entries(state.budget || {})
         .map(([cat, limit]) => ({ cat, limit: Math.max(0, Number(limit) || 0) }))
+        .filter((row) => row.limit > 0)
         .sort((a, b) => a.cat.localeCompare(b.cat));
       budgetRowsContainer.innerHTML = budgetEntries.length
         ? budgetEntries.map((row) => {
@@ -542,6 +653,7 @@
           <div class="risk-track"><i style="width:${forecast.risk}%"></i></div>
         </div>
       `;
+      renderOverviewAlerts(allowance, spent, budgetEntries, expenseTotalsByCategory);
       renderBreakdown(totals);
     }
 
@@ -562,7 +674,7 @@
         entryModalTitle.textContent = 'Add Daily Savings';
         entryFields.innerHTML = `<label>Amount Saved Today</label><input name="dailySaved" type="number" min="0.01" step="0.01" placeholder="Enter today's savings" required><label>Date</label><input name="savedDate" type="date" value="${today}" required>`;
       } else {
-        entryModalTitle.textContent = 'Set Budget';
+        entryModalTitle.textContent = 'Add Budget';
         entryFields.innerHTML = `<label>Category</label><input name="category" type="text" placeholder="Type any category" required><label>Budget Amount</label><input name="limit" type="number" min="0" step="0.01" required>`;
       }
       entryModal.classList.add('open');
@@ -572,7 +684,6 @@
     addIncomeBtn.addEventListener('click', () => openEntryModal('income'));
     addExpenseBtn.addEventListener('click', () => openEntryModal('expense'));
     const openBudgetModal = () => openEntryModal('budget');
-    setBudgetBtn.addEventListener('click', openBudgetModal);
     if (quickBudgetBtn) quickBudgetBtn.addEventListener('click', openBudgetModal);
     addDailySavingBtn.addEventListener('click', () => openEntryModal('daily-saving'));
     setSavingGoalBtn.addEventListener('click', () => openEntryModal('saving'));
@@ -600,10 +711,13 @@
         state.expenses.unshift({ category, item, amount, date });
       }
       if (modalMode === 'budget') {
-        const category = String(form.get('category') || '').trim();
+        const category = normalizeLabel(form.get('category'));
         const limit = Number(form.get('limit'));
         if (!category) return showBottomPopup('Please enter a budget category.');
         if (!Number.isFinite(limit) || limit < 0) return showBottomPopup('Enter valid budget details.');
+        Object.keys(state.budget).forEach((existingKey) => {
+          if (existingKey.toLowerCase() === category.toLowerCase() && existingKey !== category) delete state.budget[existingKey];
+        });
         state.budget[category] = limit;
       }
       if (modalMode === 'saving') {
@@ -701,6 +815,8 @@
       const state = getState();
       state.incomes = [];
       state.expenses = [];
+      state.budget = {};
+      state.savingGoal = { name: '', target: 0, saved: 0, history: [] };
       state.weekKey = weekKey();
       saveState(state);
       renderFinance();
