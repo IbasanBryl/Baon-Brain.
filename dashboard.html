@@ -176,6 +176,7 @@
   <div id="entry-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card"><h3 id="entry-modal-title">Add Entry</h3><form id="entry-form" novalidate><div class="entry-fields"></div><div class="entry-actions"><button type="button" id="entry-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="entry-save" class="entry-btn submit">Save</button></div></form></div></div>
   <div id="reset-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card reset-card"><h3>Reset Records</h3><p class="reset-text">Reset all income and expense records now?</p><div class="entry-actions"><button type="button" id="reset-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="reset-confirm" class="entry-btn submit">OK</button></div></div></div>
   <div id="logout-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card reset-card"><h3>Log Out</h3><p class="reset-text">Log out now?</p><div class="entry-actions"><button type="button" id="logout-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="logout-confirm" class="entry-btn submit">OK</button></div></div></div>
+  <div id="saving-history-modal" class="entry-modal saving-history-modal" aria-hidden="true"><div class="entry-modal-card saving-history-modal-card"><div class="saving-history-modal-head"><div><p class="saving-history-modal-kicker">Saving Goal</p><h3>Full Saving History</h3><p id="saving-history-modal-caption" class="saving-history-modal-copy">Review every savings entry you have added so far.</p></div><button type="button" id="saving-history-close" class="saving-history-close-btn" aria-label="Close saving history">&times;</button></div><div class="saving-history-modal-summary"><span id="saving-history-modal-badge" class="panel-badge">0 entries</span></div><div class="saving-history-modal-table-wrap"><table class="saving-history-table saving-history-modal-table"><thead><tr><th>Date</th><th>Amount</th></tr></thead><tbody id="saving-history-modal-body"><tr class="empty-row"><td colspan="2"><div class="table-empty-state compact"><strong>No savings history yet</strong><span>Add daily savings after setting a goal to build your history here.</span></div></td></tr></tbody></table></div></div></div>
   <div id="bottom-popup" class="bottom-popup" aria-hidden="true"><div class="bottom-popup-card"><p id="bottom-popup-text">Message</p><button type="button" id="bottom-popup-ok" class="entry-btn submit">OK</button></div></div>
   <div id="account-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card account-card"><div class="account-mobile-head"><button type="button" id="account-back-btn" class="account-back-btn" aria-label="Close edit info">&#8249;</button><p>Account</p></div><div class="account-hero"><p class="account-kicker">Profile Settings</p><h3>Manage Account</h3><p class="account-subtitle">Update how your account appears in the dashboard and keep your sign-in details organized.</p></div><form id="account-form" novalidate><div class="entry-fields account-fields"><div class="account-field"><label for="account-email">Email Address</label><input id="account-email" type="email" readonly><p class="account-field-note">This is your sign-in email and cannot be changed here.</p></div><div class="account-field"><label for="account-display-name">Display Name</label><input id="account-display-name" type="text" maxlength="32" placeholder="How your name appears"><p class="account-help">This name appears in your dashboard header and sidebar.</p></div></div><div class="account-security-card"><div><p class="account-section-title">Security</p><p class="account-section-copy">Change your password anytime to keep your account protected.</p></div><button type="button" id="account-change-pass-btn" class="account-change-pass-btn">Change Password</button></div><div class="entry-actions account-actions"><button type="button" id="account-cancel" class="entry-btn cancel">Cancel</button><button type="button" id="account-save" class="entry-btn submit">Save Changes</button></div></form></div></div>
   <div id="account-password-modal" class="entry-modal" aria-hidden="true"><div class="entry-modal-card"><h3>Change Password</h3><form id="account-password-form" novalidate><div class="entry-fields"><label for="current-password">Current Password</label><input id="current-password" name="current_password" type="password" minlength="6" required><label for="new-password">New Password</label><input id="new-password" name="new_password" type="password" minlength="6" required><label for="confirm-new-password">Confirm New Password</label><input id="confirm-new-password" name="confirm_new_password" type="password" minlength="6" required></div><div class="entry-actions"><button type="button" id="account-password-cancel" class="entry-btn cancel">Cancel</button><button type="submit" id="account-password-save" class="entry-btn submit">Update</button></div></form></div></div>
@@ -288,6 +289,11 @@
     const savingHistoryBadgeEl = document.getElementById('saving-history-badge');
     const savingHistoryBody = document.getElementById('saving-history-body');
     const savingHistoryScroll = document.getElementById('saving-history-scroll');
+    const savingHistoryModal = document.getElementById('saving-history-modal');
+    const savingHistoryModalCaptionEl = document.getElementById('saving-history-modal-caption');
+    const savingHistoryModalBadgeEl = document.getElementById('saving-history-modal-badge');
+    const savingHistoryModalBody = document.getElementById('saving-history-modal-body');
+    const savingHistoryCloseBtn = document.getElementById('saving-history-close');
     const forecastCaptionEl = document.getElementById('forecast-caption');
     const forecastBadgeEl = document.getElementById('forecast-badge');
     const forecastBreakdownCaptionEl = document.getElementById('forecast-breakdown-caption');
@@ -327,7 +333,6 @@
     const categories = ['Food', 'Transport', 'Leisure', 'School'];
     const appKey = () => `bb_finance_${currentUserEmail || 'guest'}`;
     const CURRENCY_SYMBOL = '\u20B1';
-    let isSavingHistoryExpanded = false;
     const money = (n) => `${CURRENCY_SYMBOL}${Number(n || 0).toLocaleString()}`;
     const normalizeLabel = (raw) => String(raw || '')
       .trim()
@@ -403,6 +408,16 @@
     }
 
     function saveState(state){ localStorage.setItem(appKey(), JSON.stringify(state)); }
+    function openSavingHistoryModal(){
+      if (!savingHistoryModal) return;
+      savingHistoryModal.classList.add('open');
+      savingHistoryModal.setAttribute('aria-hidden', 'false');
+    }
+    function closeSavingHistoryModal(){
+      if (!savingHistoryModal) return;
+      savingHistoryModal.classList.remove('open');
+      savingHistoryModal.setAttribute('aria-hidden', 'true');
+    }
 
     function closeMobileMenu() {
       if (!sidebar || !menuToggle) return;
@@ -810,10 +825,14 @@
       const canExpandSavingHistory = savingHistory.length > 3;
       if (savingHistoryToggleBtn) {
         savingHistoryToggleBtn.hidden = !canExpandSavingHistory;
-        savingHistoryToggleBtn.textContent = isSavingHistoryExpanded ? 'Show Less' : 'See All History';
+        savingHistoryToggleBtn.textContent = 'See All History';
       }
-      if (!canExpandSavingHistory) isSavingHistoryExpanded = false;
-      if (savingHistoryScroll) savingHistoryScroll.classList.toggle('expanded', canExpandSavingHistory && isSavingHistoryExpanded);
+      if (savingHistoryModalCaptionEl) {
+        savingHistoryModalCaptionEl.textContent = savingHistory.length
+          ? `Showing all ${savingHistory.length} savings entr${savingHistory.length === 1 ? 'y' : 'ies'} in your record.`
+          : 'Review every savings entry you have added so far.';
+      }
+      if (savingHistoryModalBadgeEl) savingHistoryModalBadgeEl.textContent = `${savingHistory.length} entr${savingHistory.length === 1 ? 'y' : 'ies'}`;
       if (savingSummaryNoteEl) {
         savingSummaryNoteEl.textContent = savingGoalTarget > 0
           ? (savingGoalPct >= 100
@@ -824,6 +843,11 @@
       savingHistoryBody.innerHTML = savingHistory.length
         ? savingHistory.map((entry) => `<tr><td>${entry.date}</td><td class="amt-cell">${money(entry.amount)}</td></tr>`).join('')
         : '<tr class="empty-row"><td colspan="2"><div class="table-empty-state compact"><strong>No savings history yet</strong><span>Add daily savings after setting a goal to build your history here.</span></div></td></tr>';
+      if (savingHistoryModalBody) {
+        savingHistoryModalBody.innerHTML = savingHistory.length
+          ? savingHistory.map((entry) => `<tr><td>${entry.date}</td><td class="amt-cell">${money(entry.amount)}</td></tr>`).join('')
+          : '<tr class="empty-row"><td colspan="2"><div class="table-empty-state compact"><strong>No savings history yet</strong><span>Add daily savings after setting a goal to build your history here.</span></div></td></tr>';
+      }
       toggleEmptyState(savingsGoalPanel, savingGoalTarget <= 0);
       toggleEmptyState(savingGoalSummaryCard, savingGoalTarget <= 0);
       toggleEmptyState(savingHistoryPanel, !savingHistory.length);
@@ -900,18 +924,11 @@
     setSavingGoalBtn.addEventListener('click', () => openEntryModal('saving'));
     if (savingHistoryToggleBtn) {
       savingHistoryToggleBtn.addEventListener('click', () => {
-        isSavingHistoryExpanded = !isSavingHistoryExpanded;
-        renderFinance();
-        requestAnimationFrame(() => {
-          if (savingHistoryPanel) {
-            savingHistoryPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-          if (savingHistoryScroll && isSavingHistoryExpanded) {
-            savingHistoryScroll.scrollTop = 0;
-          }
-        });
+        openSavingHistoryModal();
       });
     }
+    if (savingHistoryCloseBtn) savingHistoryCloseBtn.addEventListener('click', closeSavingHistoryModal);
+    if (savingHistoryModal) savingHistoryModal.addEventListener('click', (e) => { if (e.target === savingHistoryModal) closeSavingHistoryModal(); });
     entryCancel.addEventListener('click', closeEntryModal);
     entryModal.addEventListener('click', (e) => { if (e.target === entryModal) closeEntryModal(); });
 
