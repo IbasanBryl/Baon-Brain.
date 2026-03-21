@@ -111,41 +111,24 @@
             </div>
           </div>
           <div class="content-grid saving-goal-grid">
-            <div class="saving-goal-main-stack">
-              <article class="panel savings-goal-panel">
-                <div class="panel-head">
-                  <div>
-                    <h4>Goal Progress</h4>
-                    <p id="saving-goal-caption" class="panel-subtext">Set a target amount to start tracking progress.</p>
-                  </div>
-                  <span id="saving-goal-badge" class="panel-badge">Not set</span>
+            <article class="panel savings-goal-panel">
+              <div class="panel-head">
+                <div>
+                  <h4>Goal Progress</h4>
+                  <p id="saving-goal-caption" class="panel-subtext">Set a target amount to start tracking progress.</p>
                 </div>
-                <div class="saving-goal-summary">
-                  <div class="saving-goal-copy">
-                    <p id="saving-goal-name" class="saving-goal-name">No saving goal yet</p>
-                    <p id="saving-goal-amounts" class="saving-goal-amounts">&#8369;0 saved of &#8369;0 target</p>
-                  </div>
-                  <span id="saving-goal-percent" class="saving-goal-percent">0%</span>
+                <span id="saving-goal-badge" class="panel-badge">Not set</span>
+              </div>
+              <div class="saving-goal-summary">
+                <div class="saving-goal-copy">
+                  <p id="saving-goal-name" class="saving-goal-name">No saving goal yet</p>
+                  <p id="saving-goal-amounts" class="saving-goal-amounts">&#8369;0 saved of &#8369;0 target</p>
                 </div>
-                <div class="saving-goal-track"><i id="saving-goal-fill" style="width:0%"></i></div>
-                <p id="saving-goal-status" class="saving-goal-status">Set a target amount to start tracking progress.</p>
-              </article>
-              <article class="panel saving-history-panel">
-                <div class="panel-head saving-history-head">
-                  <div>
-                    <h4>Saving History</h4>
-                    <p id="saving-history-caption" class="panel-subtext">Every savings entry you add will be listed here.</p>
-                  </div>
-                  <span id="saving-history-badge" class="panel-badge">0 entries</span>
-                </div>
-                <div class="saving-history-scroll">
-                  <table class="saving-history-table">
-                    <thead><tr><th>Date</th><th>Amount</th></tr></thead>
-                    <tbody id="saving-history-body"><tr class="empty-row"><td colspan="2"><div class="table-empty-state compact"><strong>No savings history yet</strong><span>Add daily savings after setting a goal to build your history here.</span></div></td></tr></tbody>
-                  </table>
-                </div>
-              </article>
-            </div>
+                <span id="saving-goal-percent" class="saving-goal-percent">0%</span>
+              </div>
+              <div class="saving-goal-track"><i id="saving-goal-fill" style="width:0%"></i></div>
+              <p id="saving-goal-status" class="saving-goal-status">Set a target amount to start tracking progress.</p>
+            </article>
             <article class="panel saving-goal-summary-card">
               <div class="panel-head">
                 <div>
@@ -161,12 +144,30 @@
               </div>
               <p id="saving-summary-note" class="saving-summary-note">Set your goal to unlock a clearer savings snapshot.</p>
             </article>
+            <article class="panel saving-history-panel">
+              <div class="panel-head saving-history-head">
+                <div>
+                  <h4>Saving History</h4>
+                  <p id="saving-history-caption" class="panel-subtext">Every savings entry you add will be listed here.</p>
+                </div>
+                <div class="saving-history-actions">
+                  <button id="saving-history-toggle" class="history-toggle-btn" type="button" hidden>See All History</button>
+                  <span id="saving-history-badge" class="panel-badge">0 entries</span>
+                </div>
+              </div>
+              <div id="saving-history-scroll" class="saving-history-scroll">
+                <table class="saving-history-table">
+                  <thead><tr><th>Date</th><th>Amount</th></tr></thead>
+                  <tbody id="saving-history-body"><tr class="empty-row"><td colspan="2"><div class="table-empty-state compact"><strong>No savings history yet</strong><span>Add daily savings after setting a goal to build your history here.</span></div></td></tr></tbody>
+                </table>
+              </div>
+            </article>
           </div>
         </section>
 
         <section class="section" id="income"><div class="section-title income-head"><div><h3>Income</h3><p class="section-subtext">Track every allowance, side hustle, or money added to your weekly budget.</p></div><button id="add-income-btn" class="action-btn" type="button">Add Income</button></div><div class="content-grid income-grid"><article class="panel income-records-panel"><div class="panel-head"><div><h4>Income Records</h4><p id="income-records-caption" class="panel-subtext">Your income history appears here once you start adding entries.</p></div><span id="income-records-badge" class="panel-badge">0 records</span></div><div class="income-table-wrap"><table class="income-table"><thead><tr><th>Source</th><th>Date</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel income-summary-card"><div class="panel-head"><div><h4>Income Summary</h4><p class="panel-subtext">A quick look at how much money has come in this month.</p></div></div><div class="summary-list income-summary-list"><div class="summary-item"><span>This month</span><strong id="income-month-total">&#8369;0</strong></div><div class="summary-item"><span>Average per week</span><strong id="income-week-average">&#8369;0</strong></div><div class="summary-item"><span>Top source</span><strong id="income-top-source">-</strong></div><div class="summary-item accent"><span>Records tracked</span><strong id="income-record-count">0</strong></div></div><p id="income-summary-note" class="income-summary-note">Add your first income entry to start building a clearer picture.</p></article></div></section>
         <section class="section" id="expenses"><div class="section-title expenses-head"><div><h3>Expenses</h3><p class="section-subtext">Keep an eye on where your baon goes and spot which categories are eating the most of your budget.</p></div><button id="add-expense-btn" class="action-btn" type="button">Add Expense</button></div><div class="content-grid expenses-grid"><article class="panel expense-records-panel"><div class="panel-head"><div><h4>Recent Expenses</h4><p id="expense-records-caption" class="panel-subtext">Your most recent expense entries will appear here.</p></div><span id="expense-records-badge" class="panel-badge">0 records</span></div><div class="expenses-scroll expense-table-wrap"><table class="expense-table"><thead><tr><th>Category</th><th>Item</th><th>Amount</th></tr></thead><tbody></tbody></table></div></article><article class="panel totals-panel"><div class="panel-head"><div><h4>Category Totals</h4><p class="panel-subtext">See which spending groups are taking the biggest share.</p></div></div><div class="summary-list expense-summary-list"><div class="summary-item warm"><span>Total spent</span><strong id="expense-total-spent">&#8369;0</strong></div><div class="summary-item"><span>Top category</span><strong id="expense-top-category">-</strong></div><div class="summary-item"><span>Expenses tracked</span><strong id="expense-record-count">0</strong></div></div><div class="totals-scroll"><div class="totals-list" id="category-totals-list"><p>No expenses yet</p></div></div><p id="expense-summary-note" class="expense-summary-note">Add an expense to see your category totals build up here.</p></article></div></section>
-        <section class="section" id="budget"><div class="section-title budget-head"><div><h3>Budget</h3><p class="section-subtext">Set category limits and watch how close each one is to being fully used.</p></div></div><div class="content-grid budget-grid"><article class="panel budget-progress-panel"><div class="panel-head"><div><h4>Monthly Budget Progress</h4><p id="budget-progress-caption" class="panel-subtext">Each category will show how much you have spent against its limit.</p></div><span id="budget-progress-badge" class="panel-badge">0 categories</span></div><div id="budget-rows"><div class="table-empty-state compact"><strong>No budget categories yet</strong><span>Add a budget category to start tracking your limits.</span></div></div></article><div class="budget-side-stack"><div class="budget-summary-action"><button class="action-btn" id="quick-budget-btn" type="button">Add Budget</button></div><article class="panel budget-summary-card"><div class="panel-head"><div><h4>Budget Snapshot</h4><p class="panel-subtext">A quick read on how your category budgets compare with your overall monthly budget.</p></div></div><div class="summary-list budget-summary-list"><div class="summary-item cool"><span>Total budgeted</span><strong id="budget-total-limit">&#8369;0</strong></div><div class="summary-item"><span>Total spent</span><strong id="budget-total-spent">&#8369;0</strong></div><div class="summary-item"><span>Remaining budget</span><strong id="budget-total-remaining">&#8369;0</strong></div><div class="summary-item"><span>Overall used</span><strong id="budget-overall-used">0%</strong></div><div class="summary-item"><span>Closest to limit</span><strong id="budget-top-category">-</strong></div></div><p id="budget-summary-note" class="budget-summary-note">Add your first category budget to start tracking spending progress.</p><p id="budget-comparison-note" class="budget-comparison-note">Budget progress and snapshot will compare here once you add categories.</p></article></div></div></section>
+        <section class="section" id="budget"><div class="section-title budget-head"><div><h3>Budget</h3><p class="section-subtext">Set category limits and watch how close each one is to being fully used.</p></div><button id="quick-budget-btn" class="action-btn" type="button">Add Budget</button></div><div class="content-grid budget-grid"><article class="panel budget-progress-panel"><div class="panel-head"><div><h4>Monthly Budget Progress</h4><p id="budget-progress-caption" class="panel-subtext">Each category will show how much you have spent against its limit.</p></div><span id="budget-progress-badge" class="panel-badge">0 categories</span></div><div id="budget-rows"><div class="table-empty-state compact"><strong>No budget categories yet</strong><span>Add a budget category to start tracking your limits.</span></div></div></article><div class="budget-side-stack"><article class="panel budget-summary-card"><div class="panel-head"><div><h4>Budget Snapshot</h4><p class="panel-subtext">A quick read on how your category budgets compare with your overall monthly budget.</p></div></div><div class="summary-list budget-summary-list"><div class="summary-item cool"><span>Total budgeted</span><strong id="budget-total-limit">&#8369;0</strong></div><div class="summary-item"><span>Total spent</span><strong id="budget-total-spent">&#8369;0</strong></div><div class="summary-item"><span>Remaining budget</span><strong id="budget-total-remaining">&#8369;0</strong></div><div class="summary-item"><span>Overall used</span><strong id="budget-overall-used">0%</strong></div><div class="summary-item"><span>Closest to limit</span><strong id="budget-top-category">-</strong></div></div><p id="budget-summary-note" class="budget-summary-note">Add your first category budget to start tracking spending progress.</p><p id="budget-comparison-note" class="budget-comparison-note">Budget progress and snapshot will compare here once you add categories.</p></article></div></div></section>
         <section class="section" id="forecast"><div class="section-title forecast-head"><div><h3>Forecast</h3><p class="section-subtext">Use your current income and spending pace to estimate how the rest of the month may look.</p></div><button id="run-forecast-btn" class="action-btn" type="button">Run Forecast</button></div><div class="content-grid forecast-grid"><article class="panel forecast-panel"><div class="panel-head"><div><h4>End-of-Month Prediction</h4><p id="forecast-caption" class="panel-subtext">Run the forecast to refresh your latest month-end estimate.</p></div><span id="forecast-badge" class="panel-badge">Waiting</span></div><div id="forecast-panel-body"><div class="forecast-kpis"><div class="kpi"><span class="kpi-label">Estimated Remaining</span><strong>&#8369;0</strong></div><div class="kpi"><span class="kpi-label">High-Risk Category</span><strong>-</strong></div><div class="kpi"><span class="kpi-label">Projected Daily Spend</span><strong>&#8369;0</strong></div></div><div class="risk-box"><div class="risk-head"><span>Chance of Overspending</span><strong>0%</strong></div><div class="risk-track"><i style="width:0%"></i></div></div></div></article><article class="panel forecast-breakdown-panel"><div class="panel-head"><div><h4>Forecast Breakdown</h4><p id="forecast-breakdown-caption" class="panel-subtext">See which categories are likely to shape your month-end spending.</p></div></div><div class="category-visual forecast-visual"><div class="pie-shell"><div class="pie forecast-pie"></div><div class="pie-center" id="forecast-pie-center">No data yet</div></div><ul class="legend forecast-legend"><li>No category data yet</li></ul></div></article></div></section>
       </main>
     </div>
@@ -283,8 +284,10 @@
     const savingEntryCountEl = document.getElementById('saving-entry-count');
     const savingSummaryNoteEl = document.getElementById('saving-summary-note');
     const savingHistoryCaptionEl = document.getElementById('saving-history-caption');
+    const savingHistoryToggleBtn = document.getElementById('saving-history-toggle');
     const savingHistoryBadgeEl = document.getElementById('saving-history-badge');
     const savingHistoryBody = document.getElementById('saving-history-body');
+    const savingHistoryScroll = document.getElementById('saving-history-scroll');
     const forecastCaptionEl = document.getElementById('forecast-caption');
     const forecastBadgeEl = document.getElementById('forecast-badge');
     const forecastBreakdownCaptionEl = document.getElementById('forecast-breakdown-caption');
@@ -324,6 +327,7 @@
     const categories = ['Food', 'Transport', 'Leisure', 'School'];
     const appKey = () => `bb_finance_${currentUserEmail || 'guest'}`;
     const CURRENCY_SYMBOL = '\u20B1';
+    let isSavingHistoryExpanded = false;
     const money = (n) => `${CURRENCY_SYMBOL}${Number(n || 0).toLocaleString()}`;
     const normalizeLabel = (raw) => String(raw || '')
       .trim()
@@ -426,8 +430,6 @@
     function showSection(id){
       sections.forEach((s) => s.classList.toggle('active-section', s.id === id));
       menuLinks.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === `#${id}`));
-      const showBudgetActions = id === 'budget';
-      if (quickBudgetBtn) quickBudgetBtn.style.display = showBudgetActions ? 'inline-flex' : 'none';
     }
     menuLinks.forEach((l) => l.addEventListener('click', (e) => {
       e.preventDefault();
@@ -805,6 +807,13 @@
           ? `Latest savings entry: ${savingHistory[0].date}.`
           : 'Every savings entry you add will be listed here.';
       }
+      const canExpandSavingHistory = savingHistory.length > 3;
+      if (savingHistoryToggleBtn) {
+        savingHistoryToggleBtn.hidden = !canExpandSavingHistory;
+        savingHistoryToggleBtn.textContent = isSavingHistoryExpanded ? 'Show Less' : 'See All History';
+      }
+      if (!canExpandSavingHistory) isSavingHistoryExpanded = false;
+      if (savingHistoryScroll) savingHistoryScroll.classList.toggle('expanded', canExpandSavingHistory && isSavingHistoryExpanded);
       if (savingSummaryNoteEl) {
         savingSummaryNoteEl.textContent = savingGoalTarget > 0
           ? (savingGoalPct >= 100
@@ -886,10 +895,23 @@
 
     addIncomeBtn.addEventListener('click', () => openEntryModal('income'));
     addExpenseBtn.addEventListener('click', () => openEntryModal('expense'));
-    const openBudgetModal = () => openEntryModal('budget');
-    if (quickBudgetBtn) quickBudgetBtn.addEventListener('click', openBudgetModal);
+    if (quickBudgetBtn) quickBudgetBtn.addEventListener('click', () => openEntryModal('budget'));
     addDailySavingBtn.addEventListener('click', () => openEntryModal('daily-saving'));
     setSavingGoalBtn.addEventListener('click', () => openEntryModal('saving'));
+    if (savingHistoryToggleBtn) {
+      savingHistoryToggleBtn.addEventListener('click', () => {
+        isSavingHistoryExpanded = !isSavingHistoryExpanded;
+        renderFinance();
+        requestAnimationFrame(() => {
+          if (savingHistoryPanel) {
+            savingHistoryPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          if (savingHistoryScroll && isSavingHistoryExpanded) {
+            savingHistoryScroll.scrollTop = 0;
+          }
+        });
+      });
+    }
     entryCancel.addEventListener('click', closeEntryModal);
     entryModal.addEventListener('click', (e) => { if (e.target === entryModal) closeEntryModal(); });
 

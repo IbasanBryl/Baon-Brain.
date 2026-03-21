@@ -15,6 +15,8 @@
   --expense-head-height:54px;
   --expense-row-height:56px;
   --totals-row-height:56px;
+  --saving-history-head-height:54px;
+  --saving-history-row-height:62px;
 }
 
 *{
@@ -1303,17 +1305,12 @@ a{ text-decoration:none; color:inherit; }
   margin-bottom:0;
   background:linear-gradient(160deg,#f7fbf7 0%, #eef7f1 100%);
   border-color:#c8e0d0;
+  height:100%;
 }
 
 .saving-goal-grid{
   grid-template-columns:minmax(0,2fr) minmax(320px,1fr);
-  align-items:start;
-}
-
-.saving-goal-main-stack{
-  display:grid;
-  gap:16px;
-  align-content:start;
+  align-items:stretch;
 }
 
 .saving-goal-summary-card,
@@ -1415,17 +1412,56 @@ a{ text-decoration:none; color:inherit; }
 
 .saving-history-panel{
   margin-bottom:0;
+  grid-column:1 / -1;
 }
 
 .saving-history-head{
   margin-bottom:10px;
 }
 
+.saving-history-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
 .saving-history-scroll{
-  max-height:360px;
+  max-height:calc(var(--saving-history-head-height) + (3 * var(--saving-history-row-height)));
   overflow-y:auto;
   overflow-x:hidden;
   padding-right:6px;
+}
+
+.saving-history-scroll.expanded{
+  max-height:none;
+}
+
+.history-toggle-btn{
+  appearance:none;
+  -webkit-appearance:none;
+  border:1px solid #c9ddd7;
+  background:linear-gradient(180deg,#ffffff,#f4fbf9);
+  color:#1f6a69;
+  border-radius:999px;
+  padding:8px 14px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.history-toggle-btn:hover{
+  transform:translateY(-1px);
+  border-color:#9fc9bf;
+  background:linear-gradient(180deg,#ffffff,#ebf7f3);
+}
+
+.history-toggle-btn:focus,
+.history-toggle-btn:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(45,114,122,.18);
 }
 
 .income-records-panel.is-empty .income-table-wrap,
@@ -1603,7 +1639,7 @@ th{
 }
 
 .budget-grid{
-  align-items:start;
+  align-items:stretch;
 }
 
 .budget-side-stack{
@@ -1612,14 +1648,13 @@ th{
   align-content:start;
 }
 
-.budget-summary-action{
-  display:flex;
-  justify-content:flex-end;
-}
-
 .budget-progress-panel,
 .budget-summary-card{
   min-height:268px;
+}
+
+.budget-progress-panel{
+  height:100%;
 }
 
 .income-table-wrap{
@@ -2608,9 +2643,6 @@ th{
   }
   .panel-badge{
     align-self:flex-start;
-  }
-  .budget-summary-action{
-    justify-content:stretch;
   }
   .summary-item{
     align-items:flex-start;
