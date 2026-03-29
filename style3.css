@@ -108,16 +108,20 @@ a{ text-decoration:none; color:inherit; }
   gap:10px;
 }
 
-.logo-dot{
-  width:28px;
-  height:28px;
-  border-radius:50%;
-  border:3px solid #1a1f28;
+.logo-mark,
+.brand-mark{
+  flex:0 0 auto;
+  width:52px;
+  height:52px;
+  display:block;
+  object-fit:contain;
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.18));
 }
 
 .logo-text{
   font-size:38px;
   font-weight:700;
+  line-height:1;
 }
 
 .head-dashes{
@@ -993,11 +997,22 @@ a{ text-decoration:none; color:inherit; }
 }
 
 .brand{
-  font-size:36px;
-  line-height:.95;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  max-width:100%;
+  min-width:0;
+  white-space:nowrap;
+  font-size:28px;
+  line-height:1;
   letter-spacing:-.04em;
   margin-bottom:10px;
   text-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+
+.brand-text{
+  display:inline-block;
+  min-width:0;
 }
 
 .sidebar-copy{
@@ -2638,6 +2653,16 @@ th{
     grid-template-columns:1fr;
     justify-items:start;
   }
+  .logo-row{
+    gap:8px;
+  }
+  .logo-mark{
+    width:46px;
+    height:46px;
+  }
+  .logo-text{
+    font-size:34px;
+  }
   .head-dashes{
     width:100%;
   }
@@ -2675,6 +2700,18 @@ th{
   }
   .sidebar-copy{
     max-width:none;
+  }
+  .brand{
+    gap:7px;
+    font-size:24px;
+  }
+  .brand-mark{
+    width:42px;
+    height:42px;
+  }
+  .logo-text{
+    line-height:1;
+    font-size:30px;
   }
   .menu{
     display:flex;
