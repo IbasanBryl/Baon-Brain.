@@ -568,8 +568,6 @@
             alerts.push({ tone: 'good', text: `Budget check looks healthy. ${riskiest.cat} is your highest tracked category at ${Math.round(riskiest.pct)}%.` });
           }
         }
-      } else {
-        alerts.push({ tone: 'neutral', text: 'Add a budget to get category alerts and overspending warnings.' });
       }
 
       if (allowance > 0) {
@@ -582,8 +580,6 @@
         } else {
           alerts.push({ tone: 'good', text: `You still have ${money(remainingCash)} available from your tracked allowance.` });
         }
-      } else {
-        alerts.push({ tone: 'neutral', text: 'Add income and expenses to unlock smarter overview insights.' });
       }
 
       overviewAlerts.innerHTML = alerts
