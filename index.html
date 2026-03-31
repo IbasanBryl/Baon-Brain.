@@ -28,7 +28,7 @@
 
       <div class="header-actions">
         <button class="button secondary download-trigger" type="button">Download</button>
-        <a class="button primary" href="#cta">Get Started</a>
+        <a class="button primary" href="#cta">Fix your weekly budget now</a>
       </div>
     </div>
   </header>
@@ -39,12 +39,17 @@
         <div class="eyebrow">Built for student allowances</div>
         <h1>Stop running out of baon before the week ends.</h1>
         <p class="hero-text">
-          BaonBrain keeps allowance, expenses, and savings in one place so you can see what is left before the week runs out.
+          Lunch, fare, and snack money disappear fast. BaonBrain shows you the warning before Thursday hits.
         </p>
 
         <div class="hero-actions">
           <a class="button primary" href="#cta">Start tracking your baon in 30 seconds</a>
           <a class="button ghost" href="#features">Explore features</a>
+        </div>
+
+        <div class="hero-scenario" aria-label="Student scenario">
+          <span class="hero-scenario-chip">Real student week</span>
+          <p><strong>Monday:</strong> lunch, fare, and one snack later, your balance already feels tighter than it should.</p>
         </div>
 
         <ul class="hero-points" aria-label="Core benefits">
@@ -55,40 +60,49 @@
       </div>
 
       <div class="hero-visual" aria-label="BaonBrain preview">
-        <article class="preview-card main">
+        <article class="preview-card main" data-risk="low">
           <div class="preview-top">
             <span class="window-dots" aria-hidden="true">
               <i></i>
               <i></i>
               <i></i>
             </span>
-            <span class="preview-label">Weekly insight</span>
+            <span class="preview-label">Live baon simulator</span>
           </div>
 
           <div class="preview-summary">
             <div>
               <p class="preview-kicker">Remaining allowance</p>
-              <strong>PHP 3,200</strong>
+              <strong id="remaining-allowance">PHP 3,200</strong>
             </div>
-            <span class="status-pill">Low risk</span>
+            <span class="status-pill" id="risk-pill">Low risk</span>
           </div>
 
           <div class="progress-track" aria-hidden="true">
-            <i style="width:62%"></i>
+            <i id="progress-bar" style="width:80%"></i>
+          </div>
+
+          <p class="preview-helper">Tap a common expense to see the balance, warning, and forecast change instantly.</p>
+
+          <div class="preview-actions" aria-label="Quick spending simulator">
+            <button class="preview-action" type="button" data-spend="120" data-label="Lunch">Lunch -&#8369;120</button>
+            <button class="preview-action" type="button" data-spend="40" data-label="Fare">Fare -&#8369;40</button>
+            <button class="preview-action" type="button" data-spend="65" data-label="Snack">Snack -&#8369;65</button>
+            <button class="preview-action reset" type="button" data-reset="true">Reset week</button>
           </div>
 
           <div class="preview-stats">
             <div>
               <span>Allowance</span>
-              <strong>PHP 4,000</strong>
+              <strong id="total-allowance">PHP 4,000</strong>
             </div>
             <div>
               <span>Spent</span>
-              <strong>PHP 800</strong>
+              <strong id="spent-amount">PHP 800</strong>
             </div>
             <div>
               <span>Saved</span>
-              <strong>PHP 450</strong>
+              <strong id="saved-amount">PHP 450</strong>
             </div>
           </div>
 
@@ -102,20 +116,20 @@
             <span style="height:52%"></span>
           </div>
 
-          <p class="preview-note">We warn you before you overspend.</p>
+          <p class="preview-note" id="preview-note" aria-live="polite" aria-atomic="true">See where your money goes after just one day of tracking.</p>
         </article>
 
         <div class="preview-stack">
           <article class="preview-card compact accent-sage">
             <p class="preview-kicker">Today</p>
-            <strong>PHP 120 lunch</strong>
-            <span>Logged in one tap</span>
+            <strong id="last-action">PHP 120 lunch</strong>
+            <span id="last-action-detail">Logged in one tap</span>
           </article>
 
           <article class="preview-card compact accent-clay">
             <p class="preview-kicker">Insight</p>
-            <strong>At this rate, you&rsquo;ll run out by Thursday.</strong>
-            <span>Cut snacks before they eat the week.</span>
+            <strong id="forecast-text">At this rate, you&rsquo;ll run out by Thursday.</strong>
+            <span id="forecast-detail">Cut snacks before they eat the week.</span>
           </article>
         </div>
       </div>
@@ -238,6 +252,20 @@
       </div>
     </section>
 
+    <section class="cta-panel" id="cta">
+      <div class="cta-copy">
+        <span class="section-tag">Start tracking</span>
+        <h2>Stop guessing where your baon went.</h2>
+        <p>
+          Use BaonBrain to see spending, warnings, and savings in one clean page before the week gets messy.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <button class="button light download-trigger" type="button">Download</button>
+        <a class="button primary" href="#features">Try it before your next allowance</a>
+      </div>
+    </section>
+
     <section class="section faq-section" id="faq" aria-labelledby="faq-heading">
       <div class="section-head faq-head">
         <span class="section-tag">FAQ</span>
@@ -249,13 +277,8 @@
 
       <div class="faq-grid" aria-label="Frequently asked questions">
         <details class="faq-item">
-          <summary>Is this free?</summary>
-          <p class="faq-answer">Yes, you can start for free.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Do I need a bank account?</summary>
-          <p class="faq-answer">No. BaonBrain works fine for cash allowance, not just bank balances.</p>
+          <summary>Is this only for students?</summary>
+          <p class="faq-answer">No. It is built for students, but anyone managing a weekly budget can use it.</p>
         </details>
 
         <details class="faq-item">
@@ -264,23 +287,14 @@
         </details>
 
         <details class="faq-item">
-          <summary>Is this only for students?</summary>
-          <p class="faq-answer">No. It is built for students, but anyone managing a weekly/monthly budget can use it.</p>
+          <summary>Do I need a bank account?</summary>
+          <p class="faq-answer">No. BaonBrain works fine for cash allowance, not just bank balances.</p>
         </details>
-      </div>
-    </section>
 
-    <section class="cta-panel" id="cta">
-      <div class="cta-copy">
-        <span class="section-tag">Start tracking</span>
-        <h2>Ready to keep your money in view?</h2>
-        <p>
-          Use BaonBrain to keep your allowance, spending, and savings in one clean, easy-to-scan page.
-        </p>
-      </div>
-      <div class="cta-actions">
-        <button class="button light download-trigger" type="button">Download</button>
-        <a class="button primary" href="#features">Get Started</a>
+        <details class="faq-item">
+          <summary>Is this free?</summary>
+          <p class="faq-answer">Yes, you can start for free.</p>
+        </details>
       </div>
     </section>
   </main>
@@ -343,6 +357,165 @@
       downloadButtons.forEach((downloadBtn) => {
         downloadBtn.addEventListener('click', triggerDownload);
       });
+    }
+
+    const liveCard = document.querySelector('.preview-card.main');
+    const remainingAllowance = document.getElementById('remaining-allowance');
+    const totalAllowance = document.getElementById('total-allowance');
+    const spentAmount = document.getElementById('spent-amount');
+    const savedAmount = document.getElementById('saved-amount');
+    const progressBar = document.getElementById('progress-bar');
+    const statusPill = document.getElementById('risk-pill');
+    const previewNote = document.getElementById('preview-note');
+    const lastAction = document.getElementById('last-action');
+    const lastActionDetail = document.getElementById('last-action-detail');
+    const forecastText = document.getElementById('forecast-text');
+    const forecastDetail = document.getElementById('forecast-detail');
+    const simulatorButtons = document.querySelectorAll('.preview-action');
+
+    if (
+      liveCard &&
+      remainingAllowance &&
+      totalAllowance &&
+      spentAmount &&
+      savedAmount &&
+      progressBar &&
+      statusPill &&
+      previewNote &&
+      lastAction &&
+      lastActionDetail &&
+      forecastText &&
+      forecastDetail &&
+      simulatorButtons.length
+    ) {
+      const moneyFormatter = new Intl.NumberFormat('en-PH');
+      const formatMoney = (value) => `PHP ${moneyFormatter.format(Math.round(value))}`;
+      const baseState = {
+        total: 4000,
+        spent: 800,
+        lastAction: 'PHP 120 lunch',
+        lastActionDetail: 'Logged in one tap'
+      };
+      const state = { ...baseState };
+      const savingsBaseline = 2750;
+      const baseNote = 'See where your money goes after just one day of tracking.';
+      const baseForecast = {
+        title: 'At this rate, you\'ll run out by Thursday.',
+        detail: 'Cut snacks before they eat the week.'
+      };
+      let updateTimer;
+
+      const getRisk = (remainingRaw) => {
+        if (remainingRaw <= 0) {
+          return { label: 'Overspending', tone: 'danger' };
+        }
+
+        const ratio = remainingRaw / state.total;
+        if (ratio >= 0.7) {
+          return { label: 'Low risk', tone: 'low' };
+        }
+        if (ratio >= 0.45) {
+          return { label: 'Watch closely', tone: 'watch' };
+        }
+        if (ratio >= 0.2) {
+          return { label: 'Tight budget', tone: 'tight' };
+        }
+        return { label: 'Overspending', tone: 'danger' };
+      };
+
+      const getForecast = (remainingRaw, actionLabel) => {
+        if (remainingRaw <= 0) {
+          return {
+            title: 'You\'ve run out for the week.',
+            detail: `${actionLabel} pushed you past the limit.`
+          };
+        }
+
+        const ratio = remainingRaw / state.total;
+        if (ratio >= 0.7) {
+          return {
+            title: 'At this rate, you\'ll run out by Thursday.',
+            detail: `${actionLabel} still leaves a buffer, but the week can tighten fast.`
+          };
+        }
+        if (ratio >= 0.45) {
+          return {
+            title: 'At this rate, you\'ll run out by Thursday.',
+            detail: 'Watch snacks and fare before they stack up.'
+          };
+        }
+        if (ratio >= 0.2) {
+          return {
+            title: 'At this rate, you\'ll run out by Wednesday.',
+            detail: 'Small buys are eating the week faster than they should.'
+          };
+        }
+        return {
+          title: 'You\'re almost out.',
+          detail: 'Pause extras and protect the rest of the week.'
+        };
+      };
+
+      const renderSimulator = ({ note = baseNote, forecast = baseForecast, animate = true } = {}) => {
+        const remainingRaw = state.total - state.spent;
+        const remaining = Math.max(0, remainingRaw);
+        const overspent = Math.max(0, -remainingRaw);
+        const saved = Math.max(0, remaining - savingsBaseline);
+        const risk = getRisk(remainingRaw);
+
+        totalAllowance.textContent = formatMoney(state.total);
+        spentAmount.textContent = formatMoney(state.spent);
+        remainingAllowance.textContent = formatMoney(remaining);
+        savedAmount.textContent = formatMoney(saved);
+        progressBar.style.width = `${Math.min(100, (remaining / state.total) * 100)}%`;
+        statusPill.textContent = risk.label;
+        liveCard.dataset.risk = risk.tone;
+        previewNote.textContent = note;
+        lastAction.textContent = state.lastAction;
+        lastActionDetail.textContent = state.lastActionDetail;
+        forecastText.textContent = forecast.title;
+        forecastDetail.textContent = forecast.detail;
+
+        if (animate) {
+          liveCard.classList.remove('is-updating');
+          void liveCard.offsetWidth;
+          liveCard.classList.add('is-updating');
+          clearTimeout(updateTimer);
+          updateTimer = setTimeout(() => liveCard.classList.remove('is-updating'), 260);
+        }
+
+        if (overspent > 0) {
+          previewNote.textContent = `You are over by ${formatMoney(overspent)}.`;
+        }
+      };
+
+      simulatorButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          if (button.dataset.reset === 'true') {
+            Object.assign(state, baseState);
+            renderSimulator({ note: baseNote, forecast: baseForecast });
+            return;
+          }
+
+          const spend = Number(button.dataset.spend || 0);
+          const label = button.dataset.label || button.textContent.trim();
+          state.spent += spend;
+          state.lastAction = button.textContent.trim();
+          state.lastActionDetail = 'Logged in one tap';
+
+          const remainingRaw = state.total - state.spent;
+          const note = remainingRaw <= 0
+            ? `You are over by ${formatMoney(Math.abs(remainingRaw))}.`
+            : `${label} logged. Remaining allowance: ${formatMoney(remainingRaw)}.`;
+
+          renderSimulator({
+            note,
+            forecast: getForecast(remainingRaw, label)
+          });
+        });
+      });
+
+      renderSimulator({ note: baseNote, forecast: baseForecast, animate: false });
     }
   </script>
 </body>
