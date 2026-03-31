@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BaonBrain helps students track allowance, spending, and savings in one clear budget dashboard.">
+  <meta name="description" content="BaonBrain helps students stop running out of baon before the week ends with simple allowance, spending, and savings tracking.">
   <meta name="theme-color" content="#17372d">
   <title>BaonBrain - Student budgeting made simple</title>
   <link rel="stylesheet" href="landing.css">
@@ -27,8 +27,7 @@
       </nav>
 
       <div class="header-actions">
-        <a class="button secondary" href="#features">Explore</a>
-        <button class="button secondary" id="download-btn" type="button">Download</button>
+        <button class="button secondary download-trigger" type="button">Download</button>
         <a class="button primary" href="#cta">Get started</a>
       </div>
     </div>
@@ -38,7 +37,7 @@
     <section class="hero" id="top">
       <div class="hero-copy">
         <div class="eyebrow">Built for student allowances</div>
-        <h1>Turn every baon into a budget you can actually follow.</h1>
+        <h1>Stop running out of baon before the week ends.</h1>
         <p class="hero-text">
           BaonBrain keeps allowance, expenses, and savings in one place so you can see what is left before the week runs out.
         </p>
@@ -125,17 +124,17 @@
     <section class="stats-strip" aria-label="Highlights">
       <article class="stat-card">
         <small>Track</small>
-        <h3>Every peso you spend</h3>
-        <p>Log expenses fast and keep categories tidy without fighting the interface.</p>
+        <h3>Log every peso fast</h3>
+        <p>Capture lunch, fares, snacks, and school costs without slowing down your day.</p>
       </article>
       <article class="stat-card">
         <small>Control</small>
-        <h3>Where your allowance goes</h3>
-        <p>See what is eating your weekly budget before it quietly runs away.</p>
+        <h3>See where allowance goes</h3>
+        <p>Spot the habits that eat your weekly budget before they quietly run away.</p>
       </article>
       <article class="stat-card">
         <small>Save</small>
-        <h3>Goals that stay visible</h3>
+        <h3>Keep savings visible</h3>
         <p>Keep savings progress close at hand so your next target never disappears.</p>
       </article>
     </section>
@@ -153,28 +152,28 @@
         <article class="feature-card">
           <span class="feature-icon track" aria-hidden="true"></span>
           <span class="feature-chip">Track</span>
-          <h3>Expense logging</h3>
+          <h3>Fast expense logging</h3>
           <p>Capture lunch, fares, snacks, and school costs without slowing down your day.</p>
         </article>
 
         <article class="feature-card">
           <span class="feature-icon income" aria-hidden="true"></span>
           <span class="feature-chip">Income</span>
-          <h3>Allowance and earnings</h3>
+          <h3>Income in one timeline</h3>
           <p>Keep every source of money in one timeline, from weekly baon to small side gigs.</p>
         </article>
 
         <article class="feature-card">
           <span class="feature-icon goal" aria-hidden="true"></span>
           <span class="feature-chip">Plan</span>
-          <h3>Savings goals</h3>
+          <h3>Visible savings goals</h3>
           <p>Set a target, watch progress, and keep the reason you are saving right in front of you.</p>
         </article>
 
         <article class="feature-card">
           <span class="feature-icon forecast" aria-hidden="true"></span>
           <span class="feature-chip">Preview</span>
-          <h3>Simple forecasting</h3>
+          <h3>Forecast before overspending</h3>
           <p>See how the month may shape up so you can adjust before overspending happens.</p>
         </article>
       </div>
@@ -192,19 +191,19 @@
       <div class="step-grid">
         <article class="step-card">
           <span class="step-number">01</span>
-          <h3>Sign in or create an account</h3>
+          <h3>Create your account</h3>
           <p>Start with your allowance details and keep everything in one place from the first day.</p>
         </article>
 
         <article class="step-card">
           <span class="step-number">02</span>
-          <h3>Add income and expenses</h3>
+          <h3>Log income and spending</h3>
           <p>Record what comes in and what goes out so your balance updates right away.</p>
         </article>
 
         <article class="step-card">
           <span class="step-number">03</span>
-          <h3>Review your dashboard</h3>
+          <h3>Review and adjust</h3>
           <p>Check progress, savings, and forecasts before the week is over and make a quick adjustment.</p>
         </article>
       </div>
@@ -219,7 +218,7 @@
         </p>
       </div>
       <div class="cta-actions">
-        <a class="button light" href="#top">Back to top</a>
+        <button class="button light download-trigger" type="button">Download guide</button>
         <a class="button primary" href="#features">Explore features</a>
       </div>
     </section>
@@ -250,13 +249,15 @@
       });
     });
 
-    const downloadBtn = document.getElementById('download-btn');
-    if (downloadBtn) {
-      downloadBtn.addEventListener('click', () => {
+    const downloadButtons = document.querySelectorAll('.download-trigger');
+    if (downloadButtons.length) {
+      const triggerDownload = () => {
         const content = [
           'BaonBrain Quick Guide',
           '',
-          'Track your allowance, spending, and savings in one place.',
+          'Stop running out of baon before the week ends.',
+          '',
+          'Keep allowance, spending, and savings in one place.',
           '',
           'Features:',
           '- Expense logging',
@@ -276,6 +277,10 @@
         link.click();
         link.remove();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
+      };
+
+      downloadButtons.forEach((downloadBtn) => {
+        downloadBtn.addEventListener('click', triggerDownload);
       });
     }
   </script>
