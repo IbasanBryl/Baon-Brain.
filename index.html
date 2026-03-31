@@ -23,12 +23,12 @@
       <nav class="site-nav" aria-label="Primary">
         <a href="#features">Features</a>
         <a href="#workflow">How it works</a>
-        <a href="#cta">Get started</a>
+        <a href="#cta">Start tracking</a>
       </nav>
 
       <div class="header-actions">
         <button class="button secondary download-trigger" type="button">Download</button>
-        <a class="button primary" href="#cta">Get started</a>
+        <a class="button primary" href="#cta">Get Started</a>
       </div>
     </div>
   </header>
@@ -43,7 +43,7 @@
         </p>
 
         <div class="hero-actions">
-          <a class="button primary" href="#cta">Get started</a>
+          <a class="button primary" href="#cta">Start tracking your baon in 30 seconds</a>
           <a class="button ghost" href="#features">Explore features</a>
         </div>
 
@@ -62,7 +62,7 @@
               <i></i>
               <i></i>
             </span>
-            <span class="preview-label">Weekly snapshot</span>
+            <span class="preview-label">Weekly insight</span>
           </div>
 
           <div class="preview-summary">
@@ -102,7 +102,7 @@
             <span style="height:52%"></span>
           </div>
 
-          <p class="preview-note">Forecast: plenty of room left if spending stays steady.</p>
+          <p class="preview-note">We warn you before you overspend.</p>
         </article>
 
         <div class="preview-stack">
@@ -113,11 +113,40 @@
           </article>
 
           <article class="preview-card compact accent-clay">
-            <p class="preview-kicker">Goal</p>
-            <strong>PHP 1,500 saved</strong>
-            <span>Progress shown clearly</span>
+            <p class="preview-kicker">Insight</p>
+            <strong>At this rate, you&rsquo;ll run out by Thursday.</strong>
+            <span>Cut snacks before they eat the week.</span>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="section story-section" aria-labelledby="moments-heading">
+      <div class="section-head story-head">
+        <span class="section-tag">Decision moments</span>
+        <h2 id="moments-heading">We&#8217;ve all been here</h2>
+      </div>
+
+      <div class="story-grid" aria-label="A typical baon week">
+        <article class="story-card good">
+          <span class="story-chip">Screen</span>
+          <p class="story-line"><strong>Day 1:</strong> Add &#8369;120 lunch</p>
+        </article>
+
+        <article class="story-card mid">
+          <span class="story-chip">Alert</span>
+          <p class="story-line"><strong>Day 3:</strong> You have &#8369;300 left for 3 days</p>
+        </article>
+
+        <article class="story-card low">
+          <span class="story-chip">Insight</span>
+          <p class="story-line"><strong>Day 5:</strong> You&rsquo;re overspending on snacks</p>
+        </article>
+      </div>
+
+      <div class="story-callout">
+        <span class="story-arrow" aria-hidden="true">&#128073;</span>
+        <strong>BaonBrain helps you stay in control the whole week.</strong>
       </div>
     </section>
 
@@ -173,8 +202,8 @@
         <article class="feature-card">
           <span class="feature-icon forecast" aria-hidden="true"></span>
           <span class="feature-chip">Preview</span>
-          <h3>Forecast before overspending</h3>
-          <p>See how the month may shape up so you can adjust before overspending happens.</p>
+          <h3>Predictive alerts</h3>
+          <p>Get a heads-up before your spending starts outrunning your allowance.</p>
         </article>
       </div>
     </section>
@@ -209,17 +238,49 @@
       </div>
     </section>
 
+    <section class="section faq-section" id="faq" aria-labelledby="faq-heading">
+      <div class="section-head faq-head">
+        <span class="section-tag">FAQ</span>
+        <h2 id="faq-heading">Quick questions before you start.</h2>
+        <p class="section-copy">
+          A few things people usually ask before they start tracking their baon.
+        </p>
+      </div>
+
+      <div class="faq-grid" aria-label="Frequently asked questions">
+        <details class="faq-item">
+          <summary>Is this free?</summary>
+          <p class="faq-answer">Yes, you can start for free.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Do I need a bank account?</summary>
+          <p class="faq-answer">No. BaonBrain works fine for cash allowance, not just bank balances.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What if I forget to log?</summary>
+          <p class="faq-answer">You can add entries later, and the weekly view still helps you catch up fast.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is this only for students?</summary>
+          <p class="faq-answer">No. It is built for students, but anyone managing a weekly/monthly budget can use it.</p>
+        </details>
+      </div>
+    </section>
+
     <section class="cta-panel" id="cta">
       <div class="cta-copy">
-        <span class="section-tag">Get started</span>
+        <span class="section-tag">Start tracking</span>
         <h2>Ready to keep your money in view?</h2>
         <p>
           Use BaonBrain to keep your allowance, spending, and savings in one clean, easy-to-scan page.
         </p>
       </div>
       <div class="cta-actions">
-        <button class="button light download-trigger" type="button">Download guide</button>
-        <a class="button primary" href="#features">Explore features</a>
+        <button class="button light download-trigger" type="button">Download</button>
+        <a class="button primary" href="#features">Get Started</a>
       </div>
     </section>
   </main>
@@ -233,7 +294,7 @@
       <a href="#top">Home</a>
       <a href="#features">Features</a>
       <a href="#workflow">How it works</a>
-      <a href="#cta">Get started</a>
+      <a href="#cta">Start tracking</a>
     </div>
   </footer>
 
@@ -265,7 +326,7 @@
           '- Savings goals',
           '- Simple forecasting',
           '',
-          'Start by opening the Get started button on the landing page.'
+          'Start by tapping the main button on the landing page.'
         ].join('\n');
 
         const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
