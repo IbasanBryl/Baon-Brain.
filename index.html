@@ -21,6 +21,7 @@
       </a>
 
       <nav class="site-nav" aria-label="Primary">
+        <a href="#overview">Overview</a>
         <a href="#features">Features</a>
         <a href="#workflow">How it works</a>
         <a href="#cta">Start tracking</a>
@@ -47,11 +48,6 @@
           <a class="button ghost" href="#features">Explore features</a>
         </div>
 
-        <div class="hero-scenario" aria-label="Student scenario">
-          <span class="hero-scenario-chip">Real student week</span>
-          <p><strong>Monday:</strong> lunch, fare, and one snack later, your balance already feels tighter than it should.</p>
-        </div>
-
         <ul class="hero-points" aria-label="Core benefits">
           <li>Track spending in seconds</li>
           <li>See balances at a glance</li>
@@ -60,7 +56,7 @@
       </div>
 
       <div class="hero-visual" aria-label="BaonBrain preview">
-        <article class="preview-card main" data-risk="low">
+        <div class="preview-card main" data-risk="low">
           <div class="preview-top">
             <span class="window-dots" aria-hidden="true">
               <i></i>
@@ -117,69 +113,278 @@
           </div>
 
           <p class="preview-note" id="preview-note" aria-live="polite" aria-atomic="true">See where your money goes after just one day of tracking.</p>
-        </article>
+        </div>
 
         <div class="preview-stack">
-          <article class="preview-card compact accent-sage">
+          <div class="preview-card compact accent-sage">
             <p class="preview-kicker">Today</p>
             <strong id="last-action">PHP 120 lunch</strong>
             <span id="last-action-detail">Logged in one tap</span>
-          </article>
+          </div>
 
-          <article class="preview-card compact accent-clay">
+          <div class="preview-card compact accent-clay">
             <p class="preview-kicker">Insight</p>
             <strong id="forecast-text">At this rate, you&rsquo;ll run out by Thursday.</strong>
             <span id="forecast-detail">Cut snacks before they eat the week.</span>
-          </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section story-section" aria-labelledby="moments-heading">
-      <div class="section-head story-head">
-        <span class="section-tag">Decision moments</span>
-        <h2 id="moments-heading">We&#8217;ve all been here</h2>
+    <section class="section section-overview" id="overview">
+      <div class="section-head overview-head">
+        <span class="section-tag">Overview</span>
+        <h2>Financial Overview</h2>
+        <p class="section-copy">
+          I used the dashboard, income, expenses, budget, savings, and forecast screens as the base, then turned them into a more polished overview that feels easier to scan at a glance.
+        </p>
       </div>
 
-      <div class="story-grid" aria-label="A typical baon week">
-        <article class="story-card good">
-          <span class="story-chip">Screen</span>
-          <p class="story-line"><strong>Day 1:</strong> Add &#8369;120 lunch</p>
-        </article>
+      <div class="overview-grid">
+        <div class="overview-card overview-card-featured">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Dashboard</span>
+              <h3>Financial overview</h3>
+            </div>
+            <span class="overview-status">Live overview</span>
+          </div>
 
-        <article class="story-card mid">
-          <span class="story-chip">Alert</span>
-          <p class="story-line"><strong>Day 3:</strong> You have &#8369;300 left for 3 days</p>
-        </article>
+          <div class="overview-metrics" aria-label="Overview summary">
+            <div>
+              <span>Income tracked</span>
+              <strong>PHP 4,000</strong>
+            </div>
+            <div>
+              <span>Total spent</span>
+              <strong>PHP 1,280</strong>
+            </div>
+            <div>
+              <span>Remaining</span>
+              <strong>PHP 2,720</strong>
+            </div>
+            <div>
+              <span>AI forecast</span>
+              <strong>PHP 1,940</strong>
+            </div>
+          </div>
 
-        <article class="story-card low">
-          <span class="story-chip">Insight</span>
-          <p class="story-line"><strong>Day 5:</strong> You&rsquo;re overspending on snacks</p>
-        </article>
-      </div>
+          <div class="overview-stage">
+            <div class="overview-chart-panel">
+              <div class="overview-panel-head">
+                <span>Weekly spending</span>
+                <strong>Balanced</strong>
+              </div>
+              <div class="overview-weekly-chart" aria-hidden="true">
+                <span style="height: 26%"></span>
+                <span style="height: 42%"></span>
+                <span style="height: 31%"></span>
+                <span style="height: 54%"></span>
+                <span style="height: 47%"></span>
+                <span style="height: 38%"></span>
+                <span style="height: 44%"></span>
+              </div>
+              <div class="overview-weekdays" aria-hidden="true">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+              </div>
+            </div>
 
-      <div class="story-callout">
-        <span class="story-arrow" aria-hidden="true">&#128073;</span>
-        <strong>BaonBrain helps you stay in control the whole week.</strong>
+            <div class="overview-insight-panel">
+              <div class="overview-ring-chart" aria-hidden="true">
+                <span>No data yet</span>
+              </div>
+              <p>Most of the weekly movement still sits in food, fare, and school spending.</p>
+            </div>
+          </div>
+
+          <div class="overview-strip" aria-label="Quick indicators">
+            <div>
+              <span>Best day</span>
+              <strong>Wed</strong>
+            </div>
+            <div>
+              <span>Alerts</span>
+              <strong>1 watch</strong>
+            </div>
+            <div>
+              <span>Trend</span>
+              <strong>Steady</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-card overview-card-income">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Income</span>
+              <h3>Income records</h3>
+            </div>
+            <span class="overview-status muted">2 records</span>
+          </div>
+          <p class="overview-copy">Allowance and side income sit in one clean timeline instead of getting lost in separate notes.</p>
+          <div class="overview-table" aria-label="Income summary rows">
+            <div>
+              <span>Weekly baon</span>
+              <strong>PHP 4,000</strong>
+            </div>
+            <div>
+              <span>Side gig</span>
+              <strong>PHP 650</strong>
+            </div>
+            <div>
+              <span>Extra cash</span>
+              <strong>PHP 200</strong>
+            </div>
+          </div>
+          <div class="overview-footer-row">
+            <span>This month</span>
+            <strong>PHP 4,850</strong>
+          </div>
+        </div>
+
+        <div class="overview-card overview-card-expenses">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Expenses</span>
+              <h3>Recent expenses</h3>
+            </div>
+            <span class="overview-status muted">Food-led</span>
+          </div>
+          <p class="overview-copy">A tighter breakdown makes it easier to see where small daily spends are adding up.</p>
+          <div class="overview-table overview-table-soft" aria-label="Expense category rows">
+            <div>
+              <span>Food</span>
+              <strong>PHP 460</strong>
+            </div>
+            <div>
+              <span>Fare</span>
+              <strong>PHP 280</strong>
+            </div>
+            <div>
+              <span>School</span>
+              <strong>PHP 540</strong>
+            </div>
+          </div>
+          <div class="overview-footer-row highlight">
+            <span>Total spent</span>
+            <strong>PHP 1,280</strong>
+          </div>
+        </div>
+
+        <div class="overview-card overview-card-budget">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Budget</span>
+              <h3>Budget snapshot</h3>
+            </div>
+            <span class="overview-status muted">68% used</span>
+          </div>
+          <p class="overview-copy">Clear budget bars show which categories are close to their limit before things get messy.</p>
+          <div class="overview-bars" aria-label="Budget progress bars">
+            <div>
+              <span><i>Food</i><em>72%</em></span>
+              <strong aria-hidden="true"><b style="width:72%"></b></strong>
+            </div>
+            <div>
+              <span><i>Fare</i><em>48%</em></span>
+              <strong aria-hidden="true"><b style="width:48%"></b></strong>
+            </div>
+            <div>
+              <span><i>School</i><em>35%</em></span>
+              <strong aria-hidden="true"><b style="width:35%"></b></strong>
+            </div>
+          </div>
+          <div class="overview-footer-row">
+            <span>Remaining budget</span>
+            <strong>PHP 800</strong>
+          </div>
+        </div>
+
+        <div class="overview-card overview-card-savings">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Saving Goal</span>
+              <h3>Goal progress</h3>
+            </div>
+            <span class="overview-status muted">On track</span>
+          </div>
+          <p class="overview-copy">Turn saving into something visible so the target stays close instead of fading out of sight.</p>
+          <div class="overview-goal">
+            <div class="overview-goal-ring" aria-hidden="true">
+              <span>32%</span>
+            </div>
+            <div class="overview-goal-copy">
+              <div>
+                <span>Target</span>
+                <strong>PHP 10,000</strong>
+              </div>
+              <div>
+                <span>Saved</span>
+                <strong>PHP 3,200</strong>
+              </div>
+              <div>
+                <span>Entries</span>
+                <strong>8</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-card overview-card-forecast">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Forecast</span>
+              <h3>End-of-month prediction</h3>
+            </div>
+            <span class="overview-status muted">Low risk</span>
+          </div>
+          <p class="overview-copy">Forecasting gives you an early warning so the week does not surprise you at the end.</p>
+          <div class="overview-forecast">
+            <div class="overview-forecast-main">
+              <span>Estimated remaining</span>
+              <strong>PHP 1,940</strong>
+            </div>
+            <div class="overview-forecast-grid">
+              <div>
+                <span>High-risk category</span>
+                <strong>Food</strong>
+              </div>
+              <div>
+                <span>Projected daily spend</span>
+                <strong>PHP 230</strong>
+              </div>
+              <div>
+                <span>Chance of overspending</span>
+                <strong>12%</strong>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="stats-strip" aria-label="Highlights">
-      <article class="stat-card">
+      <div class="stat-card">
         <small>Track</small>
         <h3>Log every peso fast</h3>
         <p>Capture lunch, fares, snacks, and school costs without slowing down your day.</p>
-      </article>
-      <article class="stat-card">
+      </div>
+      <div class="stat-card">
         <small>Control</small>
         <h3>See where allowance goes</h3>
         <p>Spot the habits that eat your weekly budget before they quietly run away.</p>
-      </article>
-      <article class="stat-card">
+      </div>
+      <div class="stat-card">
         <small>Save</small>
         <h3>Keep savings visible</h3>
         <p>Keep savings progress close at hand so your next target never disappears.</p>
-      </article>
+      </div>
     </section>
 
     <section class="section" id="features">
@@ -192,33 +397,33 @@
       </div>
 
       <div class="feature-grid">
-        <article class="feature-card">
+        <div class="feature-card">
           <span class="feature-icon track" aria-hidden="true"></span>
           <span class="feature-chip">Track</span>
           <h3>Fast expense logging</h3>
           <p>Capture lunch, fares, snacks, and school costs without slowing down your day.</p>
-        </article>
+        </div>
 
-        <article class="feature-card">
+        <div class="feature-card">
           <span class="feature-icon income" aria-hidden="true"></span>
           <span class="feature-chip">Income</span>
           <h3>Income in one timeline</h3>
           <p>Keep every source of money in one timeline, from weekly baon to small side gigs.</p>
-        </article>
+        </div>
 
-        <article class="feature-card">
+        <div class="feature-card">
           <span class="feature-icon goal" aria-hidden="true"></span>
           <span class="feature-chip">Plan</span>
           <h3>Visible savings goals</h3>
           <p>Set a target, watch progress, and keep the reason you are saving right in front of you.</p>
-        </article>
+        </div>
 
-        <article class="feature-card">
+        <div class="feature-card">
           <span class="feature-icon forecast" aria-hidden="true"></span>
           <span class="feature-chip">Preview</span>
           <h3>Predictive alerts</h3>
           <p>Get a heads-up before your spending starts outrunning your allowance.</p>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -232,23 +437,23 @@
       </div>
 
       <div class="step-grid">
-        <article class="step-card">
+        <div class="step-card">
           <span class="step-number">01</span>
           <h3>Create your account</h3>
           <p>Start with your allowance details and keep everything in one place from the first day.</p>
-        </article>
+        </div>
 
-        <article class="step-card">
+        <div class="step-card">
           <span class="step-number">02</span>
           <h3>Log income and spending</h3>
           <p>Record what comes in and what goes out so your balance updates right away.</p>
-        </article>
+        </div>
 
-        <article class="step-card">
+        <div class="step-card">
           <span class="step-number">03</span>
           <h3>Review and adjust</h3>
           <p>Check progress, savings, and forecasts before the week is over and make a quick adjustment.</p>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -262,7 +467,6 @@
       </div>
       <div class="cta-actions">
         <button class="button light download-trigger" type="button">Download</button>
-        <a class="button primary" href="#features">Try it before your next allowance</a>
       </div>
     </section>
 
@@ -306,6 +510,7 @@
     </div>
     <div class="footer-links">
       <a href="#top">Home</a>
+      <a href="#overview">Overview</a>
       <a href="#features">Features</a>
       <a href="#workflow">How it works</a>
       <a href="#cta">Start tracking</a>
