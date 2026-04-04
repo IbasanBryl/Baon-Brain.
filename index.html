@@ -33,7 +33,9 @@
         <a href="#overview">Overview</a>
         <a href="#features">Features</a>
         <a href="#workflow">How it works</a>
+        <a href="#about">About</a>
         <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <div class="header-actions">
@@ -388,24 +390,6 @@
       </div>
     </section>
 
-    <section class="stats-strip" aria-label="Highlights">
-      <div class="stat-card">
-        <small>Faster</small>
-        <h3>Log in seconds</h3>
-        <p>Tap lunch, fare, or snack.</p>
-      </div>
-      <div class="stat-card">
-        <small>Clearer</small>
-        <h3>See what&rsquo;s left</h3>
-        <p>Know your balance right away.</p>
-      </div>
-      <div class="stat-card">
-        <small>Safer</small>
-        <h3>Catch overspending early</h3>
-        <p>Get warned before the week gets tight.</p>
-      </div>
-    </section>
-
     <section class="section" id="features">
       <div class="section-head">
         <span class="section-tag">Features</span>
@@ -476,6 +460,51 @@
       </div>
     </section>
 
+    <section class="section about-section" id="about" aria-labelledby="about-heading">
+      <div class="section-head">
+        <span class="section-tag">About Us</span>
+        <h2 id="about-heading">BaonBrain was made to help students budget with less pressure.</h2>
+        <p class="section-copy">
+          We designed BaonBrain around real student routines so budgeting feels quick, clear, and easier to keep up every day.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="about-story">
+          <span class="about-kicker">Our mission</span>
+          <h3>Turn weekly allowance tracking into a small habit that builds confidence.</h3>
+          <p>
+            From lunch money to fares and school expenses, students make many small spending decisions every day. BaonBrain keeps those choices visible so users can stay aware of their balance before the week gets stressful.
+          </p>
+          <div class="about-points" aria-label="About BaonBrain highlights">
+            <span>Built for weekly baon</span>
+            <span>Designed for fast daily logging</span>
+            <span>Focused on calm, practical budgeting</span>
+          </div>
+        </article>
+
+        <div class="about-values" aria-label="BaonBrain values">
+          <article class="about-card">
+            <span class="about-card-tag">Clarity</span>
+            <h3>See what matters fast</h3>
+            <p>Balances, spending, and warnings stay in one view so students do not need to guess.</p>
+          </article>
+
+          <article class="about-card">
+            <span class="about-card-tag">Discipline</span>
+            <h3>Make smart routines easier</h3>
+            <p>Quick logging and visible goals help turn budgeting into something sustainable.</p>
+          </article>
+
+          <article class="about-card">
+            <span class="about-card-tag">Support</span>
+            <h3>Stay ahead of tight weeks</h3>
+            <p>Early signals give students more time to adjust before their allowance runs low.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="cta-panel" id="cta">
       <div class="cta-copy">
         <span class="section-tag">Start tracking</span>
@@ -523,6 +552,63 @@
         </details>
       </div>
     </section>
+
+    <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="section-head contact-head">
+        <span class="section-tag">Contact</span>
+        <h2 id="contact-heading">Questions, feedback, or school collabs? Let&rsquo;s connect.</h2>
+        <p class="section-copy">
+          This section gives your landing page a clear place for support details and outreach information.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <article class="contact-card contact-card-primary">
+          <span class="contact-badge">Sample contact details</span>
+          <h3>Replace these with your official email or social channels when ready.</h3>
+          <p>
+            For now, the layout is ready for support inquiries, campus demos, and product feedback.
+          </p>
+          <div class="contact-stack" aria-label="Sample contact channels">
+            <div>
+              <span>Email support</span>
+              <strong>hello@baonbrain.example</strong>
+            </div>
+            <div>
+              <span>Campus partnerships</span>
+              <strong>campus@baonbrain.example</strong>
+            </div>
+          </div>
+        </article>
+
+        <article class="contact-card">
+          <h3>What people can reach out about</h3>
+          <ul class="contact-list">
+            <li>Setup help and onboarding questions</li>
+            <li>Feature requests from students</li>
+            <li>School organization demos and collabs</li>
+          </ul>
+        </article>
+
+        <article class="contact-card">
+          <h3>Availability</h3>
+          <div class="contact-meta">
+            <div>
+              <span>Reply window</span>
+              <strong>Within 1 to 2 school days</strong>
+            </div>
+            <div>
+              <span>Best time to reach out</span>
+              <strong>Weekdays, 9 AM to 5 PM</strong>
+            </div>
+            <div>
+              <span>Helpful resources</span>
+              <strong>FAQ and starter guide</strong>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -535,7 +621,9 @@
       <a href="#overview">Overview</a>
       <a href="#features">Features</a>
       <a href="#workflow">How it works</a>
+      <a href="#about">About us</a>
       <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
       <a href="#cta">Start tracking</a>
     </div>
   </footer>
@@ -574,7 +662,7 @@
       });
     });
 
-    const observedSections = document.querySelectorAll('#overview, #features, #workflow, #faq');
+    const observedSections = document.querySelectorAll('#overview, #features, #workflow, #about, #faq, #contact');
     if (observedSections.length && navLinks.length) {
       const setActiveLink = (id) => {
         navLinks.forEach((link) => {
