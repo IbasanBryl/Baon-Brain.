@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BaonBrain helps students stretch their baon with faster expense logging, clearer balance tracking, and early warnings before the week gets tight.">
+  <meta name="description" content="BaonBrain helps students stretch their baon with faster expense logging, clearer balance tracking, and separate pages for each key section.">
   <meta name="theme-color" content="#17372d">
   <title>BaonBrain - Stretch your baon without the guesswork</title>
   <link rel="stylesheet" href="landing.css">
 </head>
-<body>
+<body data-page="home">
   <a class="skip-link" href="#content">Skip to content</a>
   <div class="bg-orb bg-orb-one" aria-hidden="true"></div>
   <div class="bg-orb bg-orb-two" aria-hidden="true"></div>
 
   <header class="site-header">
     <div class="site-header-inner">
-      <a class="brand" href="#top" aria-label="BaonBrain home">
+      <a class="brand" href="index.html" aria-label="BaonBrain home">
         <img class="brand-mark" src="bb-logo.png" alt="" aria-hidden="true">
         <span class="brand-text">BaonBrain</span>
       </a>
@@ -30,12 +30,12 @@
       </button>
 
       <nav class="site-nav" id="site-menu" aria-label="Primary">
-        <a href="#overview">Overview</a>
-        <a href="#features">Features</a>
-        <a href="#workflow">How it works</a>
-        <a href="#about">About</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
+        <a href="overview.html" data-page="overview">Overview</a>
+        <a href="features.html" data-page="features">Features</a>
+        <a href="workflow.html" data-page="workflow">How it works</a>
+        <a href="about.html" data-page="about">About</a>
+        <a href="faq.html" data-page="faq">FAQ</a>
+        <a href="contact.html" data-page="contact">Contact</a>
       </nav>
 
       <div class="header-actions">
@@ -51,18 +51,18 @@
         <div class="eyebrow">Built for student allowances</div>
         <h1>Track your baon before it runs out.</h1>
         <p class="hero-text">
-          See spending, balance, and warnings in one quick view.
+          See spending, balance, and warnings on the home preview, then open each page for the full details.
         </p>
 
         <div class="hero-actions">
-          <a class="button primary" href="#cta">Start tracking your baon in 30 seconds</a>
-          <a class="button ghost" href="#features">Explore features</a>
+          <a class="button primary" href="overview.html">Open the overview page</a>
+          <a class="button ghost" href="features.html">Explore features</a>
         </div>
 
         <div class="hero-proof" aria-label="Product highlights">
           <div class="proof-card">
-            <span>30 sec</span>
-            <strong>Set your week</strong>
+            <span>6 pages</span>
+            <strong>Clearer navigation</strong>
           </div>
           <div class="proof-card">
             <span>1 tap</span>
@@ -77,7 +77,7 @@
         <ul class="hero-points" aria-label="Core benefits">
           <li>Log fast</li>
           <li>See your balance</li>
-          <li>Protect savings</li>
+          <li>Open dedicated pages</li>
         </ul>
       </div>
 
@@ -157,351 +157,57 @@
       </div>
     </section>
 
-    <section class="section section-overview" id="overview">
-      <div class="section-head overview-head">
-        <span class="section-tag">Overview</span>
-        <h2>One screen for your whole week.</h2>
-        <p class="section-copy">
-          Allowance, spending, savings, and forecast in one view.
-        </p>
-      </div>
-
-      <div class="overview-grid">
-        <div class="overview-card overview-card-featured">
-          <div class="overview-card-head">
-            <div>
-              <span class="overview-kicker">Dashboard</span>
-              <h3>Financial overview</h3>
-            </div>
-            <span class="overview-status">Live overview</span>
-          </div>
-
-          <div class="overview-metrics" aria-label="Overview summary">
-            <div>
-              <span>Income tracked</span>
-              <strong>PHP 4,000</strong>
-            </div>
-            <div>
-              <span>Total spent</span>
-              <strong>PHP 1,280</strong>
-            </div>
-            <div>
-              <span>Remaining</span>
-              <strong>PHP 2,720</strong>
-            </div>
-            <div>
-              <span>AI forecast</span>
-              <strong>PHP 1,940</strong>
-            </div>
-          </div>
-
-          <div class="overview-stage">
-            <div class="overview-chart-panel">
-              <div class="overview-panel-head">
-                <span>Weekly spending</span>
-                <strong>Balanced</strong>
-              </div>
-              <div class="overview-weekly-chart" aria-hidden="true">
-                <span style="height:26%"></span>
-                <span style="height:42%"></span>
-                <span style="height:31%"></span>
-                <span style="height:54%"></span>
-                <span style="height:47%"></span>
-                <span style="height:38%"></span>
-                <span style="height:44%"></span>
-              </div>
-              <div class="overview-weekdays" aria-hidden="true">
-                <span>Mon</span>
-                <span>Tue</span>
-                <span>Wed</span>
-                <span>Thu</span>
-                <span>Fri</span>
-                <span>Sat</span>
-                <span>Sun</span>
-              </div>
-            </div>
-
-            <div class="overview-insight-panel">
-              <div class="overview-ring-chart" aria-hidden="true">
-                <span>No data yet</span>
-              </div>
-              <p>Food, fare, and school lead this week.</p>
-            </div>
-          </div>
-
-          <div class="overview-strip" aria-label="Quick indicators">
-            <div>
-              <span>Best day</span>
-              <strong>Wed</strong>
-            </div>
-            <div>
-              <span>Alerts</span>
-              <strong>1 watch</strong>
-            </div>
-            <div>
-              <span>Trend</span>
-              <strong>Steady</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="overview-card overview-card-income">
-          <div class="overview-card-head">
-            <div>
-              <span class="overview-kicker">Income</span>
-              <h3>Income records</h3>
-            </div>
-            <span class="overview-status muted">2 records</span>
-          </div>
-          <div class="overview-table" aria-label="Income summary rows">
-            <div>
-              <span>Weekly baon</span>
-              <strong>PHP 4,000</strong>
-            </div>
-            <div>
-              <span>Side gig</span>
-              <strong>PHP 650</strong>
-            </div>
-            <div>
-              <span>Extra cash</span>
-              <strong>PHP 200</strong>
-            </div>
-          </div>
-          <div class="overview-footer-row">
-            <span>This month</span>
-            <strong>PHP 4,850</strong>
-          </div>
-        </div>
-
-        <div class="overview-card overview-card-expenses">
-          <div class="overview-card-head">
-            <div>
-              <span class="overview-kicker">Expenses</span>
-              <h3>Recent expenses</h3>
-            </div>
-            <span class="overview-status muted">Food-led</span>
-          </div>
-          <div class="overview-table overview-table-soft" aria-label="Expense category rows">
-            <div>
-              <span>Food</span>
-              <strong>PHP 460</strong>
-            </div>
-            <div>
-              <span>Fare</span>
-              <strong>PHP 280</strong>
-            </div>
-            <div>
-              <span>School</span>
-              <strong>PHP 540</strong>
-            </div>
-          </div>
-          <div class="overview-footer-row highlight">
-            <span>Total spent</span>
-            <strong>PHP 1,280</strong>
-          </div>
-        </div>
-
-        <div class="overview-card overview-card-budget">
-          <div class="overview-card-head">
-            <div>
-              <span class="overview-kicker">Budget</span>
-              <h3>Budget snapshot</h3>
-            </div>
-            <span class="overview-status muted">68% used</span>
-          </div>
-          <div class="overview-bars" aria-label="Budget progress bars">
-            <div>
-              <span><i>Food</i><em>72%</em></span>
-              <strong aria-hidden="true"><b style="width:72%"></b></strong>
-            </div>
-            <div>
-              <span><i>Fare</i><em>48%</em></span>
-              <strong aria-hidden="true"><b style="width:48%"></b></strong>
-            </div>
-            <div>
-              <span><i>School</i><em>35%</em></span>
-              <strong aria-hidden="true"><b style="width:35%"></b></strong>
-            </div>
-          </div>
-          <div class="overview-footer-row">
-            <span>Remaining budget</span>
-            <strong>PHP 800</strong>
-          </div>
-        </div>
-
-        <div class="overview-card overview-card-savings">
-          <div class="overview-card-head">
-            <div>
-              <span class="overview-kicker">Saving Goal</span>
-              <h3>Goal progress</h3>
-            </div>
-            <span class="overview-status muted">On track</span>
-          </div>
-          <div class="overview-goal">
-            <div class="overview-goal-ring" aria-hidden="true">
-              <span>32%</span>
-            </div>
-            <div class="overview-goal-copy">
-              <div>
-                <span>Target</span>
-                <strong>PHP 10,000</strong>
-              </div>
-              <div>
-                <span>Saved</span>
-                <strong>PHP 3,200</strong>
-              </div>
-              <div>
-                <span>Entries</span>
-                <strong>8</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="overview-card overview-card-forecast">
-          <div class="overview-card-head">
-            <div>
-              <span class="overview-kicker">Forecast</span>
-              <h3>End-of-month prediction</h3>
-            </div>
-            <span class="overview-status muted">Low risk</span>
-          </div>
-          <div class="overview-forecast">
-            <div class="overview-forecast-main">
-              <span>Estimated remaining</span>
-              <strong>PHP 1,940</strong>
-            </div>
-            <div class="overview-forecast-grid">
-              <div>
-                <span>High-risk category</span>
-                <strong>Food</strong>
-              </div>
-              <div>
-                <span>Projected daily spend</span>
-                <strong>PHP 230</strong>
-              </div>
-              <div>
-                <span>Chance of overspending</span>
-                <strong>12%</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="features">
+    <section class="section page-directory" aria-labelledby="pages-heading">
       <div class="section-head">
-        <span class="section-tag">Features</span>
-        <h2>Everything you need to stay ahead of your baon.</h2>
+        <span class="section-tag">Explore Pages</span>
+        <h2 id="pages-heading">Each section now has its own page.</h2>
         <p class="section-copy">
-          Track, plan, and adjust without the clutter.
+          Open the part you need most, whether you want the dashboard summary, feature list, workflow, brand story, answers, or contact details.
         </p>
       </div>
 
-      <div class="feature-grid">
-        <div class="feature-card">
-          <span class="feature-icon track" aria-hidden="true"></span>
-          <span class="feature-chip">Track</span>
-          <h3>Fast expense logging</h3>
-          <p>Log daily spending fast.</p>
-        </div>
+      <div class="page-grid">
+        <a class="page-card" href="overview.html">
+          <span class="page-card-tag">Overview</span>
+          <h3>See the weekly dashboard</h3>
+          <p>Allowance, spending, savings, and forecast in one focused page.</p>
+          <span class="page-card-link">Open overview</span>
+        </a>
 
-        <div class="feature-card">
-          <span class="feature-icon income" aria-hidden="true"></span>
-          <span class="feature-chip">Income</span>
-          <h3>Income in one timeline</h3>
-          <p>Keep allowance and extra cash together.</p>
-        </div>
+        <a class="page-card" href="features.html">
+          <span class="page-card-tag">Features</span>
+          <h3>Browse core product tools</h3>
+          <p>Fast logging, income timelines, goal tracking, and predictive alerts.</p>
+          <span class="page-card-link">Open features</span>
+        </a>
 
-        <div class="feature-card">
-          <span class="feature-icon goal" aria-hidden="true"></span>
-          <span class="feature-chip">Plan</span>
-          <h3>Visible savings goals</h3>
-          <p>See your goal grow.</p>
-        </div>
+        <a class="page-card" href="workflow.html">
+          <span class="page-card-tag">How It Works</span>
+          <h3>Follow the 3-step routine</h3>
+          <p>See how setup, daily logging, and weekly adjustments connect together.</p>
+          <span class="page-card-link">Open workflow</span>
+        </a>
 
-        <div class="feature-card">
-          <span class="feature-icon forecast" aria-hidden="true"></span>
-          <span class="feature-chip">Preview</span>
-          <h3>Predictive alerts</h3>
-          <p>See risk before you overspend.</p>
-        </div>
-      </div>
-    </section>
+        <a class="page-card" href="about.html">
+          <span class="page-card-tag">About</span>
+          <h3>Read the product story</h3>
+          <p>Understand the mission, values, and student-first thinking behind BaonBrain.</p>
+          <span class="page-card-link">Open about</span>
+        </a>
 
-    <section class="section section-dark" id="workflow">
-      <div class="section-head">
-        <span class="section-tag alt">How it works</span>
-        <h2>Three quick steps to a clearer budget.</h2>
-        <p class="section-copy section-copy-dark">
-          Set up fast, log daily, adjust early.
-        </p>
-      </div>
+        <a class="page-card" href="faq.html">
+          <span class="page-card-tag">FAQ</span>
+          <h3>Answer common questions</h3>
+          <p>Give visitors a quick place to clarify how the product works and who it is for.</p>
+          <span class="page-card-link">Open FAQ</span>
+        </a>
 
-      <div class="step-grid">
-        <div class="step-card">
-          <span class="step-number">01</span>
-          <h3>Set your allowance</h3>
-          <p>Start with your weekly baon.</p>
-        </div>
-
-        <div class="step-card">
-          <span class="step-number">02</span>
-          <h3>Log each spend</h3>
-          <p>Your balance updates instantly.</p>
-        </div>
-
-        <div class="step-card">
-          <span class="step-number">03</span>
-          <h3>Check and adjust</h3>
-          <p>Slow down before you run short.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section about-section" id="about" aria-labelledby="about-heading">
-      <div class="section-head">
-        <span class="section-tag">About Us</span>
-        <h2 id="about-heading">BaonBrain was made to help students budget with less pressure.</h2>
-        <p class="section-copy">
-          We designed BaonBrain around real student routines so budgeting feels quick, clear, and easier to keep up every day.
-        </p>
-      </div>
-
-      <div class="about-grid">
-        <article class="about-story">
-          <span class="about-kicker">Our mission</span>
-          <h3>Turn weekly allowance tracking into a small habit that builds confidence.</h3>
-          <p>
-            From lunch money to fares and school expenses, students make many small spending decisions every day. BaonBrain keeps those choices visible so users can stay aware of their balance before the week gets stressful.
-          </p>
-          <div class="about-points" aria-label="About BaonBrain highlights">
-            <span>Built for weekly baon</span>
-            <span>Designed for fast daily logging</span>
-            <span>Focused on calm, practical budgeting</span>
-          </div>
-        </article>
-
-        <div class="about-values" aria-label="BaonBrain values">
-          <article class="about-card">
-            <span class="about-card-tag">Clarity</span>
-            <h3>See what matters fast</h3>
-            <p>Balances, spending, and warnings stay in one view so students do not need to guess.</p>
-          </article>
-
-          <article class="about-card">
-            <span class="about-card-tag">Discipline</span>
-            <h3>Make smart routines easier</h3>
-            <p>Quick logging and visible goals help turn budgeting into something sustainable.</p>
-          </article>
-
-          <article class="about-card">
-            <span class="about-card-tag">Support</span>
-            <h3>Stay ahead of tight weeks</h3>
-            <p>Early signals give students more time to adjust before their allowance runs low.</p>
-          </article>
-        </div>
+        <a class="page-card" href="contact.html">
+          <span class="page-card-tag">Contact</span>
+          <h3>Provide a direct support page</h3>
+          <p>Keep feedback, outreach, and campus partnership details in one dedicated place.</p>
+          <span class="page-card-link">Open contact</span>
+        </a>
       </div>
     </section>
 
@@ -510,103 +216,17 @@
         <span class="section-tag">Start tracking</span>
         <h2>Start with this week&rsquo;s baon.</h2>
         <p>
-          Set your budget, log spends, and see what&rsquo;s left.
+          Use the home preview for a fast look, then explore the dedicated pages when you want the full story.
         </p>
         <div class="cta-benefits" aria-label="Starter benefits">
           <span>Fast setup</span>
-          <span>Cash-friendly</span>
+          <span>Page-by-page walkthrough</span>
           <span>Free starter guide</span>
         </div>
       </div>
       <div class="cta-actions">
-        <a class="button light" href="#top">Try the live preview</a>
+        <a class="button light" href="overview.html">See the overview page</a>
         <button class="button secondary download-trigger" type="button">Download starter guide</button>
-      </div>
-    </section>
-
-    <section class="section faq-section" id="faq" aria-labelledby="faq-heading">
-      <div class="section-head faq-head">
-        <span class="section-tag">FAQ</span>
-        <h2 id="faq-heading">Quick questions.</h2>
-      </div>
-
-      <div class="faq-grid" aria-label="Frequently asked questions">
-        <details class="faq-item">
-          <summary>Is this only for students?</summary>
-          <p class="faq-answer">No. It works for anyone on a weekly budget.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>What if I forget to log?</summary>
-          <p class="faq-answer">You can add it later.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Do I need a bank account?</summary>
-          <p class="faq-answer">No. Cash budgets work fine.</p>
-        </details>
-
-        <details class="faq-item">
-          <summary>Is this free?</summary>
-          <p class="faq-answer">Yes, you can start for free.</p>
-        </details>
-      </div>
-    </section>
-
-    <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
-      <div class="section-head contact-head">
-        <span class="section-tag">Contact</span>
-        <h2 id="contact-heading">Questions, feedback, or school collabs? Let&rsquo;s connect.</h2>
-        <p class="section-copy">
-          This section gives your landing page a clear place for support details and outreach information.
-        </p>
-      </div>
-
-      <div class="contact-grid">
-        <article class="contact-card contact-card-primary">
-          <span class="contact-badge">Sample contact details</span>
-          <h3>Replace these with your official email or social channels when ready.</h3>
-          <p>
-            For now, the layout is ready for support inquiries, campus demos, and product feedback.
-          </p>
-          <div class="contact-stack" aria-label="Sample contact channels">
-            <div>
-              <span>Email support</span>
-              <strong>hello@baonbrain.example</strong>
-            </div>
-            <div>
-              <span>Campus partnerships</span>
-              <strong>campus@baonbrain.example</strong>
-            </div>
-          </div>
-        </article>
-
-        <article class="contact-card">
-          <h3>What people can reach out about</h3>
-          <ul class="contact-list">
-            <li>Setup help and onboarding questions</li>
-            <li>Feature requests from students</li>
-            <li>School organization demos and collabs</li>
-          </ul>
-        </article>
-
-        <article class="contact-card">
-          <h3>Availability</h3>
-          <div class="contact-meta">
-            <div>
-              <span>Reply window</span>
-              <strong>Within 1 to 2 school days</strong>
-            </div>
-            <div>
-              <span>Best time to reach out</span>
-              <strong>Weekdays, 9 AM to 5 PM</strong>
-            </div>
-            <div>
-              <span>Helpful resources</span>
-              <strong>FAQ and starter guide</strong>
-            </div>
-          </div>
-        </article>
       </div>
     </section>
   </main>
@@ -617,287 +237,17 @@
       <p>Simple student budgeting.</p>
     </div>
     <div class="footer-links">
-      <a href="#top">Home</a>
-      <a href="#overview">Overview</a>
-      <a href="#features">Features</a>
-      <a href="#workflow">How it works</a>
-      <a href="#about">About us</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <a href="index.html" data-page="home">Home</a>
+      <a href="overview.html" data-page="overview">Overview</a>
+      <a href="features.html" data-page="features">Features</a>
+      <a href="workflow.html" data-page="workflow">How it works</a>
+      <a href="about.html" data-page="about">About us</a>
+      <a href="faq.html" data-page="faq">FAQ</a>
+      <a href="contact.html" data-page="contact">Contact</a>
       <a href="#cta">Start tracking</a>
     </div>
   </footer>
 
-  <script>
-    document.body.classList.add('has-js');
-
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelectorAll('.site-nav a');
-    const closeNavigation = () => {
-      document.body.classList.remove('nav-open');
-      if (navToggle) {
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.setAttribute('aria-label', 'Open navigation');
-      }
-    };
-
-    if (navToggle) {
-      navToggle.addEventListener('click', () => {
-        const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
-        document.body.classList.toggle('nav-open', !isOpen);
-        navToggle.setAttribute('aria-expanded', String(!isOpen));
-        navToggle.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
-      });
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
-      link.addEventListener('click', (event) => {
-        const hash = link.getAttribute('href');
-        const target = document.querySelector(hash);
-        if (!target) return;
-        event.preventDefault();
-        closeNavigation();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.replaceState(null, '', hash);
-      });
-    });
-
-    const observedSections = document.querySelectorAll('#overview, #features, #workflow, #about, #faq, #contact');
-    if (observedSections.length && navLinks.length) {
-      const setActiveLink = (id) => {
-        navLinks.forEach((link) => {
-          const isCurrent = link.getAttribute('href') === `#${id}`;
-          if (isCurrent) {
-            link.setAttribute('aria-current', 'location');
-          } else {
-            link.removeAttribute('aria-current');
-          }
-        });
-      };
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const visibleEntry = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
-
-          if (visibleEntry?.target?.id) {
-            setActiveLink(visibleEntry.target.id);
-          }
-        },
-        {
-          rootMargin: '-35% 0px -45% 0px',
-          threshold: [0.2, 0.4, 0.6]
-        }
-      );
-
-      observedSections.forEach((section) => observer.observe(section));
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 820) {
-        closeNavigation();
-      }
-    });
-
-    const downloadButtons = document.querySelectorAll('.download-trigger');
-    if (downloadButtons.length) {
-      const triggerDownload = () => {
-        const content = [
-          'BaonBrain Starter Guide',
-          '',
-          'Stretch your baon with less guesswork and fewer end-of-week surprises.',
-          '',
-          'Start here:',
-          '- Set your weekly baon',
-          '- Log lunch, fare, snacks, and school spending daily',
-          '- Check your remaining balance before adding extras',
-          '- Keep a small weekly savings target visible',
-          '',
-          'Sample weekly split for PHP 4,000:',
-          '- Food: PHP 1,450',
-          '- Fare: PHP 900',
-          '- School: PHP 850',
-          '- Flex money: PHP 450',
-          '- Savings: PHP 350',
-          '',
-          'BaonBrain helps you catch risky spending patterns before Thursday panic hits.'
-        ].join('\n');
-
-        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'BaonBrain-Starter-Guide.txt';
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        setTimeout(() => URL.revokeObjectURL(url), 1000);
-      };
-
-      downloadButtons.forEach((downloadBtn) => {
-        downloadBtn.addEventListener('click', triggerDownload);
-      });
-    }
-
-    const liveCard = document.querySelector('.preview-card.main');
-    const remainingAllowance = document.getElementById('remaining-allowance');
-    const totalAllowance = document.getElementById('total-allowance');
-    const spentAmount = document.getElementById('spent-amount');
-    const savedAmount = document.getElementById('saved-amount');
-    const progressBar = document.getElementById('progress-bar');
-    const statusPill = document.getElementById('risk-pill');
-    const previewNote = document.getElementById('preview-note');
-    const lastAction = document.getElementById('last-action');
-    const lastActionDetail = document.getElementById('last-action-detail');
-    const forecastText = document.getElementById('forecast-text');
-    const forecastDetail = document.getElementById('forecast-detail');
-    const simulatorButtons = document.querySelectorAll('.preview-action');
-
-    if (
-      liveCard &&
-      remainingAllowance &&
-      totalAllowance &&
-      spentAmount &&
-      savedAmount &&
-      progressBar &&
-      statusPill &&
-      previewNote &&
-      lastAction &&
-      lastActionDetail &&
-      forecastText &&
-      forecastDetail &&
-      simulatorButtons.length
-    ) {
-      const moneyFormatter = new Intl.NumberFormat('en-PH');
-      const formatMoney = (value) => `PHP ${moneyFormatter.format(Math.round(value))}`;
-      const baseState = {
-        total: 4000,
-        spent: 800,
-        lastAction: 'PHP 120 lunch',
-        lastActionDetail: 'Saved instantly'
-      };
-      const state = { ...baseState };
-      const savingsBaseline = 2750;
-      const baseNote = 'One day of tracking shows the pattern.';
-      const baseForecast = {
-        title: 'You may run out by Thursday.',
-        detail: 'Watch snacks this week.'
-      };
-      let updateTimer;
-
-      const getRisk = (remainingRaw) => {
-        if (remainingRaw <= 0) {
-          return { label: 'Overspending', tone: 'danger' };
-        }
-
-        const ratio = remainingRaw / state.total;
-        if (ratio >= 0.7) {
-          return { label: 'Low risk', tone: 'low' };
-        }
-        if (ratio >= 0.45) {
-          return { label: 'Watch closely', tone: 'watch' };
-        }
-        if (ratio >= 0.2) {
-          return { label: 'Tight budget', tone: 'tight' };
-        }
-        return { label: 'Overspending', tone: 'danger' };
-      };
-
-      const getForecast = (remainingRaw, actionLabel) => {
-        if (remainingRaw <= 0) {
-          return {
-            title: 'Week limit reached.',
-            detail: `${actionLabel} pushed you over.`
-          };
-        }
-
-        const ratio = remainingRaw / state.total;
-        if (ratio >= 0.7) {
-          return {
-            title: 'Thursday still looks safe.',
-            detail: `${actionLabel} still leaves room.`
-          };
-        }
-        if (ratio >= 0.45) {
-          return {
-            title: 'Watch the next few days.',
-            detail: 'Snacks and fare add up fast.'
-          };
-        }
-        if (ratio >= 0.2) {
-          return {
-            title: 'Budget is getting tight.',
-            detail: 'Slow down before Wednesday.'
-          };
-        }
-        return {
-          title: 'Almost out for the week.',
-          detail: 'Pause extras for now.'
-        };
-      };
-
-      const renderSimulator = ({ note = baseNote, forecast = baseForecast, animate = true } = {}) => {
-        const remainingRaw = state.total - state.spent;
-        const remaining = Math.max(0, remainingRaw);
-        const overspent = Math.max(0, -remainingRaw);
-        const saved = Math.max(0, remaining - savingsBaseline);
-        const risk = getRisk(remainingRaw);
-
-        totalAllowance.textContent = formatMoney(state.total);
-        spentAmount.textContent = formatMoney(state.spent);
-        remainingAllowance.textContent = formatMoney(remaining);
-        savedAmount.textContent = formatMoney(saved);
-        progressBar.style.width = `${Math.min(100, (remaining / state.total) * 100)}%`;
-        statusPill.textContent = risk.label;
-        liveCard.dataset.risk = risk.tone;
-        previewNote.textContent = note;
-        lastAction.textContent = state.lastAction;
-        lastActionDetail.textContent = state.lastActionDetail;
-        forecastText.textContent = forecast.title;
-        forecastDetail.textContent = forecast.detail;
-
-        if (animate) {
-          liveCard.classList.remove('is-updating');
-          void liveCard.offsetWidth;
-          liveCard.classList.add('is-updating');
-          clearTimeout(updateTimer);
-          updateTimer = setTimeout(() => liveCard.classList.remove('is-updating'), 260);
-        }
-
-        if (overspent > 0) {
-          previewNote.textContent = `You are over by ${formatMoney(overspent)}.`;
-        }
-      };
-
-      simulatorButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          if (button.dataset.reset === 'true') {
-            Object.assign(state, baseState);
-            renderSimulator({ note: baseNote, forecast: baseForecast });
-            return;
-          }
-
-          const spend = Number(button.dataset.spend || 0);
-          const label = button.dataset.label || button.textContent.trim();
-          state.spent += spend;
-          state.lastAction = button.textContent.trim();
-          state.lastActionDetail = 'Saved instantly';
-
-          const remainingRaw = state.total - state.spent;
-          const note = remainingRaw <= 0
-            ? `You are over by ${formatMoney(Math.abs(remainingRaw))}.`
-            : `${label} logged. Left: ${formatMoney(remainingRaw)}.`;
-
-          renderSimulator({
-            note,
-            forecast: getForecast(remainingRaw, label)
-          });
-        });
-      });
-
-      renderSimulator({ note: baseNote, forecast: baseForecast, animate: false });
-    }
-  </script>
+  <script src="site.js"></script>
 </body>
 </html>
