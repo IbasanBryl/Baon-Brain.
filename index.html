@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BaonBrain helps students stretch their baon with faster expense logging, clearer balance tracking, and separate pages for each key section.">
+  <meta name="description" content="BaonBrain helps students stretch their baon with faster expense logging, clearer balance tracking, and one simple page for everything.">
   <meta name="theme-color" content="#17372d">
   <title>BaonBrain - Stretch your baon without the guesswork</title>
   <link rel="stylesheet" href="landing.css">
@@ -15,7 +15,7 @@
 
   <header class="site-header">
     <div class="site-header-inner">
-      <a class="brand" href="index.html" aria-label="BaonBrain home">
+      <a class="brand" href="#top" aria-label="BaonBrain home">
         <img class="brand-mark" src="bb-logo.png" alt="" aria-hidden="true">
         <span class="brand-text">BaonBrain</span>
       </a>
@@ -30,11 +30,11 @@
       </button>
 
       <nav class="site-nav" id="site-menu" aria-label="Primary">
-        <a href="overview.html" data-page="overview">Overview</a>
-        <a href="features.html" data-page="features">Features</a>
-        <a href="workflow.html" data-page="workflow">How it works</a>
-        <a href="about.html" data-page="about">About</a>
-        <a href="contact.html" data-page="contact">Contact</a>
+        <a href="#overview">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">How it works</a>
+        <a href="#about">About</a>
+        <a href="#developers">Developers</a>
       </nav>
 
       <div class="header-actions">
@@ -50,18 +50,18 @@
         <div class="eyebrow">Built for student allowances</div>
         <h1>Track your baon before it runs out.</h1>
         <p class="hero-text">
-          See spending, balance, and warnings on the home preview, then open each page for the full details.
+          See spending, balance, savings, and early warning signs in one simple page that keeps everything within reach.
         </p>
 
         <div class="hero-actions">
-          <a class="button primary" href="overview.html">Open the overview page</a>
-          <a class="button ghost" href="features.html">Explore features</a>
+          <a class="button primary" href="#overview">See the full overview</a>
+          <a class="button ghost" href="#features">Explore features</a>
         </div>
 
         <div class="hero-proof" aria-label="Product highlights">
           <div class="proof-card">
-            <span>5 pages</span>
-            <strong>Clearer navigation</strong>
+            <span>1 page</span>
+            <strong>Everything in one place</strong>
           </div>
           <div class="proof-card">
             <span>1 tap</span>
@@ -76,7 +76,7 @@
         <ul class="hero-points" aria-label="Core benefits">
           <li>Log fast</li>
           <li>See your balance</li>
-          <li>Open dedicated pages</li>
+          <li>Stay on one page</li>
         </ul>
       </div>
 
@@ -156,50 +156,413 @@
       </div>
     </section>
 
-    <section class="section page-directory" aria-labelledby="pages-heading">
-      <div class="section-head">
-        <span class="section-tag">Explore Pages</span>
-        <h2 id="pages-heading">Each section now has its own page.</h2>
+    <section class="section section-overview" id="overview">
+      <div class="section-head overview-head">
+        <span class="section-tag">Overview</span>
+        <h2>One screen for your whole week.</h2>
         <p class="section-copy">
-          Open the part you need most, whether you want the dashboard summary, feature list, workflow, brand story, or contact details.
+          Allowance, spending, savings, and forecast in one view.
         </p>
       </div>
 
-      <div class="page-grid">
-        <a class="page-card" href="overview.html">
-          <span class="page-card-tag">Overview</span>
-          <h3>See the weekly dashboard</h3>
-          <p>Allowance, spending, savings, and forecast in one focused page.</p>
-          <span class="page-card-link">Open overview</span>
-        </a>
+      <div class="overview-grid">
+        <div class="overview-card overview-card-featured">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Dashboard</span>
+              <h3>Financial overview</h3>
+            </div>
+            <span class="overview-status">Live overview</span>
+          </div>
 
-        <a class="page-card" href="features.html">
-          <span class="page-card-tag">Features</span>
-          <h3>Browse core product tools</h3>
-          <p>Fast logging, income timelines, goal tracking, and predictive alerts.</p>
-          <span class="page-card-link">Open features</span>
-        </a>
+          <div class="overview-metrics" aria-label="Overview summary">
+            <div>
+              <span>Income tracked</span>
+              <strong>PHP 4,000</strong>
+            </div>
+            <div>
+              <span>Total spent</span>
+              <strong>PHP 1,280</strong>
+            </div>
+            <div>
+              <span>Remaining</span>
+              <strong>PHP 2,720</strong>
+            </div>
+            <div>
+              <span>AI forecast</span>
+              <strong>PHP 1,940</strong>
+            </div>
+          </div>
 
-        <a class="page-card" href="workflow.html">
-          <span class="page-card-tag">How It Works</span>
-          <h3>Follow the 3-step routine</h3>
-          <p>See how setup, daily logging, and weekly adjustments connect together.</p>
-          <span class="page-card-link">Open workflow</span>
-        </a>
+          <div class="overview-stage">
+            <div class="overview-chart-panel">
+              <div class="overview-panel-head">
+                <span>Weekly spending</span>
+                <strong>Balanced</strong>
+              </div>
+              <div class="overview-weekly-chart" aria-hidden="true">
+                <span style="height:26%"></span>
+                <span style="height:42%"></span>
+                <span style="height:31%"></span>
+                <span style="height:54%"></span>
+                <span style="height:47%"></span>
+                <span style="height:38%"></span>
+                <span style="height:44%"></span>
+              </div>
+              <div class="overview-weekdays" aria-hidden="true">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+              </div>
+            </div>
 
-        <a class="page-card" href="about.html">
-          <span class="page-card-tag">About</span>
-          <h3>Read the product story</h3>
-          <p>Understand the mission, values, and student-first thinking behind BaonBrain.</p>
-          <span class="page-card-link">Open about</span>
-        </a>
+            <div class="overview-insight-panel">
+              <div class="overview-ring-chart" aria-hidden="true">
+                <span>No data yet</span>
+              </div>
+              <p>Food, fare, and school lead this week.</p>
+            </div>
+          </div>
 
-        <a class="page-card" href="contact.html">
-          <span class="page-card-tag">Contact</span>
-          <h3>Provide a direct support page</h3>
-          <p>Keep feedback, outreach, and campus partnership details in one dedicated place.</p>
-          <span class="page-card-link">Open contact</span>
-        </a>
+          <div class="overview-strip" aria-label="Quick indicators">
+            <div>
+              <span>Best day</span>
+              <strong>Wed</strong>
+            </div>
+            <div>
+              <span>Alerts</span>
+              <strong>1 watch</strong>
+            </div>
+            <div>
+              <span>Trend</span>
+              <strong>Steady</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-card overview-card-income">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Income</span>
+              <h3>Income records</h3>
+            </div>
+            <span class="overview-status muted">2 records</span>
+          </div>
+          <div class="overview-table" aria-label="Income summary rows">
+            <div>
+              <span>Weekly baon</span>
+              <strong>PHP 4,000</strong>
+            </div>
+            <div>
+              <span>Side gig</span>
+              <strong>PHP 650</strong>
+            </div>
+            <div>
+              <span>Extra cash</span>
+              <strong>PHP 200</strong>
+            </div>
+          </div>
+          <div class="overview-footer-row">
+            <span>This month</span>
+            <strong>PHP 4,850</strong>
+          </div>
+        </div>
+
+        <div class="overview-card overview-card-expenses">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Expenses</span>
+              <h3>Recent expenses</h3>
+            </div>
+            <span class="overview-status muted">Food-led</span>
+          </div>
+          <div class="overview-table overview-table-soft" aria-label="Expense category rows">
+            <div>
+              <span>Food</span>
+              <strong>PHP 460</strong>
+            </div>
+            <div>
+              <span>Fare</span>
+              <strong>PHP 280</strong>
+            </div>
+            <div>
+              <span>School</span>
+              <strong>PHP 540</strong>
+            </div>
+          </div>
+          <div class="overview-footer-row highlight">
+            <span>Total spent</span>
+            <strong>PHP 1,280</strong>
+          </div>
+        </div>
+
+        <div class="overview-card overview-card-budget">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Budget</span>
+              <h3>Budget snapshot</h3>
+            </div>
+            <span class="overview-status muted">68% used</span>
+          </div>
+          <div class="overview-bars" aria-label="Budget progress bars">
+            <div>
+              <span><i>Food</i><em>72%</em></span>
+              <strong aria-hidden="true"><b style="width:72%"></b></strong>
+            </div>
+            <div>
+              <span><i>Fare</i><em>48%</em></span>
+              <strong aria-hidden="true"><b style="width:48%"></b></strong>
+            </div>
+            <div>
+              <span><i>School</i><em>35%</em></span>
+              <strong aria-hidden="true"><b style="width:35%"></b></strong>
+            </div>
+          </div>
+          <div class="overview-footer-row">
+            <span>Remaining budget</span>
+            <strong>PHP 800</strong>
+          </div>
+        </div>
+
+        <div class="overview-card overview-card-savings">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Saving Goal</span>
+              <h3>Goal progress</h3>
+            </div>
+            <span class="overview-status muted">On track</span>
+          </div>
+          <div class="overview-goal">
+            <div class="overview-goal-ring" aria-hidden="true">
+              <span>32%</span>
+            </div>
+            <div class="overview-goal-copy">
+              <div>
+                <span>Target</span>
+                <strong>PHP 10,000</strong>
+              </div>
+              <div>
+                <span>Saved</span>
+                <strong>PHP 3,200</strong>
+              </div>
+              <div>
+                <span>Entries</span>
+                <strong>8</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-card overview-card-forecast">
+          <div class="overview-card-head">
+            <div>
+              <span class="overview-kicker">Forecast</span>
+              <h3>End-of-month prediction</h3>
+            </div>
+            <span class="overview-status muted">Low risk</span>
+          </div>
+          <div class="overview-forecast">
+            <div class="overview-forecast-main">
+              <span>Estimated remaining</span>
+              <strong>PHP 1,940</strong>
+            </div>
+            <div class="overview-forecast-grid">
+              <div>
+                <span>High-risk category</span>
+                <strong>Food</strong>
+              </div>
+              <div>
+                <span>Projected daily spend</span>
+                <strong>PHP 230</strong>
+              </div>
+              <div>
+                <span>Chance of overspending</span>
+                <strong>12%</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-head">
+        <span class="section-tag">Features</span>
+        <h2>Everything you need to stay ahead of your baon.</h2>
+        <p class="section-copy">
+          Track, plan, and adjust without the clutter.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <span class="feature-icon track" aria-hidden="true"></span>
+          <span class="feature-chip">Track</span>
+          <h3>Fast expense logging</h3>
+          <p>Log daily spending fast.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon income" aria-hidden="true"></span>
+          <span class="feature-chip">Income</span>
+          <h3>Income in one timeline</h3>
+          <p>Keep allowance and extra cash together.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon goal" aria-hidden="true"></span>
+          <span class="feature-chip">Plan</span>
+          <h3>Visible savings goals</h3>
+          <p>See your goal grow.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon forecast" aria-hidden="true"></span>
+          <span class="feature-chip">Preview</span>
+          <h3>Predictive alerts</h3>
+          <p>See risk before you overspend.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="workflow">
+      <div class="section-head">
+        <span class="section-tag alt">How it works</span>
+        <h2>Three quick steps to a clearer budget.</h2>
+        <p class="section-copy section-copy-dark">
+          Set up fast, log daily, adjust early.
+        </p>
+      </div>
+
+      <div class="step-grid">
+        <div class="step-card">
+          <span class="step-number">01</span>
+          <h3>Set your allowance</h3>
+          <p>Start with your weekly baon.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-number">02</span>
+          <h3>Log each spend</h3>
+          <p>Your balance updates instantly.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-number">03</span>
+          <h3>Check and adjust</h3>
+          <p>Slow down before you run short.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about" aria-labelledby="about-heading">
+      <div class="section-head">
+        <span class="section-tag">About Us</span>
+        <h2 id="about-heading">BaonBrain was made to help students budget with less pressure.</h2>
+        <p class="section-copy">
+          We designed BaonBrain around real student routines so budgeting feels quick, clear, and easier to keep up every day.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="about-story">
+          <span class="about-kicker">Our mission</span>
+          <h3>Turn weekly allowance tracking into a small habit that builds confidence.</h3>
+          <p>
+            From lunch money to fares and school expenses, students make many small spending decisions every day. BaonBrain keeps those choices visible so users can stay aware of their balance before the week gets stressful.
+          </p>
+          <div class="about-points" aria-label="About BaonBrain highlights">
+            <span>Built for weekly baon</span>
+            <span>Designed for fast daily logging</span>
+            <span>Focused on calm, practical budgeting</span>
+          </div>
+        </article>
+
+        <div class="about-values" aria-label="BaonBrain values">
+          <article class="about-card">
+            <span class="about-card-tag">Clarity</span>
+            <h3>See what matters fast</h3>
+            <p>Balances, spending, and warnings stay in one view so students do not need to guess.</p>
+          </article>
+
+          <article class="about-card">
+            <span class="about-card-tag">Discipline</span>
+            <h3>Make smart routines easier</h3>
+            <p>Quick logging and visible goals help turn budgeting into something sustainable.</p>
+          </article>
+
+          <article class="about-card">
+            <span class="about-card-tag">Support</span>
+            <h3>Stay ahead of tight weeks</h3>
+            <p>Early signals give students more time to adjust before their allowance runs low.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section developers-section" id="developers" aria-labelledby="developers-heading">
+      <div class="section-head">
+        <span class="section-tag">Developers</span>
+        <h2 id="developers-heading">Meet the five-member development team.</h2>
+        <p class="section-copy">
+          This section highlights the builders behind BaonBrain. Replace the placeholder names and roles with your actual team details anytime.
+        </p>
+      </div>
+
+      <div class="developers-grid" aria-label="Developer team members">
+        <article class="developer-card developer-card-featured">
+          <span class="developer-badge">Team Lead</span>
+          <h3>Member 01</h3>
+          <p>Leads the project direction, keeps the product focused on student needs, and coordinates the overall experience.</p>
+          <div class="developer-meta">
+            <span>Role: Project Manager</span>
+            <span>Focus: Product strategy</span>
+          </div>
+        </article>
+
+        <article class="developer-card">
+          <span class="developer-badge">Frontend</span>
+          <h3>Member 02</h3>
+          <p>Builds the user interface, keeps the layout responsive, and helps turn ideas into clear on-screen interactions.</p>
+          <div class="developer-meta">
+            <span>Role: UI Developer</span>
+            <span>Focus: Page design</span>
+          </div>
+        </article>
+
+        <article class="developer-card">
+          <span class="developer-badge">Backend</span>
+          <h3>Member 03</h3>
+          <p>Handles the app logic, data flow, and connections that keep budgeting records accurate and dependable.</p>
+          <div class="developer-meta">
+            <span>Role: System Developer</span>
+            <span>Focus: Data handling</span>
+          </div>
+        </article>
+
+        <article class="developer-card">
+          <span class="developer-badge">Research</span>
+          <h3>Member 04</h3>
+          <p>Studies student habits, gathers feedback, and helps shape features that feel practical in real daily routines.</p>
+          <div class="developer-meta">
+            <span>Role: UX Researcher</span>
+            <span>Focus: User insights</span>
+          </div>
+        </article>
+
+        <article class="developer-card">
+          <span class="developer-badge">Quality</span>
+          <h3>Member 05</h3>
+          <p>Checks the experience, catches issues early, and supports steady improvements before release.</p>
+          <div class="developer-meta">
+            <span>Role: QA Tester</span>
+            <span>Focus: Reliability</span>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -208,16 +571,16 @@
         <span class="section-tag">Start tracking</span>
         <h2>Start with this week&rsquo;s baon.</h2>
         <p>
-          Use the home preview for a fast look, then explore the dedicated pages when you want the full story.
+          Use one page to check your balance, review features, understand the workflow, and share support details without bouncing between separate screens.
         </p>
         <div class="cta-benefits" aria-label="Starter benefits">
           <span>Fast setup</span>
-          <span>Page-by-page walkthrough</span>
+          <span>One-page walkthrough</span>
           <span>Free starter guide</span>
         </div>
       </div>
       <div class="cta-actions">
-        <a class="button light" href="overview.html">See the overview page</a>
+        <a class="button light" href="#top">Back to top</a>
         <button class="button secondary download-trigger" type="button">Download starter guide</button>
       </div>
     </section>
@@ -229,12 +592,12 @@
       <p>Simple student budgeting.</p>
     </div>
     <div class="footer-links">
-      <a href="index.html" data-page="home">Home</a>
-      <a href="overview.html" data-page="overview">Overview</a>
-      <a href="features.html" data-page="features">Features</a>
-      <a href="workflow.html" data-page="workflow">How it works</a>
-      <a href="about.html" data-page="about">About us</a>
-      <a href="contact.html" data-page="contact">Contact</a>
+      <a href="#top">Home</a>
+      <a href="#overview">Overview</a>
+      <a href="#features">Features</a>
+      <a href="#workflow">How it works</a>
+      <a href="#about">About us</a>
+      <a href="#developers">Developers</a>
       <a href="#cta">Start tracking</a>
     </div>
   </footer>
