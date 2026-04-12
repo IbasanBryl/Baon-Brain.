@@ -1,0 +1,228 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --text-color: #333;
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    --border-radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-container {
+    max-width: 1000px;
+    width: 100%;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    padding: 60px 20px;
+    border-radius: var(--border-radius);
+    color: white;
+    box-shadow: var(--shadow);
+}
+
+.profile-frame {
+    display: inline-block;
+    padding: 5px;
+    background: white;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.section-tag {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.card-header i {
+    font-size: 1.4rem;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.major-list, .hobby-list {
+    list-style: none;
+}
+
+.major-list {
+    counter-reset: my-counter;
+}
+
+.major-list li {
+    counter-increment: my-counter;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.major-list li::before {
+    content: counter(my-counter);
+    background: var(--accent-color);
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.hobby-list li {
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.full-width-hobbies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.full-width-hobbies li {
+    flex: 1;
+    min-width: 150px;
+    margin-bottom: 0;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.modern-table th {
+    background: #f8f9fa;
+    color: var(--primary-color);
+    text-align: left;
+    padding: 15px;
+    font-weight: 700;
+}
+
+.modern-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.badge {
+    background: #e1f0fa;
+    color: var(--accent-color);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.footer-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.glass-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.glass-btn:hover {
+    background: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.glass-btn i {
+    margin-right: 10px;
+}

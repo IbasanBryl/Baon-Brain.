@@ -1,0 +1,81 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: Arial, sans-serif; /* won't change your font tags */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+hr {
+    border: 0px solid rgb(255, 255, 255);
+    margin: 20px 0;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.name-section h1 {
+    font-size: 60px;
+    margin: 10px 0;
+    color: #8FB3E2;
+}
+
+.name-section span {
+    font-size: 32px;
+}
+
+.about-me, .subjects, .hobbies {
+    margin: 30px auto;
+    width: 80%;
+    text-align: left;
+}
+
+.schedule {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: center;
+    border: 1px solid #8FB3E2;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.schedule th, .schedule td {
+    border: 1px solid #ffffff;
+    padding: 10px;
+}
+
+.schedule th {
+    background-color: rgb(143, 179, 226);
+    color: #1E2E4F;
+    font-size: 24px;
+}
+
+.schedule td {
+    font-size: 18px;
+}
+
+.hobbies ul {
+    list-style-type: square;
+    padding-left: 40px;
+}
+
+.about-btn {
+    background-color: rgb(	143, 179, 226);
+    color: white;
+    padding: 10px 25px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.about-btn:hover {
+    background-color: rgb( 30, 46,	79);
+}

@@ -84,25 +84,16 @@ body {
   width: clamp(150px, 24vw, 220px);
   aspect-ratio: 1 / 1;
   border-radius: 18px;
-  border: 1.5px dashed #596170;
-  background: linear-gradient(145deg, rgba(208, 213, 221, 0.08), rgba(138, 144, 153, 0.14));
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 14px;
+  border: 1px solid #4a5563;
+  background: #11151b;
+  overflow: hidden;
 }
 
-.photo-placeholder span {
-  color: #d9dee6;
-  font-weight: 700;
-  font-size: 0.86rem;
-}
-
-.photo-placeholder small {
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  margin-top: 4px;
-  color: #aab1bc;
-  font-size: 0.73rem;
 }
 
 h1 {
@@ -116,6 +107,48 @@ h1 {
   color: var(--ink-soft);
   font-weight: 600;
   font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.social-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+}
+
+.social-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #667180;
+  color: #e8edf5;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.07));
+  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.social-btn.wide {
+  width: auto;
+  min-width: 38px;
+  padding: 0 12px;
+}
+
+.social-btn:hover,
+.social-btn:focus-visible {
+  border-color: #dfe5ee;
+  background: rgba(208, 213, 221, 0.18);
+  box-shadow: 0 0 0 4px rgba(208, 213, 221, 0.12);
+  transform: translateY(-2px);
+}
+
+.social-btn:focus-visible {
+  outline: none;
 }
 
 .hero-tags {
@@ -297,8 +330,24 @@ tbody tr:hover {
 .footer-note {
   text-align: center;
   color: var(--ink-soft);
-  font-size: 0.92rem;
-  padding-top: 6px;
+  font-size: 0.95rem;
+}
+
+.footer-social-title {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #aeb7c4;
+}
+
+.footer-meta {
+  display: grid;
+  justify-items: center;
+  gap: 11px;
+  margin-top: 2px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(79, 90, 103, 0.55);
 }
 
 @media (max-width: 980px) {
@@ -333,6 +382,21 @@ tbody tr:hover {
     border-radius: 16px;
   }
 
+  .social-links {
+    gap: 8px;
+  }
+
+  .social-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.72rem;
+  }
+
+  .social-btn.wide {
+    min-width: 35px;
+    padding: 0 10px;
+  }
+
   h1 {
     font-size: clamp(1.65rem, 9vw, 2.25rem);
     max-width: 14ch;
@@ -357,15 +421,14 @@ tbody tr:hover {
     <section class="hero">
       <div class="hero-content">
         <h1>Ibasan, Bryl Rian P.</h1>
-        <p class="subtitle">BSIT 1ST YEAR | BLOCK 3</p>
+        <p class="subtitle">BSIT - 1ST YEAR | BLOCK 3</p>
         <div class="hero-tags">
           <span class="tag">IT Student</span>
           <span class="tag">Web Development</span>
         </div>
       </div>
-      <div class="photo-placeholder" aria-label="Profile image placeholder">
-        <span>Add Your Image Here</span>
-        <small>Recommended: square photo</small>
+      <div class="photo-placeholder">
+        <img src="assets-profile.png" alt="Bryl Rian P. Ibasan profile photo" />
       </div>
     </section>
 
@@ -458,9 +521,15 @@ tbody tr:hover {
       </article>
     </section>
 
-    <p class="footer-note">Portfolio page designed for Bryl Rian P. Ibasan</p>
+    <div class="footer-meta">
+      <p class="footer-social-title">Connect with me</p>
+      <nav class="social-links" aria-label="Social links">
+        <a class="social-btn" href="https://www.facebook.com/brylzxzzxc" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Fb</a>
+        <a class="social-btn" href="https://www.instagram.com/user_017374618173/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Ig</a>
+      </nav>
+      <p class="footer-note">Portfolio page designed for Bryl Rian P. Ibasan</p>
+    </div>
   </main>
 </body>
 </html>
-
 

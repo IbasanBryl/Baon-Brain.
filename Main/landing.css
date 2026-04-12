@@ -132,44 +132,47 @@ button{
   position:sticky;
   top:0;
   z-index:20;
-  padding:16px 20px 0;
+  padding:18px 24px 0;
 }
 
 .site-header-inner{
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:22px;
   position:relative;
   max-width:1200px;
   margin:0 auto;
-  padding:14px 18px;
-  border:1px solid rgba(19,35,30,.08);
+  padding:10px 12px 10px 18px;
+  border:1px solid rgba(19,35,30,.09);
   border-radius:999px;
-  background:rgba(255,252,247,.82);
-  box-shadow:0 14px 28px rgba(23,38,31,.08);
-  backdrop-filter:blur(18px);
+  background:
+    linear-gradient(180deg, rgba(255,254,251,.94) 0%, rgba(248,243,235,.86) 100%);
+  box-shadow:
+    0 18px 36px rgba(23,38,31,.09),
+    inset 0 1px 0 rgba(255,255,255,.7);
+  backdrop-filter:blur(20px);
 }
 
 .brand{
   display:inline-flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
   min-width:max-content;
   font-family:'Space Grotesk', sans-serif;
   font-weight:700;
-  letter-spacing:-.03em;
+  letter-spacing:-.04em;
   color:var(--sage-deep);
 }
 
 .brand-mark{
-  width:44px;
-  height:44px;
+  width:46px;
+  height:46px;
   object-fit:contain;
-  filter:drop-shadow(0 8px 16px rgba(0,0,0,.12));
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.12));
 }
 
 .brand-text{
-  font-size:1.15rem;
+  font-size:1.2rem;
 }
 
 .nav-toggle{
@@ -213,40 +216,52 @@ button{
 .site-nav{
   display:flex;
   justify-content:center;
-  gap:22px;
+  gap:6px;
   flex:1 1 auto;
+  margin:0 auto;
+  padding:6px;
+  border:1px solid rgba(19,35,30,.08);
+  border-radius:999px;
+  background:rgba(255,255,255,.5);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
   color:var(--muted);
   font-weight:600;
 }
 
 .site-nav a{
   position:relative;
-  padding:8px 0;
-  transition:color .2s ease;
+  padding:11px 16px;
+  border-radius:999px;
+  line-height:1;
+  letter-spacing:-.01em;
+  transition:color .2s ease, background .2s ease, box-shadow .2s ease;
 }
 
 .site-nav a::after{
   content:'';
   position:absolute;
-  left:0;
-  bottom:3px;
-  width:100%;
+  left:14px;
+  bottom:7px;
+  width:calc(100% - 28px);
   height:2px;
   border-radius:999px;
   background:linear-gradient(90deg, var(--sage), var(--amber));
   transform:scaleX(0);
-  transform-origin:left;
+  transform-origin:center;
   transition:transform .22s ease;
 }
 
 .site-nav a:hover,
 .site-nav a:focus-visible{
   color:var(--sage-deep);
+  background:rgba(23,55,45,.06);
 }
 
 .site-nav a[aria-current="location"],
 .site-nav a[aria-current="page"]{
   color:var(--sage-deep);
+  background:rgba(255,255,255,.94);
+  box-shadow:0 10px 18px rgba(23,38,31,.08);
 }
 
 .site-nav a:focus-visible::after,
@@ -260,6 +275,14 @@ button{
   align-items:center;
   gap:10px;
   min-width:max-content;
+}
+
+.header-actions .button.primary{
+  min-height:48px;
+  padding:0 24px;
+  box-shadow:
+    0 14px 28px rgba(44,111,91,.26),
+    inset 0 1px 0 rgba(255,255,255,.2);
 }
 
 .button{
@@ -1955,6 +1978,16 @@ button{
   background:rgba(255,255,255,.88);
   border:1px solid rgba(19,35,30,.08);
   box-shadow:0 14px 30px rgba(23,38,31,.08);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.developer-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 38px rgba(23,38,31,.12);
+  border-color:rgba(44,111,91,.22);
 }
 
 .developer-card-featured{
@@ -2026,6 +2059,33 @@ button{
   background:rgba(255,255,255,.08);
   border-color:rgba(255,255,255,.12);
   color:#eef8f3;
+}
+
+.developer-output{
+  margin-top:auto;
+  align-self:flex-start;
+  min-height:44px;
+  padding:0 18px;
+  border-radius:999px;
+  font-weight:800;
+  letter-spacing:.01em;
+  text-decoration:none;
+  border:1px solid rgba(44,111,91,.22);
+  background:rgba(255,255,255,.94);
+  color:var(--ink);
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.developer-output:hover{
+  transform:translateY(-1px);
+  background:#ffffff;
+  box-shadow:0 8px 18px rgba(23,38,31,.12);
+}
+
+.developer-card-featured .developer-output{
+  background:rgba(255,255,255,.92);
+  border-color:rgba(255,255,255,.3);
+  color:#0f2f25;
 }
 
 .contact-section{
@@ -2282,8 +2342,13 @@ button{
   }
 
   .site-nav{
-    gap:16px;
+    gap:4px;
+    padding:5px;
     font-size:.95rem;
+  }
+
+  .site-nav a{
+    padding:10px 13px;
   }
 
   .header-actions{
@@ -2379,14 +2444,25 @@ button{
     width:100%;
     justify-content:flex-start;
     flex-wrap:wrap;
-    gap:14px;
+    gap:10px;
     max-height:0;
     overflow:hidden;
+    margin:0;
+    padding:0;
+    border:none;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
     padding-top:0;
     opacity:0;
     pointer-events:none;
     transform:translateY(-8px);
     transition:max-height .28s ease, opacity .22s ease, transform .22s ease, padding-top .22s ease;
+  }
+
+  .site-nav a{
+    padding:10px 14px;
+    background:rgba(255,255,255,.62);
   }
 
   .header-actions{
