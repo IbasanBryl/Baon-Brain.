@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
 
 :root{
-  --ink:#13231e;
-  --muted:#5d6b65;
-  --paper:#f8f6f1;
-  --paper-2:#ece5d9;
-  --surface:rgba(255,255,255,.78);
-  --surface-strong:rgba(255,255,255,.94);
-  --line:rgba(19,35,30,.1);
-  --sage:#2c6f5b;
-  --sage-2:#4c8f74;
-  --sage-deep:#17372d;
-  --amber:#c98f35;
-  --amber-soft:#e1c072;
-  --clay:#be6d55;
-  --shadow:0 22px 54px rgba(23,38,31,.11);
-  --shadow-strong:0 34px 70px rgba(23,38,31,.15);
+  --ink:#1e2d35;
+  --muted:#697881;
+  --paper:#f8fafb;
+  --paper-2:#e8edf1;
+  --surface:rgba(255,255,255,.88);
+  --surface-strong:rgba(255,255,255,.97);
+  --line:rgba(30,45,53,.1);
+  --sage:#4d7374;
+  --sage-2:#6d9192;
+  --sage-deep:#28484d;
+  --amber:#b08a52;
+  --amber-soft:#d1b07b;
+  --clay:#9d776d;
+  --shadow:0 22px 54px rgba(18,34,42,.1);
+  --shadow-strong:0 34px 70px rgba(18,34,42,.14);
 }
 
 *{
@@ -34,10 +34,10 @@ body{
   color:var(--ink);
   font-family:'Outfit', sans-serif;
   background:
-    radial-gradient(circle at 14% 12%, rgba(255,255,255,.82), transparent 28%),
-    radial-gradient(circle at 84% 18%, rgba(201,143,53,.12), transparent 24%),
-    radial-gradient(circle at 74% 82%, rgba(44,111,91,.12), transparent 26%),
-    linear-gradient(135deg, #fbfaf6 0%, #f2ece2 54%, #e4dbcd 100%);
+    radial-gradient(circle at 12% 10%, rgba(255,255,255,.88), transparent 28%),
+    radial-gradient(circle at 82% 18%, rgba(77,115,116,.08), transparent 24%),
+    radial-gradient(circle at 70% 80%, rgba(176,138,82,.08), transparent 24%),
+    linear-gradient(180deg, #f7fafb 0%, #edf2f5 52%, #e3eaee 100%);
   overflow-x:hidden;
 }
 
@@ -57,7 +57,7 @@ body::before{
   right:-8rem;
   width:24rem;
   height:24rem;
-  background:rgba(44,111,91,.12);
+  background:rgba(77,115,116,.08);
 }
 
 body::after{
@@ -65,7 +65,7 @@ body::after{
   bottom:-10rem;
   width:22rem;
   height:22rem;
-  background:rgba(201,143,53,.12);
+  background:rgba(176,138,82,.08);
 }
 
 a{
@@ -117,7 +117,7 @@ button{
   right:4%;
   width:18rem;
   height:18rem;
-  background:rgba(255,255,255,.36);
+  background:rgba(255,255,255,.34);
 }
 
 .bg-orb-two{
@@ -125,7 +125,7 @@ button{
   bottom:12%;
   width:16rem;
   height:16rem;
-  background:rgba(76,139,109,.14);
+  background:rgba(77,115,116,.08);
 }
 
 .site-header{
@@ -146,9 +146,9 @@ button{
   border:1px solid rgba(19,35,30,.09);
   border-radius:999px;
   background:
-    linear-gradient(180deg, rgba(255,254,251,.94) 0%, rgba(248,243,235,.86) 100%);
+    linear-gradient(180deg, rgba(255,255,255,.97) 0%, rgba(245,248,250,.92) 100%);
   box-shadow:
-    0 18px 36px rgba(23,38,31,.09),
+    0 18px 36px rgba(18,34,42,.08),
     inset 0 1px 0 rgba(255,255,255,.7);
   backdrop-filter:blur(20px);
 }
@@ -1591,7 +1591,7 @@ button{
   padding:34px;
   border-radius:34px;
   border:1px solid rgba(19,35,30,.08);
-  background:rgba(255,255,255,.62);
+  background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(248,250,251,.82));
   box-shadow:var(--shadow);
   overflow:hidden;
   scroll-margin-top:110px;
@@ -1601,15 +1601,15 @@ button{
   content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(135deg, rgba(255,255,255,.28), transparent 38%);
+  background:linear-gradient(135deg, rgba(255,255,255,.42), transparent 46%);
   pointer-events:none;
 }
 
 .section-dark{
   color:#eef7f2;
   background:
-    radial-gradient(circle at top left, rgba(255,255,255,.08), transparent 30%),
-    linear-gradient(135deg, #132a23 0%, #1d4034 58%, #245643 100%);
+    radial-gradient(circle at top left, rgba(255,255,255,.12), transparent 30%),
+    linear-gradient(135deg, #47666d 0%, #567980 54%, #62878a 100%);
 }
 
 .section-head{
@@ -1848,9 +1848,9 @@ button{
 
 .about-section{
   background:
-    radial-gradient(circle at top right, rgba(201,143,53,.14), transparent 24%),
-    radial-gradient(circle at left center, rgba(44,111,91,.12), transparent 26%),
-    rgba(255,255,255,.68);
+    radial-gradient(circle at top right, rgba(176,138,82,.1), transparent 24%),
+    radial-gradient(circle at left center, rgba(77,115,116,.08), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,.9), rgba(247,249,250,.82));
 }
 
 .about-grid{
@@ -1864,9 +1864,9 @@ button{
 .about-story{
   padding:28px;
   border-radius:30px;
-  background:linear-gradient(135deg, #132a23 0%, #1d4034 56%, #245643 100%);
+  background:linear-gradient(135deg, #46656c 0%, #55797f 56%, #64898c 100%);
   color:#eef8f3;
-  box-shadow:0 22px 44px rgba(23,38,31,.16);
+  box-shadow:0 22px 44px rgba(18,34,42,.14);
 }
 
 .about-kicker{
@@ -1960,9 +1960,9 @@ button{
 
 .developers-section{
   background:
-    radial-gradient(circle at top left, rgba(201,143,53,.12), transparent 24%),
-    radial-gradient(circle at bottom right, rgba(44,111,91,.1), transparent 26%),
-    rgba(255,255,255,.72);
+    radial-gradient(circle at top left, rgba(176,138,82,.08), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(77,115,116,.08), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,.9), rgba(247,249,250,.82));
 }
 
 .developers-grid{
@@ -2207,7 +2207,7 @@ button{
   padding:32px;
   border-radius:34px;
   border:1px solid rgba(19,35,30,.08);
-  background:linear-gradient(135deg, #132a23 0%, #1d4034 56%, #245643 100%);
+  background:linear-gradient(135deg, #46656c 0%, #55797f 56%, #64898c 100%);
   color:#eef8f3;
   box-shadow:var(--shadow-strong);
   scroll-margin-top:110px;
