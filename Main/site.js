@@ -64,12 +64,12 @@ if (downloadButtons.length) {
       '- Check your remaining balance before adding extras',
       '- Keep a small weekly savings target visible',
       '',
-      'Sample weekly split for PHP 4,000:',
-      '- Food: PHP 1,450',
-      '- Fare: PHP 900',
-      '- School: PHP 850',
-      '- Flex money: PHP 450',
-      '- Savings: PHP 350',
+      'Sample weekly split for PHP 4,000.00:',
+      '- Food: PHP 1,450.00',
+      '- Fare: PHP 900.00',
+      '- School: PHP 850.00',
+      '- Flex money: PHP 450.00',
+      '- Savings: PHP 350.00',
       '',
       'BaonBrain helps you catch risky spending patterns before Thursday panic hits.'
     ].join('\n');
@@ -90,8 +90,11 @@ if (downloadButtons.length) {
   });
 }
 
-const moneyFormatter = new Intl.NumberFormat('en-PH');
-const formatMoney = (value) => `PHP ${moneyFormatter.format(Math.round(value))}`;
+const moneyFormatter = new Intl.NumberFormat('en-PH', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+});
+const formatMoney = (value) => `PHP ${moneyFormatter.format(Number(value) || 0)}`;
 const OVERVIEW_STORAGE_KEY = 'baonbrain-overview-state';
 const SIMULATOR_STORAGE_KEY = 'baonbrain-simulator-state';
 
@@ -346,7 +349,7 @@ if (
       const daySpend = overviewState.weeklySpending[index] || 0;
       bar.style.height = `${Math.max(22, Math.round((daySpend / weeklyMax) * 100))}%`;
       bar.dataset.currency = 'PHP';
-      bar.dataset.value = moneyFormatter.format(Math.round(daySpend));
+      bar.dataset.value = moneyFormatter.format(daySpend);
       bar.dataset.peak = daySpend === weeklyMax && weeklyMax > 0 ? 'true' : 'false';
       bar.title = `${dayLabels[index]}: ${formatMoney(daySpend)}`;
     });
@@ -474,7 +477,7 @@ if (
       return {
         total: Number(parsed.total) || 4000,
         spent: Number(parsed.spent) || 800,
-        lastAction: typeof parsed.lastAction === 'string' ? parsed.lastAction : 'PHP 120 lunch',
+        lastAction: typeof parsed.lastAction === 'string' ? parsed.lastAction : 'PHP 120.00 lunch',
         lastActionDetail: typeof parsed.lastActionDetail === 'string' ? parsed.lastActionDetail : 'Saved instantly'
       };
     } catch {
@@ -493,7 +496,7 @@ if (
   const baseState = {
     total: 4000,
     spent: 800,
-    lastAction: 'PHP 120 lunch',
+    lastAction: 'PHP 120.00 lunch',
     lastActionDetail: 'Saved instantly'
   };
   const state = { ...baseState, ...(loadStoredSimulatorState() || {}) };
@@ -612,7 +615,7 @@ if (
       const spend = Number(button.dataset.spend || 0);
       const label = button.dataset.label || button.textContent.trim();
       state.spent += spend;
-      state.lastAction = button.textContent.trim();
+      state.lastAction = `${formatMoney(spend)} ${label.toLowerCase()}`;
       state.lastActionDetail = 'Saved instantly';
 
       const remainingRaw = state.total - state.spent;
