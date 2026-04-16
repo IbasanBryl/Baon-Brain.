@@ -38,7 +38,7 @@
       </nav>
 
       <div class="header-actions">
-        <a class="button primary" href="#cta">Get Started</a>
+        <button class="button secondary download-trigger" type="button">Download Now</button>
       </div>
     </div>
   </header>
@@ -102,7 +102,17 @@
             <i id="progress-bar" style="width:80%"></i>
           </div>
 
+          <div class="preview-progress-meta">
+            <span>Week balance</span>
+            <strong id="progress-status">80% left</strong>
+          </div>
+
           <p class="preview-helper">Tap an expense to update the week.</p>
+
+          <div class="preview-action-head">
+            <span>Quick log</span>
+            <strong>Try a spending tap</strong>
+          </div>
 
           <div class="preview-actions" aria-label="Quick spending simulator">
             <button class="preview-action" type="button" data-spend="120" data-label="Lunch">Lunch -&#8369;120</button>
@@ -126,14 +136,24 @@
             </div>
           </div>
 
-          <div class="preview-chart" aria-hidden="true">
-            <span style="height:42%"></span>
-            <span style="height:58%"></span>
-            <span style="height:48%"></span>
-            <span style="height:74%"></span>
-            <span style="height:56%"></span>
-            <span style="height:66%"></span>
-            <span style="height:52%"></span>
+          <div class="preview-chart-panel">
+            <div class="preview-chart-head">
+              <div>
+                <span>Weekly spending</span>
+                <strong>This week</strong>
+              </div>
+              <span class="preview-chart-tag">7 days</span>
+            </div>
+
+            <div class="preview-chart" aria-hidden="true">
+              <span style="height:42%"></span>
+              <span style="height:58%"></span>
+              <span style="height:48%"></span>
+              <span style="height:74%"></span>
+              <span style="height:56%"></span>
+              <span style="height:66%"></span>
+              <span style="height:52%"></span>
+            </div>
           </div>
 
           <p class="preview-note" id="preview-note" aria-live="polite" aria-atomic="true">One day of tracking shows the pattern.</p>
@@ -177,19 +197,19 @@
           <div class="overview-metrics" aria-label="Overview summary">
             <div>
               <span>Income tracked</span>
-              <strong>PHP 4,000</strong>
+              <strong id="overview-income-tracked">PHP 4,000</strong>
             </div>
             <div>
               <span>Total spent</span>
-              <strong>PHP 1,280</strong>
+              <strong id="overview-total-spent">PHP 1,280</strong>
             </div>
             <div>
               <span>Remaining</span>
-              <strong>PHP 2,720</strong>
+              <strong id="overview-remaining">PHP 2,720</strong>
             </div>
             <div>
               <span>AI forecast</span>
-              <strong>PHP 1,940</strong>
+              <strong id="overview-forecast-amount">PHP 1,940</strong>
             </div>
           </div>
 
@@ -197,16 +217,16 @@
             <div class="overview-chart-panel">
               <div class="overview-panel-head">
                 <span>Weekly spending</span>
-                <strong>Balanced</strong>
+                <strong id="overview-balance-status">Balanced</strong>
               </div>
               <div class="overview-weekly-chart" aria-hidden="true">
-                <span style="height:26%"></span>
-                <span style="height:42%"></span>
-                <span style="height:31%"></span>
-                <span style="height:54%"></span>
-                <span style="height:47%"></span>
-                <span style="height:38%"></span>
-                <span style="height:44%"></span>
+                <span data-overview-day="0" style="height:26%"></span>
+                <span data-overview-day="1" style="height:42%"></span>
+                <span data-overview-day="2" style="height:31%"></span>
+                <span data-overview-day="3" style="height:54%"></span>
+                <span data-overview-day="4" style="height:47%"></span>
+                <span data-overview-day="5" style="height:38%"></span>
+                <span data-overview-day="6" style="height:44%"></span>
               </div>
               <div class="overview-weekdays" aria-hidden="true">
                 <span>Mon</span>
@@ -220,25 +240,25 @@
             </div>
 
             <div class="overview-insight-panel">
-              <div class="overview-ring-chart" aria-hidden="true">
-                <span>No data yet</span>
+              <div class="overview-ring-chart" id="overview-ring-chart" aria-hidden="true">
+                <span id="overview-ring-label">No data yet</span>
               </div>
-              <p>Food, fare, and school lead this week.</p>
+              <p id="overview-insight-text">Food, fare, and school lead this week.</p>
             </div>
           </div>
 
           <div class="overview-strip" aria-label="Quick indicators">
             <div>
               <span>Best day</span>
-              <strong>Wed</strong>
+              <strong id="overview-best-day">Wed</strong>
             </div>
             <div>
               <span>Alerts</span>
-              <strong>1 watch</strong>
+              <strong id="overview-alerts">1 watch</strong>
             </div>
             <div>
               <span>Trend</span>
-              <strong>Steady</strong>
+              <strong id="overview-trend">Steady</strong>
             </div>
           </div>
         </div>
@@ -249,25 +269,25 @@
               <span class="overview-kicker">Income</span>
               <h3>Income records</h3>
             </div>
-            <span class="overview-status muted">2 records</span>
+            <span class="overview-status muted" id="overview-income-status">2 records</span>
           </div>
           <div class="overview-table" aria-label="Income summary rows">
             <div>
-              <span>Weekly baon</span>
-              <strong>PHP 4,000</strong>
+              <span id="overview-income-label-1">Weekly baon</span>
+              <strong id="overview-income-value-1">PHP 4,000</strong>
             </div>
             <div>
-              <span>Side gig</span>
-              <strong>PHP 650</strong>
+              <span id="overview-income-label-2">Side gig</span>
+              <strong id="overview-income-value-2">PHP 650</strong>
             </div>
             <div>
-              <span>Extra cash</span>
-              <strong>PHP 200</strong>
+              <span id="overview-income-label-3">Extra cash</span>
+              <strong id="overview-income-value-3">PHP 200</strong>
             </div>
           </div>
           <div class="overview-footer-row">
             <span>This month</span>
-            <strong>PHP 4,850</strong>
+            <strong id="overview-income-total">PHP 4,850</strong>
           </div>
         </div>
 
@@ -277,25 +297,25 @@
               <span class="overview-kicker">Expenses</span>
               <h3>Recent expenses</h3>
             </div>
-            <span class="overview-status muted">Food-led</span>
+            <span class="overview-status muted" id="overview-expense-status">Food-led</span>
           </div>
           <div class="overview-table overview-table-soft" aria-label="Expense category rows">
             <div>
               <span>Food</span>
-              <strong>PHP 460</strong>
+              <strong id="overview-expense-food">PHP 460</strong>
             </div>
             <div>
               <span>Fare</span>
-              <strong>PHP 280</strong>
+              <strong id="overview-expense-fare">PHP 280</strong>
             </div>
             <div>
               <span>School</span>
-              <strong>PHP 540</strong>
+              <strong id="overview-expense-school">PHP 540</strong>
             </div>
           </div>
           <div class="overview-footer-row highlight">
             <span>Total spent</span>
-            <strong>PHP 1,280</strong>
+            <strong id="overview-expense-total">PHP 1,280</strong>
           </div>
         </div>
 
@@ -305,25 +325,25 @@
               <span class="overview-kicker">Budget</span>
               <h3>Budget snapshot</h3>
             </div>
-            <span class="overview-status muted">68% used</span>
+            <span class="overview-status muted" id="overview-budget-status">68% used</span>
           </div>
           <div class="overview-bars" aria-label="Budget progress bars">
             <div>
-              <span><i>Food</i><em>72%</em></span>
-              <strong aria-hidden="true"><b style="width:72%"></b></strong>
+              <span><i>Food</i><em id="overview-budget-food-percent">72%</em></span>
+              <strong aria-hidden="true"><b id="overview-budget-food-bar" style="width:72%"></b></strong>
             </div>
             <div>
-              <span><i>Fare</i><em>48%</em></span>
-              <strong aria-hidden="true"><b style="width:48%"></b></strong>
+              <span><i>Fare</i><em id="overview-budget-fare-percent">48%</em></span>
+              <strong aria-hidden="true"><b id="overview-budget-fare-bar" style="width:48%"></b></strong>
             </div>
             <div>
-              <span><i>School</i><em>35%</em></span>
-              <strong aria-hidden="true"><b style="width:35%"></b></strong>
+              <span><i>School</i><em id="overview-budget-school-percent">35%</em></span>
+              <strong aria-hidden="true"><b id="overview-budget-school-bar" style="width:35%"></b></strong>
             </div>
           </div>
           <div class="overview-footer-row">
             <span>Remaining budget</span>
-            <strong>PHP 800</strong>
+            <strong id="overview-budget-remaining">PHP 800</strong>
           </div>
         </div>
 
@@ -333,24 +353,24 @@
               <span class="overview-kicker">Saving Goal</span>
               <h3>Goal progress</h3>
             </div>
-            <span class="overview-status muted">On track</span>
+            <span class="overview-status muted" id="overview-savings-status">On track</span>
           </div>
           <div class="overview-goal">
-            <div class="overview-goal-ring" aria-hidden="true">
-              <span>32%</span>
+            <div class="overview-goal-ring" id="overview-goal-ring" aria-hidden="true">
+              <span id="overview-goal-percent">32%</span>
             </div>
             <div class="overview-goal-copy">
               <div>
                 <span>Target</span>
-                <strong>PHP 10,000</strong>
+                <strong id="overview-goal-target">PHP 10,000</strong>
               </div>
               <div>
                 <span>Saved</span>
-                <strong>PHP 3,200</strong>
+                <strong id="overview-goal-saved">PHP 3,200</strong>
               </div>
               <div>
                 <span>Entries</span>
-                <strong>8</strong>
+                <strong id="overview-goal-entries">8</strong>
               </div>
             </div>
           </div>
@@ -362,25 +382,25 @@
               <span class="overview-kicker">Forecast</span>
               <h3>End-of-month prediction</h3>
             </div>
-            <span class="overview-status muted">Low risk</span>
+            <span class="overview-status muted" id="overview-forecast-status">Low risk</span>
           </div>
           <div class="overview-forecast">
             <div class="overview-forecast-main">
               <span>Estimated remaining</span>
-              <strong>PHP 1,940</strong>
+              <strong id="overview-forecast-estimate">PHP 1,940</strong>
             </div>
             <div class="overview-forecast-grid">
               <div>
                 <span>High-risk category</span>
-                <strong>Food</strong>
+                <strong id="overview-forecast-category">Food</strong>
               </div>
               <div>
                 <span>Projected daily spend</span>
-                <strong>PHP 230</strong>
+                <strong id="overview-forecast-daily">PHP 230</strong>
               </div>
               <div>
                 <span>Chance of overspending</span>
-                <strong>12%</strong>
+                <strong id="overview-forecast-risk">12%</strong>
               </div>
             </div>
           </div>
