@@ -111,7 +111,6 @@ const overviewElements = {
   insightText: document.getElementById('overview-insight-text'),
   bestDay: document.getElementById('overview-best-day'),
   alerts: document.getElementById('overview-alerts'),
-  trend: document.getElementById('overview-trend'),
   incomeStatus: document.getElementById('overview-income-status'),
   incomeLabel1: document.getElementById('overview-income-label-1'),
   incomeValue1: document.getElementById('overview-income-value-1'),
@@ -158,7 +157,6 @@ if (
   overviewElements.insightText &&
   overviewElements.bestDay &&
   overviewElements.alerts &&
-  overviewElements.trend &&
   overviewElements.incomeStatus &&
   overviewElements.incomeLabel1 &&
   overviewElements.incomeValue1 &&
@@ -301,16 +299,6 @@ if (
     return 'High risk';
   };
 
-  const getTrendLabel = (weeklySpending) => {
-    const firstHalf = weeklySpending.slice(0, 3).reduce((sum, amount) => sum + amount, 0) / 3;
-    const lastHalf = weeklySpending.slice(-3).reduce((sum, amount) => sum + amount, 0) / 3;
-    const difference = lastHalf - firstHalf;
-
-    if (difference >= 30) return 'Rising';
-    if (difference <= -30) return 'Cooling';
-    return 'Steady';
-  };
-
   const renderOverview = () => {
     const totalSpent = Object.values(overviewState.expenses).reduce((sum, amount) => sum + amount, 0);
     const remaining = Math.max(0, overviewState.summaryIncome - totalSpent);
@@ -362,7 +350,6 @@ if (
     overviewElements.insightText.textContent = `${topCategory.toLowerCase()}, ${secondCategory.toLowerCase()}, and ${thirdCategory.toLowerCase()} lead this week.`;
     overviewElements.bestDay.textContent = dayLabels[bestDayIndex];
     overviewElements.alerts.textContent = alertsCount === 0 ? 'No alerts' : alertsCount === 1 ? '1 watch' : `${alertsCount} watches`;
-    overviewElements.trend.textContent = getTrendLabel(overviewState.weeklySpending);
 
     overviewElements.incomeStatus.textContent = `${overviewState.incomeRecords.length} records`;
     overviewElements.incomeLabel1.textContent = overviewState.incomeRecords[0].label;
